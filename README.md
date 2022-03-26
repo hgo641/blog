@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center">
     gatsby-starter-hoodie
 </h1>
@@ -158,3 +159,6 @@ You can customize your own gatsby-starter-hoodie by referring to the following f
     ├── templates // post components are here
     └── utils
 ```
+=======
+# blog
+>>>>>>> e429ee458c73c07f9d984e551b58503571fba531
