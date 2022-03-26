@@ -7,4 +7,10 @@ tags:
 series: "미오새"
 ---
 
-#test
+#1. 패키지 다운로드
+
+```
+    pip install django
+    pip install djangorestframework
+    pip install corsheaders
+```
