@@ -6,16 +6,21 @@ tags:
 series: "OS"
 ---
 
-#1. OS의 구조
+##1. OS의 구조
 
 <br/>
-<p align="center"><img src = "./osinstructure.png"/></p>
-    - GUI : 그래픽 UI ex. 마우스 커서
-    - command line : 커맨드입력창
-    - 시스템콜 : os 내부 기능 활용
-    - 커널(그림의 services)
 
-#2. 컴퓨터 하드웨어
+![](./osinstructure.png)
+
+- **GUI** : 그래픽 UI ex. 마우스 커서
+
+- **command line** : 커맨드입력창
+
+- **시스템콜** : os 내부 기능 활용
+
+- **커널**(그림의 services)
+
+##2. 컴퓨터 하드웨어
 
 - CPU
 - DISK
@@ -41,7 +46,7 @@ series: "OS"
        신호를 받는 쪽
        ex) Memory, Device controller
 
-##I/O Operations
+##3. I/O Operations
 
 I/O controller가 cpu commands에 따라 I/O operations 수행
 I/O controller register
