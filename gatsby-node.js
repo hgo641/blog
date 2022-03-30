@@ -1,3 +1,15 @@
+// exports.createSchemaCustomization = ({ actions }) => {
+//   actions.createTypes(`
+//     type update {
+//       date: Date @dateformat
+//     }
+
+//     type update implements Node {
+//       frontmatter: update
+//     }
+//   `);
+// };
+
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
 
