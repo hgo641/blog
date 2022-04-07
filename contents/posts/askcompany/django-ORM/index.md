@@ -1,6 +1,6 @@
 ---
 title: "django ORM"
-date: 2021-03-28
+date: 2022-03-28
 tags:
   - django
 series: "askcompany"

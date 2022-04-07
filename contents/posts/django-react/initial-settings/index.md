@@ -1,6 +1,6 @@
 ---
 title: "Django REST Framework와 React 연동 첫걸음! 초기세팅을 해보자!"
-date: 2021-03-26
+date: 2022-03-26
 tags:
   - DRF
   - React

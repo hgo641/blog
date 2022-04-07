@@ -1,7 +1,7 @@
 ---
 title: "ec2"
-date: 2021-03-27
-update: 2021-03-29
+date: 2022-03-27
+update: 2022-03-29
 tags:
   - EC2
   - deploy

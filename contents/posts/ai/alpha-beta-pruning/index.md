@@ -1,6 +1,6 @@
 ---
 title: "Minimax 알고리즘 & alpha-beta 가지치기"
-date: 2021-04-04
+date: 2022-04-04
 tags:
   - ai
   - inha

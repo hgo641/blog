@@ -1,6 +1,6 @@
 ---
 title: "Django의 Meta 클래스 활용"
-date: 2021-04-03
+date: 2022-04-03
 tags:
   - django
 ---

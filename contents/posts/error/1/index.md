@@ -1,6 +1,6 @@
 ---
 title: "git pull 오류 : fatal: refusing to merge unrelated histories"
-date: 2021-03-27
+date: 2022-03-27
 tags:
   - ERROR
 ---
