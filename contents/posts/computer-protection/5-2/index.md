@@ -28,6 +28,7 @@ n비트의 int는 2^n 개 표현 가능
 -> GF(2^n)사용 GF안의 모든 polynomial들이 n비트 넘버를 표현
 
 GF기준으로 x2 + 1도 인수분해 가능.
+irreducible polynomial :
 
 DES 56bit크기의 key 키 크기가 작아서 취약
 
@@ -61,4 +62,10 @@ initial transformation
 
 round
 
-key expansion = 서브키를 만들어내는 과정
+key expansion(key schedule) = 서브키를 만들어내는 과정
+
+### Detailed Structure
+
+---
+
+결과적으로 AES에서 내부적으로 하는일은 전체적인 데이터의 블록(4x4)들을 substitution과 permutation을 이용해서 업데이트함
