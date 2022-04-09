@@ -1,8 +1,10 @@
 ---
 title: "CBV api 사용해보기"
-date: 2022-04-03
+date: 2022-04-10
 tags:
-  - computer protection
+  - django
+  - python
+series: "askcompany"
 ---
 
 view는 무조건 HttpResponse객체를 반환해야한다.
