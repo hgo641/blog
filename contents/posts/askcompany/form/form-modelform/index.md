@@ -54,63 +54,7 @@ class PostForm(form.ModelForm):
         #fields = ['title', 'content']
 ```
 
-### 필드 별로 유효성 검사 함수 추가 적용
-
----
-
-```python
-from django import forms
-
-def min_length_3_validator(value):
-    if len(value) < 3:
-        raise form.ValidationError("3글자 이상 입력해주세요")
-
-class PostForm(forms.Form):
-    title = forms.CharField(validators=[min_length_3_validators])
-```
-
-_MinLengthValidator가 이미 존재하긴함_
-
-```python
-from django.core.validators import MinLengthValidator
-
-min_length_3_validator = MinLengthValidator(3)
-```
-
-#### 모델단에도 설정 가능~
-
----
-
-**models.py에서 설정해 ModelForm에서 사용할수도있다**
-
-#models.py
-
-```python
-from django import models
-
-def min_length_3_validator(value):
-    if len(value) < 3:
-        raise form.ValidationError("3글자 이상 입력해주세요")
-
-class Post(forms.Model):
-    title = models.CharField(max_length=100, validators=[min_length_3_validator])
-    content = models.TextField()
-```
-
-#forms.py
-
-```python
-from django import forms
-from .models import Post
-
-class PostForm(form.ModelForm):
-    class Meta:
-        model = Post
-        fields = '__all__'
-        #fields = ['title', 'content']
-```
-
-모델단에 지정한 validator를 ModelForm이 알아서 가져감
+form의 유효성 검사는 fields에 한해서 검사한다.
 
 #### View에서 ModelForm 활용
 
