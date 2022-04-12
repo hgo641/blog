@@ -1,6 +1,6 @@
 ---
 title: "HTTPRequest와 HttpResponse"
-date: 2022-04-10
+date: 2022-04-12
 tags:
   - django
   - askcompany
