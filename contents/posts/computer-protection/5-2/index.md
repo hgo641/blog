@@ -1,8 +1,10 @@
 ---
-title: "보안 작성중"
-date: 2022-04-03
+title: "작성중"
+date: 2022-04-13
+update: 2022-04-13
 tags:
   - computer protection
+series: "컴퓨터 보안"
 ---
 
 ## AES
