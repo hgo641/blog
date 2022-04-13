@@ -73,3 +73,22 @@ def post_new(request):
     return render(request, 'myapp/post_form.html', {'form' : form,})
 
 ```
+
+#### Model Form save함수의 인자commit
+
+\# ex) post 작성시 author 입력은 없애고 싶으나 author이 필수항목일 때
+
+```python
+post = form.save(commit = False)
+post.user = request.user
+#author입력이 안된 form이 오므로 author를 지정해주고 save
+post.save()
+```
+
+**True**가 **default**
+
+**False**로 준다면 **.save()**를 실행하지않는다.
+
+​ instance.save() 함수 호출을 지연시키고자 할 때 사용한다. (save하긴해야함)
+
+​ 모델 인스턴스는 만들어졌으나 실제 db에 모델이 생성되지않음
