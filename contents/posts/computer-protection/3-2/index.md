@@ -1,31 +1,33 @@
 ---
-title: "Symmetic Cipher Model (고전 암호)"
-date: 2022-04-14
+title: "3-2 Symmetic Cipher Model (고전 암호)"
+date: 2022-04-17
 tags:
   - computer protection
 series: "컴퓨터 보안"
 ---
 
-# Symmetic Cipher Model
+## Symmetic Cipher Model
 
-시메트릭 : 대칭
-
-어시메트릭 : 비대칭
+> 대칭 암호 모델
+>
+> 시메트릭 : 대칭
+>
+> 어시메트릭 : 비대칭
 
 고전 암호는 무조건 시메트릭이다
 
 고전 암호는 크게 `Substitution`과 `Transposition`으로 나뉜다
 
-- `Substitution` : 평문을 치환 - 대체
+- `Substitution` : 평문을 치환 - 아예 다른 글자로 대체
 - `Transposition ` : 평문안의 각 글자들을 지들끼리 위치 이동시킨다
 
 `Substitution`은 아예 다른 글자로 바뀌지만 `Transposition`은 원래 있던 글자들은 유지된다
 
-특징 :
-
-encryption 알고리즘이 강해야한다.
-
-수신자와 송신자는 secret key를 가지고 있어야한다
+> 특징 :
+>
+> encryption 알고리즘이 강해야한다.
+>
+> 수신자와 송신자는 secret key를 가지고 있어야한다
 
 ### 공격자의 공격 분류
 
@@ -41,11 +43,11 @@ encryption 알고리즘이 강해야한다.
 
 ex) Caesar Cipher
 
-Monoalphbetic ciphers : 인풋이 같다면 미리 정해진 규칙에 의해 똑같이 변환된다.
+- Monoalphbetic ciphers : 인풋이 같다면 미리 정해진 규칙에 의해 똑같이 변환된다.
 
-Polyalphabetic ciphers : 인풋이 같더라도 아웃풋이 다를 수 있다.
+- Polyalphabetic ciphers : 인풋이 같더라도 아웃풋이 다를 수 있다.
 
-### Caesar Cipher
+### 🔒 Caesar Cipher
 
 ---
 
@@ -63,13 +65,13 @@ key의 수가 작아서 가능함
 
 그래서 발전한게 `Monoalphabetic Cipher` ex) Permutation
 
-### Monoalphabetic ciphers
+### 🔐 Monoalphabetic Ciphers
 
 ---
 
 인풋이 같다면 미리 정해진 규칙에 의해 똑같이 변환된다.
 
-##### Permutaion
+#### 🔒 Permutation
 
 각 알파벳마다 임의의 글자 할당
 
@@ -84,13 +86,13 @@ NO!!!
 
 1. 통계적인 정보를 없애거나
 
-   ​ ▶ **글자를 묶어서 치환시킨다** ex) Playfair Cipher
+   ▶ **글자를 묶어서 치환시킨다** ex) Playfair Cipher
 
 2. 완화시켜야한다
 
-   ​ ▶ **날마다 다른 글자로 대응시킨다**
+   ▶ **날마다 다른 글자로 대응시킨다**
 
-#### Playfair Cipher
+### 🔒 Playfair Cipher
 
 ---
 
@@ -132,7 +134,7 @@ I/J중 뭘로 하든 상관없음
 
 **두 개씩 짝지어서 변환했으므로 통계 추정하기가 더 힘들어짐**
 
-### Polyalphabetic ciphers
+### 🔐 Polyalphabetic Ciphers
 
 ---
 
@@ -146,17 +148,19 @@ I/J중 뭘로 하든 상관없음
 
 ex) vigenere cipher
 
-#### Vigenere Cipher
+### 🔒 Vigenere Cipher
 
 ---
 
-시저 암호를 여러 개 사용함
+- 시저 암호를 여러 개 사용함
 
-message를 암호화하기 위해서 message와 길이가 똑같은 key가 필요
+- message를 암호화하기 위해서 message와 길이가 똑같은 key가 필요
 
-현실적으로 그 만큼 긴 길이의 key를 만들긴 힘들어서 일정 길이의 key를 반복시킨다
+- 현실적으로 그 만큼 긴 길이의 key를 만들긴 힘들어서 일정 길이의 key를 반복시킨다
 
-**key의 번호에 맞게 각 글자를 암호화한다.** (a = 0, b = 1, ...)
+- **key의 번호에 맞게 각 글자를 암호화한다.** (a = 0, b = 1, ...)
+
+![](./vigenere.png)
 
 **파훼법**
 
@@ -175,27 +179,33 @@ key도 plaintext도 영어이기때문에 가장 많이 나오는 글자가 존�
 
 어렵겠지만 추정이 가능한듯??
 
-#### Vernam Cipher
+### 🔒 Vernam Cipher
 
 ---
 
 알파벳을 그대로 사용하지않고 알파벳을 어떤 코드 체계를 통해서 bit 시퀀스로 바꾼다. 그 bit 시퀀스를 keyword에 해당하는 다른 bit 시퀀스와 더한다.
 
-`(p + k) mod 2`
+```
+(p + k) mod 2
+```
 
 mod 2의 재미난 성질 ~ 더하기와 빼기가 같답니다~
 
-`+` = `-` = `xor`
+```
++` = `-` = `xor
+```
 
 **key bit stream을 사용해 최대한 key의 길이를 길게!**
 
-#### One-Time Pad
+### 🔒 One-Time Pad
 
 ---
 
 key를 극단적으로 길게 만들어서 사이클이 없게
 
-`random key`
+```
+random key
+```
 
 `unbreakable` : 깨지지않음. 랜덤이라 파훼불가능. perfect secrecy!!!
 
@@ -211,7 +221,7 @@ key를 극단적으로 길게 만들어서 사이클이 없게
 
 ex) Rail Fence Cipher
 
-### Rail Fence Cipher
+### 🔒 Rail Fence Cipher
 
 ---
 
@@ -219,7 +229,7 @@ plaintext를 대각선 형태로 쓰고 행으로 읽음
 
 depth(몇 개의 행)
 
-### Row Transposition Cipher
+### 🔒 Row Transposition Cipher
 
 ---
 
@@ -227,7 +237,7 @@ depth(몇 개의 행)
 
 key는 1~n까지의 수, key에 해당하는 열 순으로 읽음
 
-### Steganography
+### 🔒 Steganography
 
 ---
 

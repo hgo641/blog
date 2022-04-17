@@ -1,6 +1,6 @@
 ---
-title: "7-2"
-date: 2022-04-16
+title: "7-2 난수 생성"
+date: 2022-04-18
 tags:
   - computer protection
 series: "컴퓨터 보안"
@@ -121,7 +121,7 @@ seed를 모르면 PRNG가 만들어낸 아웃풋이 랜덤처럼 보여야한다
 
 수도 랜덤 생성 전용 스트림 함수
 
-- period가 길어야 함. 완전 랜덤이다보니 seed값이 같으면 계속 넘버를 생성할 경우 일정 싸이클이 반복되게된다
+- period가 길어야 함. seed값이 같으면 계속 넘버를 생성할 경우 일정 싸이클이 반복되게된다
 - true random number stream처럼 보여야한다. - 분포나 연관관계 없어보여야함
 - key length가 최소한 128bit - 키가 짧으면 공격자가 추측해보기 쉬움
 - 비슷한 key length를 가지는 블록싸이퍼와 비슷한 안전성을 갖길 기대

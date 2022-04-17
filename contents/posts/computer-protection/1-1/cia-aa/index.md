@@ -1,64 +1,62 @@
 ---
-title: "[1주차] 컴퓨터 보안의 요구 조건 (CIA + AA)"
-date: 2022-04-13
+title: "1-1 컴퓨터 보안의 요구 조건 (CIA + AA)"
+date: 2022-04-17
 tags:
   - computer protection
 series: "컴퓨터 보안"
 ---
 
-# 보안 1
+**보안이란?**
 
-보안이란? 자동화된 정보 시스템을 보호
+- 자동화된 정보 시스템을 보호
 
-정보 시스템 자원의 integrity, availabliry, confidentiality 보존
+- 정보 시스템 자원의 confidentiality, integrity, availability 보존
 
 ## 보안의 요구 조건 : CIA + AA
 
----
+### 📌 기밀성 (Confidentiality)
 
-#### 기밀성 (Confidentiality)
+- `Data Confidentialiy`
 
-​ `* Data Confidentialiy`
+  중요한 정보가 허가받지않은 개인 주체에 의해서 공개되거나 가용될 수 없다.
 
-​ 중요한 정보가 허가받지않은 개인 주체에 의해서 공개되거나 가용될 수 없다.
+  허가받은 사람만 중요한 정보를 볼 수 있어야 한다
 
-​ 허가받은 사람만 중요한 정보를 볼 수 있어야 한다
+- `Privacy`
 
-​ `* Privacy`
+      개인이 자신과 관련되어 어떤 정보들이 저장되는지, 누구에게 공개될 수 있는 지 제어를 하고 영향을 미친다
 
-​ 개인이 자신과 관련되어 어떤 정보들이 저장되는지, 누구에게 공개될 수 있는 지 제어를 하고 영향을 미친다
+      정보의 주권을 자신이 가지고있다
 
-​ 정보의 주권을 자신이 가지고있다
+### 📌 무결성 (Integrity)
 
-#### 무결성 (Integrity)
+- `Data Integrity`
 
-​ `* Data Integrity`
-
-​ 미리 정의되거나 허가된 방법으로 integrity되어야 한다.
+      미리 정의되거나 허가된 방법으로 integrity되어야 한다.
 
 ​ 허가 받지 않은 상태로 변경이 불가하다.
 
 ​ 변경이 되었을 때 바로 확인이 가능해야한다.
 
-​ `* System Integrity`
+- `System Integrity`
 
-​ 시스템의 허가받지않은 변경을 막을 수 있어야한다.
+      시스템의 허가받지않은 변경을 막을 수 있어야한다.
 
-​ 시스템의 허가받지않은 변경이 불가하다
+      시스템의 허가받지않은 변경이 불가하다
 
-#### 가용성 (Availability)
+### 📌 가용성 (Availability)
 
-​ 정상적인 유저에게 정상적인 서비스를 제공한다
+정상적인 유저에게 정상적인 서비스를 제공한다
 
-\+ AA
+### 📌 책무성 (Accountability)
 
-#### Accountability
+어떤일이 벌어졌을 때 책임 소재를 가릴 수 있다
 
-​ 어떤일이 벌어졌을 때 책임 소재를 가릴 수 있다
+### 📌 인증 (Authentication)
 
-#### 인증 (Authentication)
+누가 진짠지 아닌지 확인할 수 있다
 
-​ 누가 진짠지 아닌지 확인할 수 있다
+<br/>
 
 ## 컴퓨터 보안의 어려움
 

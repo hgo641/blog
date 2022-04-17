@@ -1,6 +1,6 @@
 ---
-title: "다양한 보안 위협"
-date: 2022-04-14
+title: "4-1 다양한 보안 위협"
+date: 2022-04-17
 tags:
   - computer protection
 series: "컴퓨터 보안"
