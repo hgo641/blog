@@ -1,6 +1,6 @@
 ---
 title: "1-1 OSI 보안 구조"
-date: 2022-04-17
+date: 2022-04-16
 tags:
   - computer protection
 series: "컴퓨터 보안"

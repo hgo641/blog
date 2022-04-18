@@ -1,6 +1,6 @@
 ---
 title: "3-2 Symmetic Cipher Model (고전 암호)"
-date: 2022-04-17
+date: 2022-04-18
 tags:
   - computer protection
 series: "컴퓨터 보안"

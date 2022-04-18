@@ -1,6 +1,6 @@
 ---
 title: "1-2 Access Control"
-date: 2022-04-17
+date: 2022-04-16
 tags:
   - computer protection
 series: "컴퓨터 보안"

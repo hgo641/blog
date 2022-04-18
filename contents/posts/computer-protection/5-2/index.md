@@ -1,7 +1,7 @@
 ---
 title: "5-2 AES Process"
-date: 2022-04-17
-update: 2022-04-17
+date: 2022-04-18
+update: 2022-04-18
 tags:
   - computer protection
 series: "컴퓨터 보안"
@@ -60,16 +60,19 @@ irreducible polynomial :
 round key == subkey  
 round key의 비트는 똑같지만 개수가 많아짐 : expanded key
 
-![](./key.png)  
-key는 bit 수가 다른 여러가지 key가 있지만 plaintext는 항상 128bit로 고정이다
+![](./key.png)
 
-> key 비트수에 따라 반복되는 round수도 커진다  
-> round수가 늘어나면 라운드마다 쓰일 서브키(라운드키) 개수 역시 증가한다 (서브키 하나의 크기는 128bit로 늘어나지않음)
+- key는 bit 수가 다른 여러가지 key가 있지만 plaintext는 항상 128bit로 고정이다
 
-첫라운드전 한 번 + 각 라운드별로 서브키가 하나씩 사용됨  
-라운드 개수+1만큼 필요  
-서브키가 16byte 라운드가 10일경우 Expanded Key Size는  
-16\*11 = 176
+> key size, 비트수가 커지면 round수도 커진다  
+> 각 round별로 키가 하나씩 사용된다  
+> round수가 늘어나면 각 라운드마다 쓰일 서브키(라운드키) 개수가 증가한다  
+> 각각의 서브키 하나의 크기는 128bit로 고정되어있다. 개수만 늘어나는거임!
+
+> 첫라운드전 한 번 + 각 라운드별로 서브키가 하나씩 사용됨  
+> 즉, 라운드키는 라운드 개수+1만큼 필요  
+> 서브키가 16byte 라운드가 10일경우 Expanded Key Size는  
+> 16\*11 = 176
 
 ### AES Encryption Process
 
@@ -82,7 +85,8 @@ State (4x4)
 **initial transformation**  
 : 평문state와 key state를 xor
 
-**round** : 4가지 프로세스를 반 ~ 복
+**round** : 4가지 프로세스를 반 ~ 복  
+(마지막 라운드에선 Mix Columns 수행을 안하긴 함)
 
 **key expansion(key schedule)** = 서브키를 만들어내는 과정
 
@@ -94,9 +98,9 @@ State (4x4)
 
 - 결과적으로 AES에서 내부적으로 하는일은 전체적인 데이터의 블록(4x4)들을 substitution과 permutation을 이용해서 업데이트함
 
-> key가 128bit = 4 \* 32 bit word?, round가 10일 때,  
-> 필요한 라운드키는 4\*11 word 총 44개가 필요  
-> 하나의 열에 8bit짜리 4개가 존재 이 4개를 합쳐서 하나의 w로  
+> key가 128bit = 4 word, round가 10일 때,  
+> 필요한 라운드키는 4\*11 word 총 word 44개가 필요  
+> 하나의 열에 8bit짜리 4개가 존재(4byte 한 줄) 이 4개를 합쳐서 하나의 w로  
 > 이를 w[0] ~ w[43]으로 표현할 것임
 
 ![](./aes-ed.png)
@@ -104,8 +108,10 @@ State (4x4)
 
 ## 4개의 프로세스
 
-1. Substitute bytes : 3가지 (Substitution)
-2. Shift Rows : 1가지 (Permutation)
+> 3가지의 substitution과 1가지의 permutation으로 이루어진다
+
+1. Substitute bytes : (Substitution)
+2. Shift Rows : (Permutation)
 3. Mix Columns : 여러 라운드로 진행됨 (Substitution)
 4. Add Round Key (such as XOR) (Substitution)
 
@@ -119,7 +125,7 @@ State (4x4)
 
 ---
 
-### 1. Sub Bytes
+### 1. Substitute Bytes
 
 ---
 
@@ -146,29 +152,82 @@ S-box각 바이트들을 다른 바이트로 대체해주는 규칙
 
 ![](./s-box-inverse.png)
 
-```
-Inverse in GF(2^8)
-```
-
-1. 각 byte에 대한 역원을 구한다.
+1. 😨 Inverse in GF(2^8) :
+   각 byte에 대한 역원을 구한다.
 
 ​ 00000000 : 다른 수들은 모두 곱셈의 역원이 있지만 0의 역원은 0이므로 0은 그대로 0
 
-2. Byte to bit column vector
+2. 😨 Byte to bit column vector
 
 ​ s-box안의 bit를 b7(최상위비트)~b0(최하위비트)에 차례대로 넣는다
+만약 00000001을 넣어야한다면  
+ b7부터 차례대로 00000001이 들어간다 (b0 = 1)
 
-3. 행렬곱
+3. 😨 행렬곱한다!
 
-**00000000**이 들어갔다고 칠 때
+`00000000`이 들어갔다고 칠 때
 
-우선 **00000000** 과 옆의 행렬을 곱해서(bn \* n번째행) 차례대로 `(1)`b7~b0에 다시 넣는다 (지금은 0이 들어갔으므로 행렬곱해도 다 0으로 나옴)
+우선 `00000000` 과 옆의 행렬을 곱해서(bn \* 각 행의 n번째원소) 차례대로 `(1)`b0~b7에 다시 넣는다 (지금은 0이 들어갔으므로 행렬곱해도 다 0으로 나옴)
 
 옆에 bit `(2)`**11000110** 를 GF에서 mod 2 하던것처럼 xor  
-`(1)`의 끝 bit(이 예시에서는 00000000)와 `(2)`의 앞 bit부터 `xor`시킨다
+`(1)`의 bit(이 예시에서는 00000000)와 `(2)`의 앞 bit부터 `xor`시킨다
 
-결과값은 01100011으로(최하위비트부터 읽는다) 0을 S-box에 통과시키면 63이 된다.
+4. 😨 bit column vector to byte
+   결과값은 01100011으로(최상위 비트부터 읽는다) 0을 S-box에 통과시키면 63이 된다.
+   <br/><br/><br/>
 
+---
+
+---
+
+<br/><br/>
+
+**예시 하나 더!**
+
+- Inverse in GF(2^8)
+
+인풋이 x: 0000, y: 0001일때, 1의 역원은 1이므로 00000001이 들어간다
+
+00000001을 최상위 비트(b7)부터 담는다
+<br/><br/>
+
+- Byte to bit column vector
+
+| `b0` | `b1` | `b2` | `b3` | `b4` | `b5` | `b6` | `b7` |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    |
+
+<br/>
+
+- 행렬곱
+
+_b0~b7이_ `10000000`이고, 행렬의 첫 번째 행이 `10001111` 이라면\_
+
+bn과 n번째 원소를 곱하고
+
+곱한 결과들을 모두 더해서 bn에 넣는다
+
+이걸 8번 수행(b0~b7에 모두 집어넣음)
+
+`10000000` \* `10001111` = 1 + 0 + ...+0 = 1, b0에는 1이 들어간다
+
+- 옆에 bit `11000110`과 b0~b7을 `xor`연산한다
+
+`11000110` xor `11111000` = `00111110`
+<br/>
+
+- bit column vector to byte
+
+`00111110`을 최상위비트(b7)부터 읽는다 : `01111100`
+
+`01111100`을 16진수로 읽으면 `7C` 즉 output은 `7C`이다.
+<br/><br/>
+
+---
+
+---
+
+<br/><br/>
 입력이 `X`(00~256), `X`의 iverse를 `Z`, 행렬을 `A`라고 할 때,  
 Z를 bit 벡터로 표현한뒤 A를 곱하고 그 결과에 상수 C를 더한다.  
 ZA + C = Y(00~FF)(결과)
@@ -177,8 +236,8 @@ ZA + C = Y(00~FF)(결과)
 
 #### 😨 **역연산**
 
-역연산을 하려면? Y가 들어갔을 때 Z가 나오게 하면 된다
-Y - C = ZA
+역연산을 하려면? Y가 들어갔을 때 Z가 나오게 하면 된다  
+Y - C = ZA  
 -A (Y - C) = Z (사실 +나 -나 동일, -A는 A의 역행렬)
 
 인풋과 아웃풋의 상관관계를 예측하기 어려운 암호가 좋은 암호

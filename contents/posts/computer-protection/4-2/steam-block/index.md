@@ -1,6 +1,7 @@
 ---
 title: "4-2 Stream Cipher와 Block Cipher"
-date: 2022-04-17
+date: 2022-04-18
+update: 2022-04-18
 tags:
   - computer protection
 series: "컴퓨터 보안"
@@ -30,6 +31,11 @@ series: "컴퓨터 보안"
 
 **Block Cipher의 일종**
 
+> plain text를 두 부분으로 자르고 연산 반복  
+> <font size ="2px">(_두 개로 잘랐으니까 블록임. 암튼 블록임._) </font>  
+> 연산을 각각 한 다음에 두 개를 교차함  
+> 암호화와 복호화가 키 순서를 제외한 전체가 같은 계산을 반복한다
+
 - 많은 블록암호가 Feistel Cipher 형식을 취한다.
 
 - 물론 Feistel Cipher 형식이 아닌 블록암호도 있다 (ex. AES)
@@ -38,7 +44,6 @@ series: "컴퓨터 보안"
 
 * Substitutions : 각 plaintext의 요소나 그룹 bit들을 다른 ciphertext 그룹으로 대체. 치환
 * Permutations : 각 원소의 순서를 바꿈. 위치이동. 전치. (permutation cipher와 혼동하면 안됨. 걔는 substitution의 일종)
-* 암호화와 복호화가 키 순서를 제외한 전체가 같은 계산을 반복한다
 
 ex) DES
 

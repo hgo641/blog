@@ -1,6 +1,6 @@
 ---
 title: "6-2 Modes of Operation"
-date: 2022-04-17
+date: 2022-04-18
 tags:
   - computer protection
 series: "컴퓨터 보안"
@@ -119,7 +119,8 @@ P = D(K1, D(K2,C))
 >
 > Stream Mode인지 Block Mode인지 구별하려면?
 >
-> `Decryption`을 할 때 **Encrypt**를 똑같이 사용한다면 Stream Mode이다
+> `Decryption`을 할 때 **Encrypt**를 똑같이 사용한다면 Stream Mode이다  
+> Block Mode는 블록 단위 별로 암호화하지만 Stream Mode는 블록으로 나누지않고 plain text자체를 한 번에 암호화 한다는 것을 기억!
 
 ### 4. OFB (Output FeedBack) Mode
 
@@ -153,9 +154,11 @@ P = D(K1, D(K2,C))
 
 ![](./check.png)
 
+> 에러 전파 : cipher text의 오류가 계속 전파될 수 있는지. 즉, c가 다음 프로세스에 영향을 주는지를 체크  
+> 병렬 : p를 c로 도출하는 각 프로세스가 독립적일 수 있는지  
 > Pre-processing
 >
-> 복잡한 연산을 먼저 할 수 있는가
+> plaintext가 없어도 미리 복잡한 연산을 먼저 할 수 있는가
 >
 > ECB, CBC,CFB 는 plain text가 있어야 Encrypt할 수 있으므로 불가
 

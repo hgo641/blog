@@ -1,6 +1,6 @@
 ---
 title: "1-1 컴퓨터 보안의 요구 조건 (CIA + AA)"
-date: 2022-04-17
+date: 2022-04-16
 tags:
   - computer protection
 series: "컴퓨터 보안"
