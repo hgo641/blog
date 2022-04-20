@@ -124,11 +124,11 @@ DOS(denial-of-service attack) 공격에 초점
 
 ![](./core-concepts.png)
 
-​ **Attacks** : 보안 공격의 종류
+ **Attacks** : 보안 공격의 종류
 
-​ **Security Services** : 보안이 제공하는 서비스
+ **Security Services** : 보안이 제공하는 서비스
 
-​ **Security Mechanisms** : 서비스 목적을 달성시키기위한 재료. 도구
+ **Security Mechanisms** : 서비스 목적을 달성시키기위한 재료. 도구
 
 `Message authentication` 또는 `Digital signature`를 사용해 **Integrity**와 **Authenticity** 를 지킬 수 있다.
 
@@ -148,7 +148,7 @@ DOS(denial-of-service attack) 공격에 초점
 
 - Open design : 개방형 설계, 보안 시스템을 열고 모두가 볼 수 있게한다. 집단 지성
 
-- Separation of priviledg : 권한 세분화, 하나 뚫렸을 때 전체가 망가지지않게
+- Separation of priviledge : 권한 세분화, 하나 뚫렸을 때 전체가 망가지지않게
 
 - Least privilege : 권한 최소화
 

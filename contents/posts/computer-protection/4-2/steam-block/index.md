@@ -53,7 +53,7 @@ ex) DES
 
 라운드키, 서브키
 
-### Substitution-Permutation(ex. AES)
+### Substitution-Permutation Network (SPN)(ex. AES)
 
 교차가 없음
 

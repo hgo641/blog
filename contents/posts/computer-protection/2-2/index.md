@@ -112,7 +112,7 @@ b = r2 + kn 이라고 할 때
 
 (a+b) mod n = (r1 + jn + r2 + kn) mod n
 
-= ( r1 + r2 +(j+k)n ) mod n \# mod n 에 의해 (ㅓ+k)n 은 0이 된다.
+= ( r1 + r2 +(j+k)n ) mod n \# mod n 에 의해 (j+k)n 은 0이 된다.
 
 = ( r1 + r2 ) mod n
 

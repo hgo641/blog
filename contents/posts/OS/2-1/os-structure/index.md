@@ -6,7 +6,7 @@ tags:
 series: "OS"
 ---
 
-##1. OS의 구조
+## 1. OS의 구조
 
 <br/>
 
@@ -20,7 +20,7 @@ series: "OS"
 
 - **커널**(그림의 services)
 
-##2. 컴퓨터 하드웨어
+## 2. 컴퓨터 하드웨어
 
 - CPU
 - DISK
@@ -46,7 +46,7 @@ series: "OS"
        신호를 받는 쪽
        ex) Memory, Device controller
 
-##3. I/O Operations
+## 3. I/O Operations
 
 I/O controller가 cpu commands에 따라 I/O operations 수행
 I/O controller register
@@ -64,15 +64,15 @@ I/O operation이 끝났는지 확인할 수 있는 방법 :
 1. Polling I/O
 2. interrupt-driven I/O
 
-###Polling I/O
+### Polling I/O
 cpu가 주도
 주기적으로 I/O status reg를 체크
 
-###Interrupt-driven I/O
+### Interrupt-driven I/O
 I/O controller가 주관
 I/O device controller가 cpu한테 알려줌
 
-##I/O register 접근 방법
+## I/O register 접근 방법
 
 1. Memory-mapped I/O : 메모리 addr주소에 접근
 2. Port-mapped I/O : 메모리 주소는 따로 있고 디바이스 별로 포트를 만들어서 접근. Port-mapped I/O가 대체로 쓰임

@@ -45,7 +45,7 @@ series: "컴퓨터 보안"
 - entropy를 만들어내는 함수로 entropy source라고도 불린다
 - 물리적인 특성들을 가지고와서 사용하는 경우가 많다
 
-​ ex) keystroke timing, disk electrical activity, mouse movements
+ ex) keystroke timing, disk electrical activity, mouse movements
 
 - 보통 TRNG로 seed를 만들고 PRNG를 돌려서 더 긴 시퀀스를 만들어낸다
 
@@ -168,3 +168,4 @@ bias가 있어도 AES를 돌리다보면 random한 것 처럼 변함
 Ring Oscillator기반의 entropy source에다가 AES CBC MAC을 집어넣어서 컨디셔닝을 해서 TRNG를 만들고 AES couter mode를 돌려서 PRNG를 만든다
 
 intel에서 이걸 써먹을 수 있는 라이브러리를 줌
+
