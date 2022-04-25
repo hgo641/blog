@@ -36,7 +36,7 @@ tags:
 
 #### Solution to Critical Section Problem
 
-* Mutual Exclusion
+* Mutual Exclusion (상호배제)
   * 한 번에 한 프로세스만 크리티컬 섹션에 들어갈 수 있다
   * 한 프로세스가 어떤 크리티컬 섹션에 들어가 있으면 다른 프로세스가 동일한 크리티컬 섹션안에 들어가지못한다
 
@@ -44,7 +44,7 @@ tags:
   * 만약에 크리티컬 섹션에 아무도 없는데 들어가고싶어하는 사람이 있으면 그 결정은 바로 나야한다
   * 즉 최대한 빨리 결정이 나야한다는 것! 무기한 연장되지않는다
   * 그 결정은 remainder 섹션에 있지 않은 애들이어야한다 
-* Bounded Waiting
+* Bounded Waiting (유한한 대기. 언젠간 들어갈 수 있게)
   * 어떤 프로세스가 크리티컬 섹션에 들어가고 싶어서 request를 날렸을 때 바운디드 웨이팅에 한계가 있다. 즉 무기한 기다리지않는다
 
 
@@ -167,3 +167,8 @@ boolean test_and_set (boolean \*target)
 > tas()의 리턴값이 false라서 while문을 빠져나오지만
 >
 > lock이 true 로 set되어서 다른애들은 크리티컬 섹션 들어가지못함
+
+
+
+os 개념, 컨셉 이론. 전체적인 개념을 묻는 문제가 많이 나올것
+

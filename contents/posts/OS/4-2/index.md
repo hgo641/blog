@@ -40,8 +40,9 @@ os의 프로세스를 구동하는 부분의 가장 안쪽이다
 >
 > 그럼 어떻게 디스패처를 컨트롤할까?
 
-* non-preemptive way : 프로세스가 디스패처를 깨워줄거라고 믿음
-* preemptive way : 디스패처가 일정시간마다 깨어나서 프로세스를 쫓아냄
+* 📌 non-preemptive way : 프로세스가 디스패처를 깨워줄거라고 믿음
+* 📌 preemptive way : 디스패처가 일정시간마다 깨어나서 프로세스를 쫓아냄
+* interrupt, traps and faults에 의해 호출됨
 * ex. interrupt (하드웨어)
   * 터미널에서 문자입력
   * 디스크에서 읽어오는거 끝남 (I/O)
@@ -53,7 +54,9 @@ os의 프로세스를 구동하는 부분의 가장 안쪽이다
 
 
 
-nonpremmtive는 완벽하지않음. 프로세스가 자리 안내줄수도있음. 그래스 preemptive가 필요
+nonpremmtive는 완벽하지않음. 프로세스가 자리 안내줄수도있음. 
+
+그래서 preemptive가 필요
 
  
 
@@ -97,7 +100,7 @@ status를 메모리에 옮김
 메모리의 어디에? 스택 or PCB
 
 * 스택 : 프로세스가 사용하는 메모리 공간
-* PCB : os가 사용하는 메모릭 공간
+* PCB : os가 사용하는 메모리 공간
 
 
 
@@ -119,7 +122,7 @@ status를 메모리에 옮김
 
 * Saving stack pointer
 
-​		그래서 %rsp는 os-PCB의 StkPtr에 저장
+​		**그래서 %rsp는 os-PCB의 StkPtr에 저장**
 
 * Selecting Next Process
 
@@ -151,7 +154,7 @@ Selecting Next Process과정에서 만약 새 프로세스가 처음 생성된 �
 
 * cpu utilization : 책상 사용량을 증대!
 * throughput : 주어진 시간동안 몇 개의 프로세스가 일을 했냐
-* turnaround time : 특정프로세스가 일을 하고 싶은데 얼마나 자주? 보통 낮으면 좋지만 무조건적인건아님
+* turn around time : 특정프로세스가 일을 하고 싶은데 얼마나 자주? 보통 낮으면 좋지만 무조건적인건아님
 * waiting time : 기다리는 시간
 * response time : 프로세스한테 job을 요청했는데 job이 끝날때까지의 시간. 프로그램 종료를 뜻하는건 아님. 특정 동작
 

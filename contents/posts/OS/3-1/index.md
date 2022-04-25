@@ -8,6 +8,8 @@ series: "OS"
 
 ## Compilation System
 
+## Compilation System
+
 - Pre-processing : c코드 형태, #include, define등 전처리
 - 컴파일러 : 어셈블리어 형태로
 - 어셈블러 : 기계어 형태로

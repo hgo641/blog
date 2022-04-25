@@ -52,7 +52,7 @@ _an execution stream in the context of a particular process state(resource)_
 >
 > 하나의 프로그램 안에서 execution stream을 여러 개로 나눔
 
-- execution stream이 여러 개라면 각각의 stack과 register가 필요하다! stack, reg 스레드마다 분리
+- execution stream이 여러 개라면 각각의 stack과 register가 필요하다! stack, reg 스레드마다 분리 (code, data, files는 공유함)
 
 #### 스레드의 특징
 
@@ -112,15 +112,15 @@ ex. 이메일 서비스
 
   - takes less time
 
-    ​ 뉴 스레드를 만드는게 프로세스를 만드는 것보다 빠름
+     뉴 스레드를 만드는게 프로세스를 만드는 것보다 빠름
 
-    ​ 프로세스는 모든 컨텍스트를 새로 만들고 초기화
+     프로세스는 모든 컨텍스트를 새로 만들고 초기화
 
-    ​ 스레드는 스레드 컨텍스트(stack)만 서로 만듦
+     스레드는 스레드 컨텍스트(stack)만 서로 만듦
 
-    ​ 마찬가지로 종료도 스레드가 유리
+     마찬가지로 종료도 스레드가 유리
 
-    ​ 한 프로세스내에서 두 개의 컨텍스트를 스위치하는 시간도 빠름
+     한 프로세스내에서 두 개의 컨텍스트를 스위치하는 시간도 빠름
 
     코어가 늘어나는것에대해서 성능도 증가
 
@@ -153,7 +153,7 @@ ex. 이메일 서비스
     - 스레드간의 스케줄링
     -
     - 스레드 컨텍스트 스위칭될 때 컨텍스트를 saving and restore
-    -스레드 간의 데이터 소통
+    - 스레드 간의 데이터 소통
 
 실질적으로 cpu할당은 프로세스단위로 이루어짐
 

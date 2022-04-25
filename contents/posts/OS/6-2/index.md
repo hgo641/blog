@@ -17,7 +17,7 @@ tags:
 
 멀티레벨큐 : 사용어렵 잘 설계해야함
 
-멀티레벨피드백큐
+## 멀티레벨 피드백 큐
 
 여러 개의 큐를 두고 각각의 큐에 대해서 서로 다른 스케줄링 알고리즘을 가져감
 
@@ -29,7 +29,7 @@ tags:
 
 피드백 방법에 근거해서 결정함. 이전 스케줄링의 결과가 다음 큐를 결정한다
 
-한 프로세스가 특정 큐에 종속되는게아니라 계속 옮겨다닐 수 있음
+* 한 프로세스가 특정 큐에 종속되는게아니라 계속 옮겨다닐 수 있음
 
 ex) 네개큐. 라운드로빈. 타임퀀텀만 다르게가져감
 
@@ -59,7 +59,7 @@ ex) 네개큐. 라운드로빈. 타임퀀텀만 다르게가져감
 
 real-time이 default보다 큰 우선순위를 갖는다
 
-quantum based(고정된 시간)가 아닌 proportion(각각의 프로세스에게 전체시간중에 얼만큼을 할당해줄지. 비율을 어떻게 할당해줄지)
+**quantum based(고정된 시간)가 아닌 proportion(각각의 프로세스에게 전체시간중에 얼만큼을 할당해줄지. 비율을 어떻게 할당해줄지)**
 
 *  Variable quantum size
 
@@ -71,11 +71,15 @@ default class에서 -20 + 19
 
 낮은 숫자가 높은 우선순위
 
+> -20은 시스템 앱처럼 굉장히 중요한 애들이 가져가고
+>
+> 19는 cpu bound인 애들 등이 가져간다
+
 
 
 #### virtul run time (상대적인 실행 시간)
 
-시스템은 가장 낮은 virtual run time을 선택
+* 시스템은 가장 낮은 virtual run time을 선택
 
 > 동일한 nice value를 가지는 두 개의 프로세스 존재(p1, p2)
 >
@@ -89,6 +93,17 @@ default class에서 -20 + 19
 
 ​		
 
+| nice value | 우선순위 | weight |    할당된 시간     | scale factor |  virtul run time   |
+| :--------: | :------: | :----: | :----------------: | :----------: | :----------------: |
+|     0      |   높음   |   3    | 45(더 많이 돌게함) |      1       | 40(더 작은걸 실행) |
+|     5      |   낮음   |   1    |         15         |      3       |         60         |
+
+오래 수행되는 애들은(ex. cpu bound) virtul run time을 증가시켜서 선택 가능성을 감소시킨다
+
+for starv방지. 공평한 스케줄링
+
+
+
 > 서로 다른 nice value를 가지는 두 개의 프로세스 존재
 >
 > p1 weight : p2 weight = 3:1
@@ -97,12 +112,12 @@ default class에서 -20 + 19
 >
 > p1 (20) - p2 (20) - p1(20)
 >
-> * weight 계산된 적적 cpu time 비율 (p1-45, p2-15)
+> * 총 60의 시간 중 weight에 의해 계산된 적정 cpu time 비율 (p1-45, p2-15)
 > * 실제 차지한 cpu time ( p1(40), p2(20) )
 >
 > 
 >
-> scale factor (weight의 역수)
+> scale factor (weight의 역수) : **priority가 높으면 scale factor도 높여줌**
 >
 > p1 scale factor = 1
 >
