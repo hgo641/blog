@@ -8,6 +8,7 @@ tags:
 
 ### Minimax Algorithm
 
+
 ---
 
 max와 min을 번갈아가며 각 state에서 최선의 선택지를 고른다.
