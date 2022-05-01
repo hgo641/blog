@@ -23,13 +23,23 @@ tags:
 
 ## AUTH_USER_MODEL 등록해보기
 
-django 공식 깃허브에 account앱이 있으므로
+Django자체에 디폴트로
 
-- account라는 이름을 가진 앱을 만든다
-- account의 models.py에 `django.contrib.auth.models`의 AbstractUser를 상속한 User클래스를 만들어준다
-- account라는 앱에서 User모델을 따로 만들었으므로 커스텀이 가능하다
+```
+LOGIN_URL = '/accounts/login/'
 
-\# account/models.py
+LOGIN_REDIRECT_URL = 'accounts/profile/'
+```
+
+로 처리되어있다
+
+django 공식 깃허브에 accounts앱이 있으므로
+
+- accounts라는 이름을 가진 앱을 만든다
+- accounts의 models.py에 `django.contrib.auth.models`의 AbstractUser를 상속한 User클래스를 만들어준다
+- accounts라는 앱에서 User모델을 따로 만들었으므로 커스텀이 가능하다
+
+\# accounts/models.py
 
 ```python
 from django.db import models
