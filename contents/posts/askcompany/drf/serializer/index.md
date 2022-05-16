@@ -46,4 +46,6 @@ PostSerializer(Post.objects.all(), many = True) # 다수도 가능
 PostSerializer(Post.objects.first()).data # 직렬화된 데이터가 나온다
 ```
 
+
+
 ## APIView
