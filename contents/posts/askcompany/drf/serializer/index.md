@@ -29,7 +29,14 @@ return JsonResponse(serializer.errors, status=400)
 
 - 첫 번째 인자로 인스턴스를 받음
 
+  - instance는 객체 post, put하는데 사용
+
 - 두 번째 인자로 데이터를 받음
+
+  - data는 form에서 requests.POST['name']가져오는것처럼 data를 받아오는 거인듯
+
+    
+
 
 > Form 에서 첫 번째 인자는 data지만 시리얼라이저의 생성자의 첫 번째 인자는 instance이다
 
