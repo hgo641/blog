@@ -2,13 +2,13 @@ module.exports = {
   title: "hongo",
   description: "홍고 블로그",
   author: "hongo",
-  siteUrl: "https://devhudi.github.io/gatsby-starter-hoodie/",
+  siteUrl: "https://hongo.netlify.app/",
   links: {
-    github: "https://github.com/devHudi",
+    github: "https://github.com/hgo641",
     email: "hgo641@gmail.com",
   },
   utterances: {
-    repo: "devHudi/gatsby-starter-hoodie",
+    repo: "hgo641/blog",
     type: "pathname",
   },
 }
