@@ -23,8 +23,6 @@ series: "mod"
 >
 > entity의 위치, 크기, 회전등을 결정할 수 있다
 
-![](./transform-comp.png)
-
 
 
 ### SpriteRendererComponent
