@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://devhudi.github.io/sitemap/sitemap-index.xml
-Host: https://devhudi.github.io
+Sitemap: https://hongo.netlify.app/hgo641/blog/sitemap/sitemap-index.xml
+Host: https://hongo.netlify.app
