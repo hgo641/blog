@@ -71,11 +71,27 @@ key가 여러개
 
 - P() : wait, (=acquire)
 - V() : signal, (= release)
-- S : 몇 개의 key인지 - 0보다 큰 int (mutex에서는 0과 1뿐)
+- S : 몇 개의 key인지 - 0보다 큰 int (S가 1이면 mutex와 같은 기능. mutex에서는 0과 1뿐)
 - Binary semaphore : S가 0또는 1 (mutex와 같은 기능)
   - for 전통적인 공유 변수 제어
 - Counting Semaphore : S가 2보다 크거나 같음
-  - 공동의 리소스 자원 관리/제어
-- 놓침 ><
+  - for   공동의 리소스 자원 관리/제어
+  - wait()과 signal() 사용 - 스케줄링 필요
+  - 단순히 공유 자원의 lock개념을 넘어 확장됨
+- wait()
 
-- block == sleep
+- signal()
+
+- wait()과 signail()(P, V)을 수행하는 것도 크리티컬 섹션에 포함시켜야한다
+
+  - busywaiting 발생
+
+- busywaiting해결을 위해 세마포어 전용 waiting queue를 만든다
+
+  - block == sleep : wait을 호출한 프로세스를 waiting queue에 넣는다
+  - wakeup : waiting queue에 있는 애를 제거하고 cpu의 ready queue에 넣는다
+  - value랑 list도 크리티컬하게 관리되어야함 -> 싱글 cpu일 경우, disable interrupt, inable interrupt 사용
+  - 앞에서는 disable interrupt하는거 오버헤드 크다고 했는데 여기선 쓰는 이유 : disable해두는 시간이 짧음
+  - 멀티 cpu - 멀티 프로세서 : turn off all other processors : 멀티 cpu일때는 위처럼 다른 cpu의 interrupt도 막는 것은 위험. atomic hardware support가 필요(test_and_set) - S와는 별도로 critical section 해결을 위한 boolean 변수 필요 - 복잡
+
+  
