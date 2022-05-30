@@ -1,16 +1,16 @@
 ---
-title: "Àå°í shell ¸í·É ÁÖÇÇÅÍ¿¡¼­ ÇÒ ¶§ ÃÊ±â¼¼ÆÃ"
+title: "ìž¥ê³  shell ëª…ë ¹ ì£¼í”¼í„°ì—ì„œ í•  ë•Œ ì´ˆê¸°ì„¸íŒ…"
 date: 2022-05-27
 tags:
   - django
 ---
 
-ÁÖÆÛÅÍ¿¡¼­ ¾Æ·¡¿Í °°ÀÌ ÀÛ¼ºÇÏ¸é µÈ´Ù
+ì£¼í¼í„°ì—ì„œ ì•„ëž˜ì™€ ê°™ì´ ìž‘ì„±í•˜ë©´ ëœë‹¤
 
 ```python
 import os
 
-# ³» Àå°í ÇÁ·ÎÁ§Æ®ÀÇ È¯°æº¯¼ö ·Îµå
+# ë‚´ ìž¥ê³  í”„ë¡œì íŠ¸ì˜ í™˜ê²½ë³€ìˆ˜ ë¡œë“œ
 os.environ['DJANGO_SETTINGS_MODULE'] = 'projectname.settings'
 import django
 django.setup()
@@ -22,5 +22,5 @@ django.setup()
 <br/>
 ![](./wsgi.png)
 <br/>
-wsgiÆÄÀÏ¿¡¼­ ¼­¹ö°¡ ½ÃÀÛµÉ¶§¸¶´Ù ÇÊ¿äÇÑ È¯°æº¯¼öµéÀ» ÀÚµ¿À¸·Î setÇØÁØ´Ù
-¿ÜºÎ ½ºÅ©¸³Æ®¿¡¼­ Àå°í ÇÁ·ÎÁ§Æ®ÀÇ settingsÆÄÀÏ À§Ä¡¸¦ °¡¸®Å°´Â È¯°æº¯¼ö¸¦ ÁöÁ¤ÇÏ°í `django.setup()`¸í·É¾î·Î Àå°í È¯°æÀ» ·ÎµåÇÏ¸é Àå°í ÇÁ·ÎÁ§Æ®ÀÇ ±¸¼º ¿ä¼ÒµéÀ» ¿ÜºÎ ½ºÅ©¸³Æ®¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖ´Ù
+wsgiíŒŒì¼ì—ì„œ ì„œë²„ê°€ ì‹œìž‘ë ë•Œë§ˆë‹¤ í•„ìš”í•œ í™˜ê²½ë³€ìˆ˜ë“¤ì„ ìžë™ìœ¼ë¡œ setí•´ì¤€ë‹¤
+ì™¸ë¶€ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ìž¥ê³  í”„ë¡œì íŠ¸ì˜ settingsíŒŒì¼ ìœ„ì¹˜ë¥¼ ê°€ë¦¬í‚¤ëŠ” í™˜ê²½ë³€ìˆ˜ë¥¼ ì§€ì •í•˜ê³  `django.setup()`ëª…ë ¹ì–´ë¡œ ìž¥ê³  í™˜ê²½ì„ ë¡œë“œí•˜ë©´ ìž¥ê³  í”„ë¡œì íŠ¸ì˜ êµ¬ì„± ìš”ì†Œë“¤ì„ ì™¸ë¶€ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤
