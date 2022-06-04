@@ -6,7 +6,7 @@ tags:
 series: "mod"
 ---
 
-## Event란
+## Event
 
 - Event는 "행동을 실행해야 할 주체"에서 무엇을 할 것인지 결정한다.
 
