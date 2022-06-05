@@ -11,11 +11,13 @@ series: "askcompany"
 
 ---
 
+{% raw %}
 `{% url 'blog:post_detail' post.pk %}` 식으로 사용하던 것을
 
 `redirect(post)` , `{{ post.get_absolute_url }}`와 같이 사용 가능
 
 모델 클래스에 `get_absolute_url()`을 구현한다.
+{% endraw %}
 
 ```python
 from django.urls import reverse
