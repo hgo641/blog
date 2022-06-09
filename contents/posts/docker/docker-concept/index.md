@@ -103,6 +103,16 @@ docker run {img_name}:{tag}
 # pull, create, start, attach를 한 번에 실행하는 것과 같다
 ```
 
+* 환경변수 선언
+
+  ```bash
+  # -e 옵션 사용
+  
+  docker run -it -p 8000:8000 -d -e ACCESS_KEY = 1234 -3 SECRET_ACCESS_KEY = abcd
+  ```
+
+  
+
 
 
 | 옵션                                  | 설명                                                         |
@@ -113,6 +123,7 @@ docker run {img_name}:{tag}
 | -p {port of host}:{port of container} | 호스트와 컨테이너의 포트를 연결                              |
 | --rm                                  | 컨테이너가 종료되면 컨테이너 제거                            |
 | -v {dir of host}:{dir of container}   | 호스트와 컨테이너의 디렉토리를 연결                          |
+| -e                                    | 환경변수설정 ex) docker run -e ACCESS_KEY = 1234 -e SECRET_ACCESS_KEY = abcd |
 
 
 
@@ -155,6 +166,9 @@ docker rm {container_id or name}
 
 # 모든 컨테이너 삭제
 # docker rm `docker ps -a -q`
+# 실해중인 컨테이너가 있다면 stop사용
+# ex
+docker stop {cid} && docker rm {cid}
 ```
 
 
@@ -164,6 +178,7 @@ docker rm {container_id or name}
 ```bash
 docker rm {option} {img_id}
 # 컨테이너가 있을시 강제 삭제 : 옵션 -f 사용
+
 ```
 
 
@@ -177,6 +192,23 @@ docker stop $(docker ps -aq)
 # 사용되지 않는 모든 도커 요소(컨테이너, 이미지, 네트워크, 볼륨 등) 삭제
 docker system prune -a
 ```
+
+
+
+* 특정 컨테이너에 명령어 실행
+
+```bash
+docker exec -opt {c_id} cmd 
+
+# ex
+# 도커 컨테이너 내부에서 bash shell 실행
+docker exec -it {c_id} bash
+
+# 도커 컨테이너가 장고프로젝트일 경우 아래와 같은 명령어 사용도 가능
+docker exec -it {c_id} python manage.py createsuperuser
+```
+
+
 
 
 
