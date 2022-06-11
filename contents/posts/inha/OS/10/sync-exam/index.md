@@ -27,7 +27,7 @@ tags:
 
 * wait()와 signal()은 커널레벨에서 실행중
 
->  그럼 커널 레벨에서는 어차피 컨텍스트 스위칭이 안되는게 아닌가? 왜 disable/enable interrupt를 할까?
+>  근데 커널 레벨에서는 어차피 컨텍스트 스위칭이 안되는게 아닌가? 왜 disable/enable interrupt를 할까?
 >
 > 시스템콜 : 소프트 레벨 인터럽트 - 하던일을 멈추고 os한테 권한이 넘어감. 
 >
@@ -64,10 +64,13 @@ tags:
 
 ![](./monitor-structure.png)
 
-> 두 가지 제약 조건이 있는 class라고 생각하면 됨
->
-> 1. 함수에 의해서만 내부 변수에 접근 가능
-> 2. 외부에서 하나의 프로세스만 들어올 수 있음
+두 가지 제약 조건이 있는 class라고 생각하면 됨
+
+1. **함수에 의해서만 내부 변수에 접근 가능**
+
+2. **외부에서 하나의 프로세스만 들어올 수 있음**
+
+<br/>
 
 * entry queue : 모니터로 들어고자하는 thread의 queue
 * condition variable - type이 condition인 value
@@ -136,6 +139,8 @@ ex) 만약 Process P가 x.signal()을 하고 Process Q가 x.wait()를 했었다�
   * 누군가 모니터락을 해제하기전까지는 대기
   * 모니터락이 false면 다음라인(body) 수행
 
+* 모니터락에서 누군가 일을 끝내면 기다리고있는 다음 순번을 깨워준다. 다음 순번은 sig_lock에 있는애가 되거나 모니터락에 있는 애가 될 수 있다.
+
 * if (sig_lock_count > 0)
 
   * 시그 락 카운트가 양수라면 수행하다가 signal()을 호출해서 쫓겨난 프로세스가 있다는 의미. 얘네를 먼저 깨워줌
@@ -146,6 +151,10 @@ ex) 만약 Process P가 x.signal()을 하고 Process Q가 x.wait()를 했었다�
 \# 위 사진의 body는 아래 그림을 의미
 
 ![](./body.png)
+
+![](./monitor-example.png)
+
+
 
 #### condition variable lock
 
@@ -167,7 +176,7 @@ ex) 만약 Process P가 x.signal()을 하고 Process Q가 x.wait()를 했었다�
   * x_count가 양수라면 x를 사용하기위해 대기중인 스레드가 있다는 말 (너 x 써라!)
   * sig_lock_count++ : x_signal()을 호출한 스레드는 자리를 양보해줘야함. 호출한 애는 sig_lock되어있어라~
   * signal(x_sem) : x_signal해서 x사용할 애 깨워줘야하니까 x_sem에 있는애한테 얼른 쓰라고 깨워줌
-  * wait(sig_lock) : x_signal() 호출한 애는 쫓겨나서 기다려야함
+  * wait(sig_lock) : x_signal() 호출한 애는 쫓겨나서 기다려야함. 나중에 x.wait() 누가 해주면 깨어날 수 있음
   * 위에다 끝나면 sig_lock_count 다시 마이너스
 
 

@@ -10,10 +10,6 @@ series: "컴퓨터 보안"
 
 
 
-
-
-
-
 ## Hash Function
 
 > 자료구조의 해시테이블이랑 비슷한 개념
@@ -224,6 +220,8 @@ Preimage랑 Collision 특징 충족못함
 알고리즘의 취약점을 찾는다
 
 ex. 아까 위에서는 xor을 만든다는 특징을 이용해서 공격. 0,0 -> 1,1로 바꿔서 다른 input 같은 결과도출
+
+
 
 ### Collision REsistant Attacks
 

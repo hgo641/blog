@@ -177,7 +177,7 @@ ex)
 
 1. static ARP cahce entry
    * 수동으로 추가 가능 (컴퓨터 재시작시 삭제)
-2. dynami ARP cache entry
+2. dynamic ARP cache entry
    * ARP reply packet을 받으면 OS에 의해 자동으로 저장
    * 30초간 지속
 
