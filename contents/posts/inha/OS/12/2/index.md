@@ -104,6 +104,7 @@ segment table
   - d : = offset, seg안에서의 addr
 
 ![](../../../../../../inha-image/segtable.png)
+
 base : physical addr의 starting을 담고있음
 
 limit : 해당 seg의 length
@@ -116,3 +117,57 @@ limit : 해당 seg의 length
 - Segment-table length register(STLR)
   - 해당 seg table의 length를 구하는 테이블
   - seg-table의 limit
+
+Process의 수 x segment의 수만큼 레지스터가 필요함
+
+- hign overhead
+- 레지스터로 관리하긴 힘들고 메모리 안에 위치시킴
+- 어떤 addr에 request가 들어오면 그 addr이 속하는 seg table정보를 읽어옴
+- seg table의 정보를 읽어보면 그걸 바탕으로 limit검사하고 base를 더함
+- 실제 physical addr로 변환
+- 세그먼트 테이블의 정보도 메모리에 있어서 읽어와야함. 메모리에 STBR, STLR 저장 (세그먼트 테이블의 base와 limit) : 한 번 요청하면 두 번 읽어와야함
+- 메모리 access 횟수가 두 배가 됨
+
+각 seg마다 base와 limit이 다름.
+
+여러 seg로 나눠도 여전히 큼
+
+큰 애들을 메모리에 할당
+
+그런 상태에서 할당과 해제를 반복하면 hole이 불균형하게 생기고 못쓰는 hole이 많이 생김
+
+여전히 external fragmentation 많이 생김
+
+그래서 나온게 Paging
+
+## Paging
+
+Modern OS
+
+> segmentation은 여전히 external fragmentation이 심함
+
+메모리 fragmentation을 줄이자
+
+스와핑을 좀 더 효율적으로
+
+<br/>
+
+메모리 공간을 균등한 사이즈로 나눔
+
+- fragmentation이 발생하는 이유는 프로세스가 사용하는 메모리 공간이 서로 불균형하니까 작은 애들이 free, allocation을 반복하다보면 큰 공간이 점점 작게 나눠지고 홀이 불균등하게 생김
+- 큰 요청이 들어왔을때 들어갈 공간이 없음
+- 페이징은 모든 공간을 고정된 사이즈의 frame으로 나눔
+- 프레임의 크기는 2^n으로 나눔 (os에서는 기본적으로 4KB)
+- 4KB는 하드디스크의 블록 사이즈. 한 번에 단위별로 가져오게 하려고 맞춤
+
+<br/>
+
+- 로지컬 addr을 똑같은 사이즈로 자름 ( page라고 부름 )
+- segmentation하듯이 할당함. page별로 frame에 매핑해줌.
+
+  - ex) 15KB짜리 프로그램을 4KB인 4개의 프레임에 할당
+
+- 사용 가능한 free frame들을 전부 체크해야함
+- page -> frame의 정보를 관리하는 정보가 커짐...
+- 여전히 internal fragmentation존재
+  - 15KB프로그램에 16KB할당
