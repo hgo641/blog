@@ -234,6 +234,6 @@ wait과 signal도 크리티컬 섹션이어야한다
 - atomic hardware support가 필요(test_and_set) - S와는 별도로 TAS에서 critical section 해결을 위한 boolean 변수 필요 -> 복잡해짐
   - 생각보다 사용자 레벨에서 쓰기가 어렵...
 - 시그널하고 wait하든 wait두 번 연속으로 하든 잘못된거 모름. 한참 돌다가 나중에 알아챌수도
-- 데드락 starvation 발생 가능
+- 데드락, starvation 발생 가능
 - 즉, 장점도 있지만 사용하긴 어려움
 

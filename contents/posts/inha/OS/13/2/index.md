@@ -45,9 +45,8 @@ d : 오프셋. 실제 frame이 있는 위치에서 오프셋만큼 건너 뛴 �
 인텔의 32bit 구조
 
 * 세그멘테이션 한 번 하고 페이징 한 번 하고
-* 
 
-
+  
 
 `segmentation unit`이 또 다른 logical address인 linear address를 만듦
 

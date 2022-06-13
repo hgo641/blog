@@ -43,6 +43,7 @@ tags:
   * 저 방식으로 안하고 엉뚱하게 해도 체크하지못한다 (signal -> wait, wait -> wait)
   * 잘못 설계하더라도 알아챌 방법이 없다
   * 이 문제를 monitor가 해결해줄 수 있다!
+* 데드락과 starvation이 생길 수 있다
 
 
 

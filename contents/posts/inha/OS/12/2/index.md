@@ -64,6 +64,8 @@ Backing store : 스왑되는 공간. 기존에 있는 프로세스 메모리 공
 >
 > -> Segmentation
 
+
+
 ## Segmentation
 
 메모리 area를 여러 개의 area로 나누자
@@ -120,7 +122,7 @@ limit : 해당 seg의 length
 
 Process의 수 x segment의 수만큼 레지스터가 필요함
 
-- hign overhead
+- high overhead
 - 레지스터로 관리하긴 힘들고 메모리 안에 위치시킴
 - 어떤 addr에 request가 들어오면 그 addr이 속하는 seg table정보를 읽어옴
 - seg table의 정보를 읽어보면 그걸 바탕으로 limit검사하고 base를 더함

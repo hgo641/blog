@@ -55,7 +55,7 @@ circular wait를 만들지않으려면 모든 리소스에 번호를 부여
 
 ## Deadlock Avoidance - Banker's Algorithm 
 
-시스템이 추가적인 정보, 사전 정보 요구 : a prior information
+시스템이 추가적인 정보, 사전 정보 요구 : a prior informationL
 
 - maximun number of resource : 각각의 프로세스가 동시에? 사용하고자하는 최대 리소스의 개수를 미리 개재
   - ex) P0은 R0 :10개, R1: 5개, R2:2개
@@ -154,11 +154,15 @@ ex) 은행 총 100억 소유중이라고 할 때,
 - safety algorithm : 현재 safe인지 unsafe인지 판별
 - Resource-Request Algorithm : 새로운 리퀘스트가 왔을 때, 이 리퀘스트를 들어주면 safe인지 unsafe인지 판별 (safety algorithm 사용)
 
+
+
 ### Safety Algorithm
 
 Availabe보다 Need가 더 작은애들은 언제든지 일을 할 수 있음
 
 Finish : 해당 프로세스가 끝났는지를 나타냄
+
+![](../../../../../../inha-image/safety.png)
 
 Available == Work라고 할 때
 
@@ -192,6 +196,8 @@ Available == Work라고 할 때
 리퀘스트를 받았다고 가정하고 앞으로 벌어질 일들에 대해 safety algorithm을 돌려봄
 
 * 어떤 프로세스가 리소스 요청을 할 때 일단 들어줘보고 safe가 유지되는지 확인
+
+![](../../../../../../inha-image/resource-req.png)
 
 1. Request(i)가 Need(i)보다 작은지 확인 (만약 Request가 크다면 Max를 넘어가는 범위이므로 error)
 
@@ -229,7 +235,9 @@ Available == Work라고 할 때
 
 유저가 개입할 수 없는 서버시스템, misstion critical system(자율자동차)...에서는 중요한 문제
 
-### prevention detection 차이
+
+
+### prevention과 detection 차이
 
 prevention : 비쌈, 비효율적. 데드락 가능성을 보고 아예 방지
 
@@ -241,7 +249,7 @@ detection : 데드락을 허용하되 리커버리 제공
 
 mission critical system(자율주행자동차)같이 데드락에 취약한 시스템에서는 사용이 어렵다
 
-(그럼 뭔 쓸모냐?)
+
 
 ## Deadlock Detection
 
@@ -277,6 +285,10 @@ Finish[i]가 True가 되는 조건이 다름
 * 지금은 allocation한게없으면 True (자원을 아무것도 사용하고있지않으면 일단 True)
 
 데드락이 생기는지 안생기는지만 판단
+
+
+
+![](../../../../../../inha-image/deadlock-detection.png)
 
 1. Initialize Work[1:m], Finish[1:n]
 

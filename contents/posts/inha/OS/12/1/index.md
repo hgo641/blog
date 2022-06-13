@@ -24,7 +24,7 @@ registers - (main) -cache - Memory - Storage(disk)
 > - 프로그램 코드, 파일
 > - 영구적으로 유지. 전원이 꺼져도 유지. 프로그램 관련 (메모리와 레지스터는 전원이 켜져야함. 프로세스 관련이라고 보면 됨)
 
-- 프로그램이 수행될 때는 disak에서 memory로 가져와야함
+- 프로그램이 수행될 때는 disk에서 memory로 가져와야함
 
 - 메인 메모리와 레지스터는 CPU가 직접 접근할 수 있는 유일한 공간
 - 메모리에는 주소와, 주소를 읽고 주소에 쓰는 요청만 감
@@ -34,6 +34,8 @@ registers - (main) -cache - Memory - Storage(disk)
   - stall등을 최소화하기위해 Cache등장
 - Memory의 Protection 필요
 
+
+
 ## Hardware Address Protection
 
 메모리안에서 A프로세스에게 할당된 공간을 B 프로세스가 건드리지않게 Protection이 필요함
@@ -42,14 +44,18 @@ registers - (main) -cache - Memory - Storage(disk)
 
 CPU는 address를 받으면 base
 
+
+
 ### Address Binding
 
-- 소스코드에서는 address가 symbolic(변수명)하게 나타남 (주소를 직접 명시하지않음)
+- 소스코드에서는 address가 symbolic(변수명)하게 나타남 (주소를 직접 명시하지않음) int a;
 
 - 컴파일 단계에서 relocatable address부여
   - 14bytes from beginning of this module
 - 링커 단계에서 absolute address부여 (logical address : cpu에서 바라보는 주소)
   - 74014
+
+
 
 ### Logical vs Physical Address
 
@@ -59,12 +65,16 @@ CPU는 address를 받으면 base
   - physical = logical + base
   - 실제 메모리의 물리적 주소
 
+
+
 ### MMU (Memory-Management Unit)
 
 - logical에서 physical로 매핑시켜주는 하드웨어 디바이스
 - OS가 MMU의 relocation register에 값(base)을 써줘야함
 
 메모리 구역을 분리하는건 알겠는데 어떤 프로세스를 어떤 구역에 둬야할까?
+
+
 
 ## Contiguous Memory Allocation
 
@@ -90,6 +100,8 @@ process A는 0부터 알파까지
 - Limit = logical address의 range
 - os가 limit과 relocation에 값을 써줌(dispatcher가 cpu 스케줄링할 때)
 
+
+
 ### multiple-partition allocation
 
 메모리에 몇 개의 프로그램이 올라갈 수 있는가
@@ -102,6 +114,8 @@ Hole : 메모리안의 비어진 공간
 - 새 프로세스가 들어올 때 새 프로세스의 base와 limit을 정함
 - allocated P, free P (hole) 관리
 
+
+
 ### First-fit
 
 allocate할 수 있는 첫 번째 hole에 할당
@@ -110,11 +124,15 @@ allocate할 수 있는 첫 번째 hole에 할당
 
 빠름
 
+
+
 ### Best-fit
 
 allocate할 수 있는 가장 small한 hole
 
 공간효율
+
+
 
 ### Worst-fit
 
@@ -123,6 +141,8 @@ allocate할 수 있는 가장 small한 hole
 가장 큰 공간이기때문에 할당해주고 남은 공간도 클 것이다 - fragmentation을 낮춤
 
 그러나 성능, 효율이 떨어짐
+
+
 
 ### Fragmentation
 
