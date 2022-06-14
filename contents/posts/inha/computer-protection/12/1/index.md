@@ -252,6 +252,8 @@ IPS : 발전된 형태의 아이디에스, 네트워크를 이상한 행동을 �
 
 최근에는 시스템이 발전하면서 IPS = IDS + Firewall이라고 부르기도 함 (경계가 애매)
 
+ex) snort : opensource
+
 PCRE : reqular expression : \s+, \n 0x22... 이런애들. 규칙을 정해놓고 규칙에 맞는지 확인
 
 ##
