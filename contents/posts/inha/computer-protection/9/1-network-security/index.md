@@ -148,7 +148,7 @@ ex)
 * Broadcast Request 
   * ip 주소를 가지고 브로드캐스트함
   * 이 ip주소 가지고 있는애 누구야!
-* Unicas Reply (1대1)
+* Unicat Reply (1대1)
   * 해당 ip주소를 가지고 있는 애가 자신의 mac주소를 답변해줌
 
 #### ARP 취약점

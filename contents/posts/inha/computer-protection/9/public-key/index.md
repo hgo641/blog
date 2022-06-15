@@ -38,6 +38,9 @@ series: "컴퓨터 보안"
 
 `Ciphertext` -> `Private key` -> `Decryption algorithm`
 
+* 키 분배 문제 해결
+* 전자서명 구현
+
 
 
 ### Encryption with public key : 메세지를 숨기고 싶을 때
@@ -313,11 +316,12 @@ a^b mod n
   * 2048가지의 경우 존재 너무 오래걸림
 * Mathematical attacks
   * 소인수 p와 q의 쌍을 구하려함
-
 * Chosen ciphertext attack
   * RSA의 구조적인 특성을 이용한 공격
+  * homomorphic 특성 이용
 * Implementation attacks
   * 하드웨어적 구현상의 문제
+  * 수행하는데 걸리는 시간, power, cache
 
 
 

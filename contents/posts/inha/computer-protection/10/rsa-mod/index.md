@@ -31,6 +31,8 @@ series: "컴퓨터 보안"
   * 어차피 (x x y) mod n = [(x mod n) x (y mod n)] mod n
   * 이게 적용된게 `Fast Modular Exponentiation` 알고리즘
 
+
+
 ## Binary L to R
 
 =(Square and multiply)

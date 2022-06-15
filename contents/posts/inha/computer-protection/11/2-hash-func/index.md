@@ -8,8 +8,6 @@ series: "컴퓨터 보안"
 
 
 
-
-
 ## Hash Function
 
 > 자료구조의 해시테이블이랑 비슷한 개념
@@ -25,7 +23,7 @@ series: "컴퓨터 보안"
 >
 > * h를 주면 M을 찾기 어려워야함
 >   * the one-way property : 단방향적, M에서 h를 찾긴 쉽지만 그 반대는 어렵다
->   * the collision-free property : 같은 hash value를 아웃풋으로 가지는 인풋 데이터 쌍을 찾기 어렵다
+> * the collision-free property : 같은 hash value를 아웃풋으로 가지는 인풋 데이터 쌍을 찾기 어렵다
 
 
 
@@ -223,7 +221,7 @@ ex. 아까 위에서는 xor을 만든다는 특징을 이용해서 공격. 0,0 -
 
 
 
-### Collision REsistant Attacks
+### Collision Resistant Attacks
 
 birthday paradox
 

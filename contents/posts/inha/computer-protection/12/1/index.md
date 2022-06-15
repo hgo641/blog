@@ -10,11 +10,11 @@ series: "컴퓨터 보안"
 
 ## Exploit Protection
 
-CFG (Control Flow Guard) : 제어흐름보호
-
 DEP (Data Execution Prevention) : 데이터 실행 방지 (데이터 영역에 있는건 실행시키지 않겠다)
 
 ASLR
+
+CFG (Control Flow Guard) : 제어흐름보호
 
 ### DEP (Data Execution Prevention)
 
