@@ -49,7 +49,7 @@ IP security - transport층에서 사용자 보호(TES) 그 아래의 네트워�
 - K를 블록으로 나눔
   - 만약 K와 블록의 사이즈가 같다면 그냥 바로 함
   - K가 더 크면 L byte string이 되도록 해시를 해줌. 나눴는데 L byte가 B에 비해 모자라면 0으로 채워줌 (B-byte가 되게)
-  - 더 작으면 0을 부여서 B-byte가 되게 함
+  - 더 작으면 0을 붙여서 B-byte가 되게 함
 - K0은 B와 크기가 같음. ipad와 xor
 
   - ipad : 상수, 16진수로 36, 1바이트
@@ -61,6 +61,8 @@ IP security - transport층에서 사용자 보호(TES) 그 아래의 네트워�
   - opad : 5c라는 바이트 값을 쭉 반복한 값
 - 두 개를 붙이고
 - 붙인걸 또 해시
+
+
 
 ## CMAC
 
@@ -93,6 +95,8 @@ cbc의 initial vector빠짐
 K를 0만 있는 것과 암호화 (B byte string)
 
 L x X = L의 비트를 왼쪽으로 옮김
+
+
 
 ## Authenticated Encryption
 

@@ -445,7 +445,7 @@ implementation attack의 하나
 
 연산이 수행되는 와중에 강력한 전압을 걸어주는등의 공격을 해서 오류가 생기게
 
-(내 버스카드를 공격해서 잔액정보를 마음대로~~)
+(ex) 내 버스카드에 물리적으로 충격을 걸어서(전압공격등) 잔액정보를 마음대로 조작~~)
 
 ### Misconceptions Concerning Public-Key Encryption
 

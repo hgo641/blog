@@ -73,7 +73,7 @@ CA외에는 certificate를 조작할 수 없다
 
 반대로 CA의 공개키가 없으면 인증불가능
 
-> X.509의 PKI (Public Key Instructure)로 해결 (X.509 CA Hierarchy)
+> X.509의 PKI (Public Key Instructure)로 해결 (X.509 CA Hierarchy)ㅣ
 
 상위 인증 기관
 

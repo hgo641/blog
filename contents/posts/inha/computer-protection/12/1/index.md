@@ -180,7 +180,7 @@ ex) ARMCPU, SGX
 
 - 사용자 제어
 - 근접 제어
-- 로그를 남기고 감사
+- 로그를 남기고 검사
 
 ### Firewall Types
 
@@ -256,4 +256,3 @@ ex) snort : opensource
 
 PCRE : reqular expression : \s+, \n 0x22... 이런애들. 규칙을 정해놓고 규칙에 맞는지 확인
 
-##

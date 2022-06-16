@@ -21,7 +21,7 @@ series: "컴퓨터 보안"
 
 
 
-## Reconstructuin-based
+## Reconstruction-based
 
 재구성기반
 

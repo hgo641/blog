@@ -16,7 +16,7 @@ series: "컴퓨터 보안"
 
 * 백신, 피씨방화벽
 * Spam filter
-* Data Lostt Prevention(DLP)
+* Data Loss Prevention(DLP)
   * 민감한 데이터가 분실되거나 악용되는 것을 방지하기위한 툴
   * 기업에서 중요한 데이터를 외부로 빠져나가지 못하게 함
   * 개인 직원이 주요 데이터를 빼돌리는 것 말고도 공격자가 들어와서 중요 데이터를 기업의 이미지를 훼손시키기 위해 빼가는 경우 - 개인 정보가 유출되었기에 패널티를 받음(벌금등)
@@ -59,7 +59,7 @@ convolutional neural network
 * 풀링
 * feature vector (final output)
 * softmax function
-  * freture vector의 각각의 값을 극대화시킴
+  * feature vector의 각각의 값을 극대화시킴
   * 차이를 극명하게 하기위해 사용
 
 
@@ -94,7 +94,7 @@ training data set을 가지고 모델을 트레이닝
 
 막자!
 
-## countermeasures to adversarial examples : AI Robus
+## countermeasures to adversarial examples : AI Robustness
 
 * Adversarial training
   * 노이즈를 집어넣어서 경계선을 더 잘 긋도록 만들자
