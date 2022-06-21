@@ -135,7 +135,7 @@ difficulty : 채굴의 난이도
 
 ## NFT
 
-보통의 암호화폐는 대체가능하지만 얘는 uniquely identifiable
+보통의 암호화폐는 대체5가능하지만 얘는 uniquely identifiable
 
 체인에 기록하는게 아니라 외부에 저장
 
