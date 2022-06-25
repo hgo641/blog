@@ -5,7 +5,6 @@ module.exports = {
   siteUrl: "https://hongo.netlify.app/",
   links: {
     github: "https://github.com/hgo641",
-    email: "hgo641@gmail.com",
   },
   utterances: {
     repo: "hgo641/blog",
