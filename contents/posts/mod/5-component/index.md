@@ -6,9 +6,7 @@ tags:
 series: "mod"
 ---
 
-## Component의 활용
-
-
+## 자주쓰이는 Component
 
 * MovementComponent
   * 점프력과 이동속도를 결정
@@ -40,9 +38,9 @@ series: "mod"
 
 
 
-## 예시
+### Trigger & Movement 예시 - 먹으면 이동속도가 증가하는 아이템
 
-캐릭터가 먹으면 속도와 점프력이 빨라지는 아이템을 만들어보자!
+캐릭터가 먹으면 속도가 증가하고 점프력이 높아지는 아이템을 만들어보자!
 
 > 해당 기능을 위해선 캐릭터가 아이템을 먹는걸 감지하는 `Trigger Componet`와 트리거가 발생하면 어떻게 처리할 것인지를 결정하는 추가 컴포넌트 `ItemComponent` 가 필요하다.
 
@@ -83,6 +81,110 @@ series: "mod"
 ![](./after.png)
 
 <br/>
+
+
+
+
+
+## Input Service
+
+유저가 특정 입력을 누르면 해당 입력에 대한 피드백을 전달한다. <br/>
+
+입력같은 이벤트들은 서비스에 직접 접근을 못해서 이벤트를 받아 처리한다.<br/>
+
+> **예시**
+>
+> 유저가 키보드 `I`를 누르면 인벤토리창을 보여준다<br/>
+>
+> 키보드 `A`를 누르면 대응하는 스킬을 사용한다<br/>
+>
+> 마우스로 특정 아이템을 클릭하면 해당 아이템을 습득한다<br/>
+
+
+
+### 키 입력 이벤트
+
+유저가 `R` 키를 누르면 로그를 찍게 만들어보자!
+
+* 이벤트를 등록할 Component를 생성하고, `KeyDownEvent`를 등록한다.
+
+![](add-event.png)
+
+<br/>
+
+* 컴포넌트에 코드를 작성한다.
+
+```lua
+local key = event.key
+if key == KeyboardKey.R then
+    -- 누른 키가 R이라면 아래 로그를 출력한다.
+	log("RRRRRRRRRR")
+end
+```
+
+<br/>
+
+
+
+* 생성한 컴포넌트를 `DefaultPlayer`에 적용하고 실행하면, R키를 누를 때 마다 로그가 잘 찍히는 것을 볼 수 있다.
+
+![](r-log.png)
+
+
+
+### 키 입력 예시 - 
+
+
+
+### 터치 이벤트
+
+플레이어를 터치하면 로그가 출력되게 해보자!
+
+* 컴포넌트에서 `TouchEvent` 이벤트를 등록하고 로그를 출력하는 코드를 작성한다.
+
+![](touch-event.png)
+
+<br/>
+
+* 해당 컴포넌트를 `DefaultPlayer`에 등록한다.
+* **TouchEvent를 받기 위해선 Entity에 TouchReceiveComponent를 등록해야한다.**
+* `DefaultPlayer`에 `TouchReceiveComponent`를 등록한다.
+
+![](receive.png)
+
+<br/>
+
+* 플레이어를 클릭하면 로그가 잘찍히는 것을 볼 수 있다.
+
+![](touched.png)
+
+
+
+### 터치 예시 - 건드리면 싫어하는
+
+
+
+### 스크린 터치 이벤트
+
+게임 화면의 어떤 부분을 터치하면 좌표를 출력하게 해보자!
+
+* 컴포넌트에 아래 코드를 작성한다.
+
+![](xy-code.png)
+
+<br/>
+
+* `DefaultPlayer`에 컴포넌트를 등록하고 실행하면 로그가 잘 찍히는 것을 볼 수 있다.
+
+![](xy-log.png)
+
+
+
+
+
+
+
+
 
 ---
 
