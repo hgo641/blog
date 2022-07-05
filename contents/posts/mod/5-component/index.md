@@ -102,7 +102,9 @@ series: "mod"
 
 
 
-### 키 입력 이벤트
+## 키 입력 이벤트란?
+
+> 유저가 특정 키를 입력하면 그에 대한 피드백을 보내줄 수 있다!
 
 유저가 `R` 키를 누르면 로그를 찍게 만들어보자!
 
@@ -132,11 +134,63 @@ end
 
 
 
-### 키 입력 예시 - 
+### 키 입력 예시 - R키를 누르면 스킬 이펙트
+
+* 컴포넌트를 생성하고 아래와 같이 코드를 작성합니다.
+
+```lua
+local key = event.key
+if key == KeyboardKey.R then
+	--_EffectService:PlayEffect("00613b24f0c045deab14ba24cdb90187", self.Entity, self.Entity.TransformComponent.Position,0, Vector3(1,1,1))
+	_EffectService:PlayEffectAttached("00613b24f0c045deab14ba24cdb90187", self.Entity, Vector3(0,0,0), 0, Vector3(1,1,1))
+en
+```
+
+> `PlayEffect`는 월드의 position을 기반으로 이펙트를 띄워준다. <br/>
+>
+> 예시 스킬의 경우 플레이어에 계속 붙어있는 스킬이 적합하므로 `PlayEffectAttached`를 사용한다.
+>
+> `PlayEffect`의 인자는 차례대로 
+>
+> (Effect RUID, Entity, 이펙트를 띄울 위치, 회전도, 이펙트의 크기)이다.
+
+<br/>
+
+* 컴포넌트를 플레이어에 적용하고 실행하면 R키를 누를때마다 스킬이펙트가 잘 실행되는 것을 볼 수 있습니다.
+
+![](skill.png)
 
 
 
-### 터치 이벤트
+<br/>
+
+캐릭터가 보는 방향 앞에 스킬 이펙트를 띄워주려면 다음과 같이 하면 된다.
+
+```lua
+local direction = self.Entity.PlayerControllerComponent.LookDirectionX
+local displayPosition = self.Entity.TransformComponent.Position:Clone()
+displayPosition = displayPosition + Vector3(3*direction, 0,0)
+
+if key == KeyboardKey.E then
+	_EffectService:PlayEffect("00e23d2d229b49d6895288ab7cf5b8ab", self.Entity, displayPosition,0,Vector3(1,1,1))
+end
+```
+
+![](skill3.png)
+
+<br/>
+
+
+
+이처럼 여러 스킬들의 RUID를 적용해 다양한 스킬 이펙트를 띄워줄 수 있다!
+
+![](skill2.png)
+
+
+
+## 터치 이벤트란?
+
+> 유저가 어떤 Entity를 터치하면 그에 대한 피드백을 보내준다
 
 플레이어를 터치하면 로그가 출력되게 해보자!
 
@@ -160,11 +214,55 @@ end
 
 
 
-### 터치 예시 - 건드리면 싫어하는
+### 터치 예시 - 터치하면 싫어하는 나무
+
+터치하면 "터치하지 마세요."라고 말하는 나무 Object를 만들어보자!
+
+* 나무 Object에 `TouchReceiveComponent`를 추가한다.
+* `ChatBalloonComponent`를 추가한다.
+
+![](chat.png)
+
+> `ChatBalloonComponent`의 `Message`를 사용해 나무 Object가 "나무입니다" 라고 말하게한다.
+>
+> * `AutoShowEnable` 활성화해야 말풍선이 보인다.
+> * `HideDuration`을 0으로 해서 말풍선이 계속 보이게 한다.
+
+<br/>
+
+* 터치 이벤트에 피드백을 보내줄 컴포넌트를 생성하고 오브젝트에 등록한다. (DontTouch)
+
+* 컴포넌트에 다음과 같이 코드를 작성한다.
+
+![](donttouch.png)
+
+> TouchEvent 핸들러를 등록하고, 이벤트를 받으면 말풍선의 메시지를 "터치하지마세요" 로 바꾼다.
+>
+> 2초뒤에 원래 메시지였던 "나무입니다"로 돌아간다.
+
+<br/>
+
+* 게임을 실행시키고 나무를 클릭하면 말풍선이 잘 변경되는 것을 볼 수 있다.
+
+<br/>
+
+* 나무 누르기 전
+
+![](before-click.png)
+
+<br/>
+
+* 나무 누른 후
+
+![](after-click.png)
 
 
 
-### 스크린 터치 이벤트
+
+
+## 스크린 터치 이벤트란?
+
+> 유저가 스크린을 터치하면 그에 대한 피드백을 보내준다
 
 게임 화면의 어떤 부분을 터치하면 좌표를 출력하게 해보자!
 
@@ -179,6 +277,8 @@ end
 ![](xy-log.png)
 
 
+
+## Sound Component
 
 
 
