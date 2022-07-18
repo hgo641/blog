@@ -1,5 +1,6 @@
 ---
 title: "백준 1260 DFS와 BFS"
+date: 2022-07-10
 tags:
   - C++
   - cote
