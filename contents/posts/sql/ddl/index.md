@@ -175,3 +175,41 @@ CREATE UNIQUE INDEX 고객번호_idx
 ON 고객(고객번호 DESC);
 ```
 
+
+
+
+
+## ALTER TABLE
+
+표기형식
+
+* ALTER TABLE  `테이블명`  ADD `속성명`  `데이터 타입` [DEFAULT ``'기본값'``];
+* ALTER TABLE  `테이블명` ALTER  `속성명` [SET DEFAULT ``'기본값'``];
+* ALTER TABLE  `테이블명`  DROP COLUMN  `속성명` [CASCADE];
+
+> ADD : 새로운 Attribute(열)를 추가할 때 사용한다.
+>
+> ALTER : 특정 Attribute의 DEFAULT값을 변경할 때 사용한다.
+>
+> DROP COLUMN : 특정 Attribute를 삭제할 때 사용한다.
+
+<br/>
+
+
+
+## DROP
+
+DROP은 스키마, 도메인, 기본 테이블, 뷰 테이블, 인덱스, 제약 조건 등을 제거하는 명령문이다.
+
+```sql
+DROP SCHEMA 스키마명 [CASCADE | RESTRICT];
+DROP DOMAIN 도메인명 [CASCADE | RESTRICT];
+DROP TABLE 테이블명 [CASCADE | RESTRICT];
+DROP VIEW 뷰명 [CASCADE | RESTRICT];
+DROP INDEX 인덱스명 [CASCADE | RESTRICT];
+DROP CONSTRAINT 제약조건명 [CASCADE | RESTRICT];
+```
+
+> CASCADE : 제거할 요소를 참조하는 다른 모든 개체를 함께 제거한다.
+>
+> RESTRICT : 다른 개체가 제거할 요소를 참조중일 때는 제거를 취소한다.
