@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of hongo]]></title><description><![CDATA[홍고 블로그]]></description><link>https://hongo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 26 Jul 2022 16:56:26 GMT</lastBuildDate><item><title><![CDATA[백준 2164 카드2]]></title><description><![CDATA[문제 N장의 카드가 있다. 각각의 카드는 차례로 1부터 N까지의 번호가 붙어 있으며, 1번 카드가 제일 위에, N…]]></description><link>https://hongo.netlify.app/2164/</link><guid isPermaLink="false">https://hongo.netlify.app/2164/</guid><pubDate>Tue, 26 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed of hongo]]></title><description><![CDATA[홍고 블로그]]></description><link>https://hongo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 26 Jul 2022 17:06:01 GMT</lastBuildDate><item><title><![CDATA[백준 2164 카드2]]></title><description><![CDATA[문제 N장의 카드가 있다. 각각의 카드는 차례로 1부터 N까지의 번호가 붙어 있으며, 1번 카드가 제일 위에, N…]]></description><link>https://hongo.netlify.app/2164/</link><guid isPermaLink="false">https://hongo.netlify.app/2164/</guid><pubDate>Tue, 26 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
 &lt;p&gt;N장의 카드가 있다. 각각의 카드는 차례로 1부터 N까지의 번호가 붙어 있으며, 1번 카드가 제일 위에, N번 카드가 제일 아래인 상태로 순서대로 카드가 놓여 있다.
-&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
 이제 다음과 같은 동작을 카드가 한 장 남을 때까지 반복하게 된다. 우선, 제일 위에 있는 카드를 바닥에 버린다. 그 다음, 제일 위에 있는 카드를 제일 아래에 있는 카드 밑으로 옮긴다.
-&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
 예를 들어 N=4인 경우를 생각해 보자. 카드는 제일 위에서부터 1234 의 순서로 놓여있다. 1을 버리면 234가 남는다. 여기서 2를 제일 아래로 옮기면 342가 된다. 3을 버리면 42가 되고, 4를 밑으로 옮기면 24가 된다. 마지막으로 2를 버리고 나면, 남는 카드는 4가 된다.
-&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
 N이 주어졌을 때, 제일 마지막에 남게 되는 카드를 구하는 프로그램을 작성하시오.
 &lt;br/&gt;&lt;/p&gt;
 &lt;h2&gt;풀이&lt;/h2&gt;
 &lt;p&gt;queue를 이용하면 손쉽게 구현할 수 있다.&lt;/p&gt;
 &lt;br/&gt;
-```c++
-#include &lt;bits/stdc++.h&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;#include &amp;lt;bits/stdc++.h&gt;
 using namespace std;
-&lt;p&gt;int n;
-queue&lt;int&gt; q;
+
+int n;
+queue&amp;lt;int&gt; q;
 int main() {
-ios&lt;em&gt;base::sync&lt;/em&gt;with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 cin &gt;&gt; n;
-for (int i = 1; i &amp;#x3C;= n; i++) {
+for (int i = 1; i &amp;lt;= n; i++) {
 q.push(i);
 }
 while (q.size() &gt; 1) {
 q.pop();
 q.push(q.front());
 q.pop();
-}&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;cout &amp;lt;&amp;lt; q.front();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;}&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&gt; 실버4치곤 너무 쉬워서 당황스러운 문제였다... (오히려좋아?)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[멋쟁이사자처럼 X 넥슨 MOD Suppoters Hackathon 8주차 월요일 회고]]></title><description><![CDATA[작성중]]></description><link>https://hongo.netlify.app/1/</link><guid isPermaLink="false">https://hongo.netlify.app/1/</guid><pubDate>Mon, 25 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;작성중&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[백준 2609 최대공약수와 최소공배수]]></title><description><![CDATA[문제 두 개의 자연수를 입력받아 최대 공약수와 최소 공배수를 출력하는 프로그램을 작성하시오. 첫 번째 풀이 원시적인 방법으로 풀었다 >< 최대 공약수 최대 공약수는 a또는 b보다 클 수 없다. 
+}
+
+    cout &amp;lt;&amp;lt; q.front();
+
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[멋쟁이사자처럼 X 넥슨 MOD Suppoters Hackathon 8주차 월요일 회고]]></title><description><![CDATA[작성중]]></description><link>https://hongo.netlify.app/1/</link><guid isPermaLink="false">https://hongo.netlify.app/1/</guid><pubDate>Mon, 25 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;작성중&lt;/h2&gt;</content:encoded></item><item><title><![CDATA[백준 2609 최대공약수와 최소공배수]]></title><description><![CDATA[문제 두 개의 자연수를 입력받아 최대 공약수와 최소 공배수를 출력하는 프로그램을 작성하시오. 첫 번째 풀이 원시적인 방법으로 풀었다 >< 최대 공약수 최대 공약수는 a또는 b보다 클 수 없다. 
 a > b이므로, i = 1 ~ b 사이의 모든 수로 a…]]></description><link>https://hongo.netlify.app/2609/</link><guid isPermaLink="false">https://hongo.netlify.app/2609/</guid><pubDate>Sun, 24 Jul 2022 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;문제&lt;/h2&gt;
 &lt;p&gt;두 개의 자연수를 입력받아 최대 공약수와 최소 공배수를 출력하는 프로그램을 작성하시오.&lt;/p&gt;
 &lt;h2&gt;첫 번째 풀이&lt;/h2&gt;
