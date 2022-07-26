@@ -66,7 +66,7 @@ series: "spring"
 
 
 
-## 프로젝트 구조
+## MovieBuddy 프로젝트 구조
 
 `src/main/java` -> `moviebuddy`안을 보면
 

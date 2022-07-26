@@ -91,3 +91,9 @@ series: "spring"
 <br/>
 
 > 자동완성 단축키는 ctrl+space
+
+<br/><br/><br/>
+
+관심사 분리까지 완료했다!<br/>
+
+다음 시간에는 
