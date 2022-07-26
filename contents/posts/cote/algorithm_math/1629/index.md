@@ -2,7 +2,6 @@
 title: "백준 1629 곱셈"
 date: 2022-07-12
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

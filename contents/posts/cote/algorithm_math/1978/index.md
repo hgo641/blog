@@ -2,7 +2,6 @@
 title: "백준 1978 소수 찾기"
 date: 2022-07-19
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

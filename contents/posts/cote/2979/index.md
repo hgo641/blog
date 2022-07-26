@@ -2,7 +2,6 @@
 title: "백준 2979 트럭주차"
 date: 2022-06-25
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

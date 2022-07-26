@@ -2,7 +2,6 @@
 title: "백준 10808 알파벳 개수"
 date: 2022-06-25
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

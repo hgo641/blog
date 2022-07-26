@@ -2,7 +2,6 @@
 title: "백준 1940 주몽"
 date: 2022-07-08
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

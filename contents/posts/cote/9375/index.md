@@ -2,7 +2,6 @@
 title: "백준 9375 패션왕 신해빈"
 date: 2022-07-02
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

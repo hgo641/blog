@@ -2,7 +2,6 @@
 title: "백준 1181 단어 정렬"
 date: 2022-07-18
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

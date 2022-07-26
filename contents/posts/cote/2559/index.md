@@ -2,7 +2,6 @@
 title: "백준 2559 수열"
 date: 2022-06-29
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

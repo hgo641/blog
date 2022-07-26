@@ -2,7 +2,6 @@
 title: "백준 4375 1"
 date: 2022-07-13
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---

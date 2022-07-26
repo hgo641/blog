@@ -2,7 +2,6 @@
 title: "백준 2839 설탕배달"
 date: 2022-07-13
 tags:
-  - C++
   - cote
 series: "코테준비"
 ---
