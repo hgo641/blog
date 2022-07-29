@@ -29,21 +29,15 @@ UI를 야무지게 활용하는 법... 어렵지 않아요~ 두 가지만 기억
 
 `UITransformComponent`를 보면 우측 상단에 UI 컴포넌트를 정렬할 수 있는 아이콘이 있다. 해당 아이콘을 눌러서 원하는 위치에 정렬을 해주면 된다.
 
-
-
 ### 스트레치
 
 UI 컴포넌트의 크기를 x, y로 지정하면 기기마다 화면의 크기가 다르기 때문에 컴포넌트가 화면을 삐져나가는 등 의도한 UI를 연출하지 못할 수도 있다.
 
 `UITransformComponent`의 우측 상단 아이콘(정렬을 설정했던 아이콘과 동일)을 클릭해 스트레치를 적용하면 Left와 Right로 상대적인 크기를 설정할 수 있다. (정렬을 설정했던 아이콘과 동일)
 
-
-
 ### UI 컴포넌트 활용
 
 UI의 프로퍼티에 `ButtonComponent` 나 `TextComponent` 등을 추가하면, 해당 UI를 버튼으로 이용하거나 텍스트를 넣을수도 있다. UI도 하나의 Entity이니 여러 컴포넌트를 추가적으로 등록할 수 있다는걸 기억하자!
-
-
 
 ## Group
 
@@ -57,15 +51,11 @@ Group은 MapLayer처럼 **UI 전용 Layer**라고 생각하면 편하다.<br/>
 >
 > Group을 설정하면 한 번에 UI들을 프리뷰할 수 있다. - 그룹의 프로퍼티란에서 `UIGroup`의 `Enable`속성을 조정
 
-
-
 ### Group 활성화
 
 Group을 활성화시키려면 `UISprite`의 `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해줘야한다. <br/>
 
 둘 중 하나만 하면 활성화가 되지않으므로 주의하자!
-
-
 
 ## UI는 클라이언트에서만 적용
 
@@ -75,9 +65,7 @@ Group을 활성화시키려면 `UISprite`의 `Enable`을 True로 하고 `UIGroup
 
 즉, UI는 로컬 엔티티이기 때문에(= 클라이언트단에서만 작용) Sync가 불가능하다.
 
-> Sync : 서버에 있는 값과 클라이언트에 있는 값을 동기화 
-
-
+> Sync : 서버에 있는 값과 클라이언트에 있는 값을 동기화
 
 ## UI 실습
 
@@ -86,7 +74,7 @@ UI 실습을 위해 버튼 UI를 하나 만들어준다.<br/>
 - 상단의 UI 아이콘을 클릭한 뒤, 스크린의 좌측 상단 아이콘들 중 버튼을 생성하는 아이콘을 눌러 만든다.
 - 해당 UI의 이름을 `MyButton`이라고 바꿔준다. 알아보기 쉽게 `TextComponent`를 추가해서 MyButton 이라고 크게 적어줬다.
 
-![](C:\Users\sec\my-hoodie-blog\contents\posts\mod\7\2\create-ui.png)
+![](create-ui.png)
 
 <br/><br/>
 
@@ -94,21 +82,15 @@ UI 실습을 위해 버튼 UI를 하나 만들어준다.<br/>
 
 - 그 다음 컴포넌트에 `Button Click Event`를 등록하고 이벤트를 받는 대상을 `self`에서 `entity` 로 바꾼 뒤, `MyButton`을 등록해준다.
 
-![](C:\Users\sec\my-hoodie-blog\contents\posts\mod\7\2\add-event.png)
-
-
-
-
+![](add-event.png)
 
 ## 버튼을 누르면 간단한 메시지 출력
-
-
 
 ### 버튼 눌림 감지
 
 `1` 우선 버튼 UI 를 생성한다.
 
-> 버튼이 포함된 그룹의  `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
+> 버튼이 포함된 그룹의 `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
 
 `2` Create Scripts -> Create Component로 새 컴포넌트를 생성한다. 이름은 UIManager로 짓는다.
 
@@ -117,8 +99,6 @@ UI 실습을 위해 버튼 UI를 하나 만들어준다.<br/>
 ![](uimanager.png)
 
 > ButtonClick Event함수를 등록하고, 이벤트 sender를 self에서 entity로 변경하고 Mybutton을 등록해준다.
-
-
 
 ### 간단한 메시지 출력
 
@@ -132,12 +112,10 @@ _UIToast:ShowMessage()
 
 <br/>
 
-* 위는 `MyButton` 이 눌러질 경우, "My Button이 클릭되었습니다"를 출력하는 코드이다.
-* 해당 컴포넌트를 작성후 월드내에 등록해줘야 작동한다. 나는 World -> common에 등록해줬다.
+- 위는 `MyButton` 이 눌러질 경우, "My Button이 클릭되었습니다"를 출력하는 코드이다.
+- 해당 컴포넌트를 작성후 월드내에 등록해줘야 작동한다. 나는 World -> common에 등록해줬다.
 
 <br/>
-
-
 
 ![](toastmessage.png)
 
@@ -145,23 +123,17 @@ _UIToast:ShowMessage()
 
 <br/>
 
-
-
 > ```lua
 > _UIToast:ShowMessage(self.myText.Text)
 > ```
 >
 > 위와 같은 방식으로 프로퍼티로 설정한 `TextComponent`의 Text내용을 가져와 띄워줄 수도 있다.
 
-
-
 ## 버튼을 누르면 Text UI 내용 변경
 
 ### Text UI 생성
 
-텍스트 UI가 포함된 그룹의  `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
-
-
+텍스트 UI가 포함된 그룹의 `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
 
 ### 컴포넌트에 버튼 클릭 이벤트와 코드 작성
 
@@ -173,8 +145,8 @@ _UIToast:ShowMessage()
 
 `2` myText라는 프로퍼티를 추가한다.
 
-* 자료형은 Component이며, Component설정을 해주고 TextComponent를 찾는다.
-* UIText를 등록해준다.
+- 자료형은 Component이며, Component설정을 해주고 TextComponent를 찾는다.
+- UIText를 등록해준다.
 
 <br/>
 
@@ -188,7 +160,7 @@ _UIToast:ShowMessage()
 
 <br/>
 
-*버튼 클릭 전*
+_버튼 클릭 전_
 
 ![](mytext.png)
 
@@ -196,13 +168,13 @@ _UIToast:ShowMessage()
 
 <br/>
 
-*버튼 클릭 후*
+_버튼 클릭 후_
 
 ![](after-button.png)
 
 ## 회고
 
-이번 포스트에서는 UI 활용을 위한 이론 위주로 정리해봤다. 
+이번 포스트에서는 UI 활용을 위한 이론 위주로 정리해봤다.
 
 한 가지 궁금한 점이 생겼는데 왜 `UITransformComponent`의 디폴트 속성이 스트레치를 적용한 `Left`, `Right`가 아니라 X, Y이냐이다. 나중에 팀원들이랑 얘기하면서 다시 생각해봐야겠다 ㅎㅎ.<br/>
 
