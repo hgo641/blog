@@ -79,6 +79,127 @@ Group을 활성화시키려면 `UISprite`의 `Enable`을 True로 하고 `UIGroup
 
 
 
+## UI 실습
+
+UI 실습을 위해 버튼 UI를 하나 만들어준다.<br/>
+
+- 상단의 UI 아이콘을 클릭한 뒤, 스크린의 좌측 상단 아이콘들 중 버튼을 생성하는 아이콘을 눌러 만든다.
+- 해당 UI의 이름을 `MyButton`이라고 바꿔준다. 알아보기 쉽게 `TextComponent`를 추가해서 MyButton 이라고 크게 적어줬다.
+
+![](C:\Users\sec\my-hoodie-blog\contents\posts\mod\7\2\create-ui.png)
+
+<br/><br/>
+
+- 언제나 그렇듯이 MyDesk에서 `Create Scripts` -> `Create Component`로 새 컴포넌트를 만든다. 컴포넌트 이름은 `UIManager`이다.
+
+- 그 다음 컴포넌트에 `Button Click Event`를 등록하고 이벤트를 받는 대상을 `self`에서 `entity` 로 바꾼 뒤, `MyButton`을 등록해준다.
+
+![](C:\Users\sec\my-hoodie-blog\contents\posts\mod\7\2\add-event.png)
+
+
+
+
+
+## 버튼을 누르면 간단한 메시지 출력
+
+
+
+### 버튼 눌림 감지
+
+`1` 우선 버튼 UI 를 생성한다.
+
+> 버튼이 포함된 그룹의  `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
+
+`2` Create Scripts -> Create Component로 새 컴포넌트를 생성한다. 이름은 UIManager로 짓는다.
+
+`3` UIManager를 다음과 같이 작성한다.
+
+![](uimanager.png)
+
+> ButtonClick Event함수를 등록하고, 이벤트 sender를 self에서 entity로 변경하고 Mybutton을 등록해준다.
+
+
+
+### 간단한 메시지 출력
+
+```lua
+_UIToast:ShowMessage()
+```
+
+위 함수를 사용해 간단한 메시지를 출력할 수 있다.<br/><br/>
+
+![](uimanager.png)
+
+<br/>
+
+* 위는 `MyButton` 이 눌러질 경우, "My Button이 클릭되었습니다"를 출력하는 코드이다.
+* 해당 컴포넌트를 작성후 월드내에 등록해줘야 작동한다. 나는 World -> common에 등록해줬다.
+
+<br/>
+
+
+
+![](toastmessage.png)
+
+게임을 실행하고 My Button을 누르면 위와 같이 상단에 Toast Message가 뜨는 것을 볼 수 있다.
+
+<br/>
+
+
+
+> ```lua
+> _UIToast:ShowMessage(self.myText.Text)
+> ```
+>
+> 위와 같은 방식으로 프로퍼티로 설정한 `TextComponent`의 Text내용을 가져와 띄워줄 수도 있다.
+
+
+
+## 버튼을 누르면 Text UI 내용 변경
+
+### Text UI 생성
+
+텍스트 UI가 포함된 그룹의  `UISprite` - `Enable`을 True로 하고 `UIGroupComponent`의 `DefaultShow`도 True로 설정해야 게임을 실행했을 때 UI가 보인다.
+
+
+
+### 컴포넌트에 버튼 클릭 이벤트와 코드 작성
+
+`1` 코드는 위와 유사하게 이벤트를 등록하고 이벤트를 보낼 버튼을 등록한다.
+
+![](change-text.png)
+
+<br/>
+
+`2` myText라는 프로퍼티를 추가한다.
+
+* 자료형은 Component이며, Component설정을 해주고 TextComponent를 찾는다.
+* UIText를 등록해준다.
+
+<br/>
+
+`3` 컴포넌트를 월드에 적용한다. 나는 World -> common에 등록했으므로 common의 프로퍼티에서 UIManager의 myText값을 UIText로 지정해준다. (컴포넌트에서 등록을 했어도 프로퍼티에서 재등록을 해줘야한다.)
+
+![](property.png)
+
+<br/>
+
+`4` 게임을 실행하고, 버튼을 클릭하면 Text내용이 바뀌는 것을 볼 수 있다.
+
+<br/>
+
+*버튼 클릭 전*
+
+![](mytext.png)
+
+<br/>
+
+<br/>
+
+*버튼 클릭 후*
+
+![](after-button.png)
+
 ## 회고
 
 이번 포스트에서는 UI 활용을 위한 이론 위주로 정리해봤다. 
