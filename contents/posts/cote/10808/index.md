@@ -3,7 +3,6 @@ title: "백준 10808 알파벳 개수"
 date: 2022-06-25
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -15,7 +14,7 @@ series: "코테준비"
 
 문자를 정수형으로 바꿔서 카운트한다.
 
-```c++
+```cpp
 
 #include<bits/stdc++.h>
 

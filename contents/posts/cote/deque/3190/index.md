@@ -2,9 +2,7 @@
 title: "백준 11655 ROT13"
 date: 2022-07-11
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -37,7 +35,7 @@ deque를 이용해 뱀의 body 좌표 정보를 저장했다.<br/>
    apple을 먹었다면 apple의 값을 1에서 0으로 바꿔줘야하는 것을 간과해 처음에 실패했었다<br/>
    일어날 경우의 수를 세세하게 짜자!<br/><br/>
 
-```c++
+```cpp
 int N,K,L;
 int apple[101][101];
 int direction = 1; //0, 1, 2, 3 : up, right, down, left

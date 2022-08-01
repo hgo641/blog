@@ -3,7 +3,6 @@ title: "백준 1940 주몽"
 date: 2022-07-08
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -21,7 +20,7 @@ wn으로 m을 만들기 위해 필요한 수인 (m - wn)을 idx로 배열 weapon
 > wn이 들어오면 wn과 더불어 필요한 m-wn을 weapon[m-wn] = 1 로 체크하고, 이후 또 다른 wn2를 입력받고 weapon[wn2]가 1이라면 wn2과 짝인 wn이 존재한다는 의미이므로 카운트를 늘린다.
 > wn + wn 으로 나올 수 있는 경우는 2 ~ 200000이므로 200001의 크기를 가지는 배열 weapon을 만든다.<br/>
 
-```c++
+```cpp
 int n, m, wn, idx;
 int weapon[200001];
 int main() {

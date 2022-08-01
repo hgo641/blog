@@ -2,9 +2,7 @@
 title: "백준 2164 카드2"
 date: 2022-07-26
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -24,7 +22,7 @@ queue를 이용하면 손쉽게 구현할 수 있다.
 
 <br/>
 
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 

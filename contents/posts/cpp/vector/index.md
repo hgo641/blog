@@ -2,12 +2,8 @@
 title: "c++로 vector 만들기"
 date: 2022-06-24
 tags:
-  - C++
-  - cote
-series: "코테준비"
+  - cpp
 ---
-
-
 
 ## vector?
 
@@ -25,10 +21,8 @@ series: "코테준비"
 >
 > 그렇다면 동적 할당이 정적 할당보다 더 좋은게 아닌가?
 >
-> * 꼭 그렇다고 할 수 만은 없다!
-> * 동적할당은 메모리 누수가 일어날 수 있기 때문에 사용하지 않을 땐 메모리를 해제해줘야한다.
-
-
+> - 꼭 그렇다고 할 수 만은 없다!
+> - 동적할당은 메모리 누수가 일어날 수 있기 때문에 사용하지 않을 땐 메모리를 해제해줘야한다.
 
 ## vector 인터페이스
 
@@ -52,11 +46,9 @@ series: "코테준비"
 | 벡터가 비었는지 확인       | v.empty()                 |                                                    |
 | 벡터 사이즈 반환           | v.size()                  |                                                    |
 
-
-
 ## vector 사용 예시
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -68,28 +60,23 @@ int main(){
     v.push_back(0);
     v.push_back(1);
     for(int i = 1; i <= 10; i++)v.push_back(i);
-    
+
     // vector 값 삭제1 - pop_back
     // : vector의 맨 뒤에 값을 삭제한다.
     v.pop_back();
-    
+
     // vector 값 삭제2 - erase
     v.erase(v.begin(), v.begin()+2);
-    
+
     // vector 값 출력
     for (int a:v) cout << a << " ";
     cout << "\n";
-    
+
     // vector 값 탐색 - find
     auto a = find(v.begin(), v.end(), 100);
     if (a == v.end()) cout << "100을 찾을 수 없음." << "\n";
-    
+
     // vector 값 채우기 - fill
     fill(v.begin(), v.end(), 10);
 }
 ```
-
-
-
-
-

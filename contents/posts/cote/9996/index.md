@@ -3,7 +3,6 @@ title: "백준 9996 한국이 그리울 땐 서버에 접속하지"
 date: 2022-06-26
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -36,7 +35,7 @@ ROT13은 알파벳 대문자와 소문자에만 적용할 수 있다. 알파벳�
 
 find함수와 substr함수를 사용하면 쉽게 구현할 수 있다!
 
-```c++
+```cpp
 #include<iostream>
 #include<tuple>
 #include<vector>

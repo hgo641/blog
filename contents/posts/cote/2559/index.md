@@ -3,7 +3,6 @@ title: "백준 2559 수열"
 date: 2022-06-29
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -42,7 +41,7 @@ ROT13은 알파벳 대문자와 소문자에만 적용할 수 있다. 알파벳�
 부분합을 모두 구하고 배열 psum에 저장한다.
 이후 for문을 통해 K길이만큼의 합을 구하고 그 중 최대값을 출력한다.
 
-```c++
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

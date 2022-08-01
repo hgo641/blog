@@ -3,7 +3,6 @@ title: "백준 4375 1"
 date: 2022-07-13
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -27,7 +26,7 @@ cmp는 배수를 의미한다. cmp가 n으로 나눠지지않는다면 1 -> 11 -
 단순히 cmp = cmp \* 10 + 1 했을 때 시간초과가 나는 것을 볼 수 있다. cmp의 수가 너무 커졌기 때문으로 보인다. <br/>
 cnt는 cmp의 자리수를 의미한다. <br/> <br/> <br/>
 
-```c++
+```cpp
 int n;
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -55,7 +54,7 @@ mod 연산은 아래와 같은 공식으로 풀 수 있다. <br/><br/>
   <br/>
   우리는 ( cmp \* 10 + 1 ) % n한 값을 체크해야하므로, <br/><br/>
 
-```c++
+```cpp
 while (cmp%n != 0) {
 			cmp = cmp * 10 + 1;
 			cnt += 1;
@@ -65,7 +64,7 @@ while (cmp%n != 0) {
 <br/><br/>
 위 부분을 다음과 같이 바꿔준다.<br/>
 
-```c++
+```cpp
 while (cmp%n != 0) {
 			cmp = (cmp%n) * (10%n) + 1;
 			cnt += 1;
@@ -75,7 +74,8 @@ while (cmp%n != 0) {
 <br/>
 cmp에 %n연산을 추가하면 시간초과문제가 해결되는 것을 볼 수 있다.<br/>
 전체 코드는 다음과 같다. <br/>
-```c++
+
+```cpp
 int n;
 int main() {
 	ios_base::sync_with_stdio(false);

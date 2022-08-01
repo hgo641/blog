@@ -2,12 +2,8 @@
 title: "문자형을 숫자로 변환"
 date: 2022-06-21
 tags:
-  - C++
-  - cote
-series: "코테준비"
+  - cpp
 ---
-
-
 
 ## 문자를 숫자로 바꾸기
 
@@ -17,11 +13,9 @@ series: "코테준비"
 >
 > 'a' ~ 'z' 는 아스키 코드로 97 ~ 122
 
+- 만약 'a' ~ 'z' 사이의 숫자를 입력 받아 숫자 0 ~ 26으로 표현하고 싶다면
 
-
-* 만약 'a' ~ 'z' 사이의 숫자를 입력 받아 숫자 0 ~ 26으로 표현하고 싶다면
-
-```c++
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,9 +29,9 @@ int main(){
 
 <br/>
 
-* 사실 이렇게 해도 됨
+- 사실 이렇게 해도 됨
 
-```c++
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -48,6 +42,3 @@ int main(){
     return 0;
 }
 ```
-
-
-

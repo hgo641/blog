@@ -3,7 +3,6 @@ title: "백준 1213 팰린드롬 만들기"
 date: 2022-07-06
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -28,7 +27,7 @@ series: "코테준비"
 
 ### 첫 번재 도전
 
-```c++
+```cpp
 #include<iostream>
 #include<tuple>
 #include<vector>

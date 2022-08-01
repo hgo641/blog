@@ -3,7 +3,6 @@ title: "백준 2869 달팽이는 올라가고 싶다"
 date: 2022-07-13
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -20,7 +19,7 @@ series: "코테준비"
 
 ### 첫 번째 풀이
 
-```c++
+```cpp
 double a,b,v;
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -56,7 +55,7 @@ int main() {
   <br/>
   <br/>
 
-```c++
+```cpp
 double a,b,v;
 int main() {
 	ios_base::sync_with_stdio(false);

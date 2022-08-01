@@ -3,7 +3,6 @@ title: "백준 1159 농구경기"
 date: 2022-06-25
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -22,7 +21,7 @@ series: "코테준비"
 
 reverse를 사용한다.
 
-```c++
+```cpp
 
 #include<bits/stdc++.h>
 

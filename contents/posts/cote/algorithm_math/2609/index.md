@@ -3,7 +3,6 @@ title: "백준 2609 최대공약수와 최소공배수"
 date: 2022-07-24
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -31,7 +30,7 @@ aq가 b이하일동안 while문을 통해 aq와 bq를 1씩 더해가며 최소 �
 
 aq _ a와 bq _ b를 비교하며, aq\*a가 더 크다면 bq의 값을 1늘리고, bq\*b의 값이 더 크다면 aq의 값을 1늘린다.<br/><br/>
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -81,7 +80,7 @@ int main() {
      > (a \* b) / gcd(a,b)
      > <br/><br/>
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 

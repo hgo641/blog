@@ -3,7 +3,6 @@ title: "백준 1620 나는야 포켓몬 마스터 이다솜"
 date: 2022-06-29
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -26,7 +25,7 @@ series: "코테준비"
 
 map을 사용해 string에 해당하는 index를 빠르게 찾을 수 있도록 한다.
 
-```c++
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 int n, m;

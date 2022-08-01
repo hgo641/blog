@@ -3,7 +3,6 @@ title: "백준 2839 설탕배달"
 date: 2022-07-13
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -21,7 +20,7 @@ series: "코테준비"
 
 ### 첫 번째 방법 - 그리디 알고리즘
 
-```c++
+```cpp
 int n, cnt;
 int main() {
 	cin >> n;

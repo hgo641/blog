@@ -2,9 +2,7 @@
 title: "백준 1260 DFS와 BFS"
 date: 2022-07-10
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -17,7 +15,7 @@ series: "코테준비"
 dfs - 재귀함수로 구현
 bfs - queue를 가지고 구현
 
-```c++
+```cpp
 #include<iostream>
 #include<tuple>
 #include<vector>

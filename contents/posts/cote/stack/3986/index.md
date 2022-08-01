@@ -2,9 +2,7 @@
 title: "백준 3986 좋은단어"
 date: 2022-07-12
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -25,7 +23,7 @@ series: "코테준비"
 - 새로 들어오는 원소가 `last`와 같다면 벡터에서 `last`를 pop하고 해당 flag를 -2한다.
 - `last`와 같지않다면 벡터안에 넣는다.
 
-```c++
+```cpp
 int n, cnt;
 string str;
 int flag[2];
@@ -63,7 +61,7 @@ int main() {
 
 <br/><br/>
 
-```c++
+```cpp
 int n, cnt;
 string str;
 stack<char> s;

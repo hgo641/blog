@@ -3,7 +3,6 @@ title: "백준 1978 소수 찾기"
 date: 2022-07-19
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -27,7 +26,7 @@ series: "코테준비"
 
 위 알고리즘을 `에라토스테네스의 체`라고 한다. 이번 문제에서는 `에라토스테네스의 체` 방법을 사용해 풀어봤다.<br/><br/>
 
-```c++
+```cpp
 int n, k, flag, cnt;
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);

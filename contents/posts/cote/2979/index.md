@@ -3,7 +3,6 @@ title: "백준 2979 트럭주차"
 date: 2022-06-25
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -34,7 +33,7 @@ A, B, C가 각각 5, 3, 1이라면 총 주차비용은 <br/>
 
 이를 가지고 코드를 짜면 다음과 같다.
 
-```c++
+```cpp
 
 #include<iostream>
 #include<tuple>

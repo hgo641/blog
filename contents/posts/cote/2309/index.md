@@ -3,7 +3,6 @@ title: "백준 2309 일곱 난쟁이"
 date: 2022-06-25
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -22,7 +21,7 @@ next_permutation함수를 이용하면 쉽게 풀 수 있다.
 
 > next_permutation함수는 주어진 수들로 만들 수 있는 다음 순열을 반환한다.
 
-```c++
+```cpp
 
 #include<bits/stdc++.h>
 

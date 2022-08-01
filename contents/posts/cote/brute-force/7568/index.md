@@ -2,9 +2,7 @@
 title: "백준 7568 덩치"
 date: 2022-07-13
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -44,7 +42,7 @@ N명의 집단에서 각 사람의 덩치 등수는 자신보다 더 "큰 덩치
 
 <br/>
 
-```c++
+```cpp
 int n, x, y;
 int a, b, idx, th;
 int main() {
@@ -84,4 +82,3 @@ int main() {
 	}
 }
 ```
-

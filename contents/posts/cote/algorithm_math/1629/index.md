@@ -3,7 +3,6 @@ title: "백준 1629 곱셈"
 date: 2022-07-12
 tags:
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -23,7 +22,7 @@ series: "코테준비"
 위 공식을 재귀함수로 구현했다.
 mod 연산을 마지막에 하지않고 각 원소들을 곱셈연산하기전 mod를 먼저하고 곱했다.
 
-```c++
+```cpp
 typedef long long ll;
 ll a, b, c;
 int mod(ll x, ll y) {

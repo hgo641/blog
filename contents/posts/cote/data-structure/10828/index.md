@@ -2,9 +2,7 @@
 title: "백준 10828 스택"
 date: 2022-07-09
 tags:
-  - C++
   - cote
-series: "코테준비"
 ---
 
 ## 문제
@@ -24,7 +22,7 @@ top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들
 
 c++의 stack라이브러리를 사용해 쉽게 구현할 수 있다.<br/>
 
-```c++
+```cpp
 int n, a;
 string cmd;
 int main() {
