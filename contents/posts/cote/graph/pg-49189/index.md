@@ -19,7 +19,7 @@ n개의 노드가 있는 그래프가 있습니다. 각 노드는 1부터 n까�
 
 bfs를 사용해 구현
 
-```c++
+```cpp
 #include<iostream>
 #include<tuple>
 #include<vector>
