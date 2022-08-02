@@ -1,5 +1,5 @@
 ---
-title: "백준 10816 나이순 정렬"
+title: "백준 10814 나이순 정렬"
 date: 2022-08-02
 tags:
   - cote
@@ -7,7 +7,7 @@ tags:
 
 ## 문제
 
-[백준 10816 나이순 정렬](https://www.acmicpc.net/problem/10814)
+[백준 10814 나이순 정렬](https://www.acmicpc.net/problem/10814)
 <br/>
 
 ## 풀이
