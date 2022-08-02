@@ -44,7 +44,7 @@ int main() {
 set에 임의로 비교함수를 설정해서 길이가 짧은 순으로, 길이가 같다면 사전순으로 정렬되게 한다.<br/>
 비교함수는 반환값이 true이면, 왼쪽이 오른쪽보다 먼저 나오게 해준다.<br/><br/>
 
-```c++
+```cpp
 struct Compare
 {
 	bool operator() (const string& _Left, const string& _Right) const {
