@@ -3,7 +3,7 @@ title: "Spring 관심사 분리"
 date: 2022-07-12
 tags:
   - spring
-series: "spring"
+series: "moviebuddy"
 ---
 
 ## 관심사의 분리 & 계층화
