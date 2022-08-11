@@ -1,6 +1,6 @@
 ---
 title: "데이터 원본 계층 분리"
-date: 2022-08-08
+date: 2022-08-10
 tags:
   - spring
 series: "moviebuddy"
