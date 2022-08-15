@@ -76,3 +76,52 @@ public void setMetadata(String metadata) {
 	}
 ```
 
+
+
+## 메타데이터 url이 올바른지 미리 테스트
+
+### 1. `CsvMovieReader`의 setter 메소드에서 검사
+
+```java
+public void setMetadata(String metadata) throws FileNotFoundException, URISyntaxException {
+		URL metadataURL = ClassLoader.getSystemResource(metadata);
+		if (Objects.isNull(metadataURL)) {
+			throw new FileNotFoundException(metadata);
+		}
+		if (Files.isReadable(Path.of(metadataURL.toURI())) == false) {
+			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+		}
+		
+		this.metadata = Objects.requireNonNull(metadata, "metadata is required value");
+		
+	}
+```
+
+다음과 같이 코드를 작성해서 url이 잘 들어왔는지 (잘못 들어왔다면 Null로 들어온다.)<br/>
+
+해당 url이 읽을 수 있는 url인지 검사하는 코드를 추가한다.
+
+
+
+
+
+### 2. 빈 생명주기 
+
+1️⃣  `CsvMovieReader`에 `InitializingBean` 인터페이스를 implements해준다.
+
+2️⃣  `InitializingBean`내부에 선언된 afterPropertiesSet 클래스를 오버라이딩하고 1번에서 작성한 setter 안의 코드를 채워넣는다.
+
+```java
+@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		URL metadataURL = ClassLoader.getSystemResource(metadata);
+		if (Objects.isNull(metadataURL)) {
+			throw new FileNotFoundException(metadata);
+		}
+		if (Files.isReadable(Path.of(metadataURL.toURI())) == false) {
+			throw new ApplicationException(String.format("cannot read to metadata. [%s]", metadata));
+		}
+		
+	}
+```
