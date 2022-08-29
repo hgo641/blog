@@ -1,6 +1,6 @@
 ---
 title: "프로퍼티 받아오기"
-date: 2022-08-10
+date: 2022-08-29
 tags:
   - spring
 series: "moviebuddy"
