@@ -7,7 +7,7 @@ module.exports = {
     github: "https://github.com/hgo641",
   },
   utterances: {
-    repo: "blog",
+    repo: "hgo641/blog",
     type: "pathname",
   },
 }
