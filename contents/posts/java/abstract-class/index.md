@@ -4,7 +4,7 @@ date: 2022-08-31
 tags:
   - OOP
   - java
-series: "object-oriented"
+series: "java-programming"
 ---
 
 ## 추상 클래스

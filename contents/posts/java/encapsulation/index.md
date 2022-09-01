@@ -4,7 +4,7 @@ date: 2022-08-31
 tags:
   - OOP
   - java
-series: "OOP"
+series: "java-programming"
 ---
 
 객체 지향 설계의 중요성을 느끼고 다시 공부중이다 ...ㅎㅎ<br/>

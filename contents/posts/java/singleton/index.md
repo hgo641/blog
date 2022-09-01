@@ -4,7 +4,7 @@ date: 2022-08-31
 tags:
   - OOP
   - java
-series: "object-oriented"
+series: "java-programming"
 ---
 
 ## static 변수
