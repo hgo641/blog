@@ -1,207 +1,228 @@
 ---
-title: "Java - TreeSet과 Comparable&Comparator"
+title: "Java - 람다식(Lambda expression)"
 date: 2022-09-01
 tags:
   - java
 series: "java-programming"
 ---
 
-## 내부클래스(inner class)
-
-* 클래스 내부에 선언한 클래스
-* 보통 다른 외부클래스에서 사용할 일이 거의 없는 경우에 생성함
-* 중첩클래스라고도함
-* 종류는 인스턴스 내부 클래스, 정적(static) 내부 클래스, 지역(local) 내부 클래스, 익명(anonymous) 내부 클래스가 있음
 
 
+## 함수형 프로그래밍
 
-### 📌 인스턴스 내부 클래스
-
-* 내부적으로 사용할 클래스를 선언 (private으로 선언하는 것을 권장)
-
-* 외부 클래스가 생성된 후 생성됨 ( 정적 내부 클래스와 다름 )
-
-  > 그렇기에 내부클래스 안에서 static을 생성할 수 없음
-
-* private이 아닌 내부 클래스는 다른 외부 클래스에서 생성할 수 있음
-
-```java
-class OutClass {
-
-	private int num = 10;
-	private static int sNum = 20;
-	private InClass inClass;
-	
-	public OutClass(){
-		inClass = new InClass(); // 내부 클래스 생성
-	}
-	
-	class InClass{
-		
-		int inNum = 100;
-		//static int sInNum = 200;  // error
-		
-		void inTest(){
-			System.out.println("OutClass num = " +num + "(외부 클래스의 인스턴스 변수)");
-			System.out.println("OutClass sNum = " + sNum + "(외부 클래스의 스태틱 변수)");
-			System.out.println("InClass inNum = " + inNum + "(내부 클래스의 인스턴스 변수)");
-		}
-		
-	    //static void sTest(){  //에러 남
-	    	
-	    //}
-		
-	}
-	
-	public void usingClass(){
-		inClass.inTest(); //내부 클래스 변수를 사용하여 메서드 호출하기
-	}
-}
-
-// test
-public class InnerTest {
-
-	public static void main(String[] args) {
-		OutClass outClass = new OutClass();
-		outClass.usingClass();    // 내부 클래스 기능 호출
-	    
-		OutClass.InClass inClass = outClass.new InClass();   // 외부 클래스를 이용하여 내부 클래스 생성, 바로 new해서 만들 수 는 없음
-		inClass.inTest();
-	}
-
-}
-
-```
-
-
-
-### 📌 정적 내부 클래스
-
-* 외부 클래스 생성과 무관하게 사용할 수 있음
-* 정적 변수, 정적 메서드 사용
-* 내부의 멤버 변수, 메서드와 외부클래스의 static 변수, 메서드가 사용가능하다.
-
-```java
-OutClass.InStaticClass staticClass = new OutClass.InStaticClass();
-```
-
-
-
-### 📌 지역 내부 클래스
-
-* 지역 변수와 같이 메서드 내부에서 정의하여 사용하는 클래스
-* 메서드의 호출이 끝나면 메서드에 사용된 지역변수의 유효성은 사라짐
-* 메서드 호출 이후에도 사용해야 하는 경우가 있을 수 있으므로 지역 내부 클래스에서 사용하는 메서드의 지역 변수나 매개 변수는 final로 선언됨
-
-
-
-```java
-class Outer{
-	int outNum = 100;
-	static int sNum = 200;
-
-    // Runnable은 자바에서 제공하는 클래스로 클래스를 쓰레드화 시킨다.
-    Runnable getRunnable(int i){ // Runnable 객체를 반환
-        int num = 1;
-      
-        // 지역 변수처럼 함수 안에서 선언된다.
-        
-        class MyRunnable implements Runnable{
-            int localNum = 10;
-            
-            @Override
-            public void run(){
-                // num = 999; 사용은 되지만 값을 바꾸는건 에러가 남
-                // i = 999; 마찬가지
-                System.out.println("i =" + i); 
-				System.out.println("num = " +num);  
-				System.out.println("localNum = " +localNum);
-					
-				System.out.println("outNum = " + outNum + "(외부 클래스 인스턴스 변수)");
-				System.out.println("Outter.sNum = " + Outer.sNum + "(외부 클래스 정적 변수)");
-
-                return new MyRunnable();
-            }
-        }
-    }
-	
-}
-
-public class LocalInnerTest {
-
-	public static void main(String[] args) {
-
-		Outer out = new Out();
-        Runnable runner = out.getRunnable(10);
-        runner.run();
-	}
-}
-
-```
-
-> **매개변수와 지역변수 사용이 안되는 이유** <br/>
+> 함수의 구현과 호출만으로 프로그래밍이 수행되는 방식<br/>
 >
-> * getRunnable이 호출되는 시점과 내부 class생성주기가 다르기 때문
-> * getRunnable은 호출되고 나서 끝이 나면 stack영역에 있는 int i와 int num은 사라진다.
-> * 그러나 메서드 run은 나중에 또 호출이 될 수도 있다. run이 호출될 때 i와 num이 없을 수 있으므로 에러가 난다. 즉 stack영역의 변수는 값을 변경할 수 없다.
-> * 그래서 그냥 컴파일러가 final int i와 final int num으로 자동으로 변경해준다.
+> 자바 8부터 함수형 프로그래밍 방식을 지원하고 이를 람다식이라 함
+
+외부의 변수를 사용하지 않는 함수, 즉 외부 자료에 부수적인 영향(side effect)를 주지 않도록 구현하는 방식이다. 때문에 동시에 여러 함수가 실행되도 문제가 생기지않음 - 병렬처리 가능<br/>
+
+함수형 프로그래밍은 함수의 기능이 자료에 독립적임을 보장한다. 즉, 다양한 매개변수에 대해서 동일한 기능을 제공할 수 있다.
 
 
 
+## 람다식 문법
+
+* 일단 함수 이름이 없다. (익명 함수)
+* 구조는 매개변수와 매개변수를 이용한 실행문 이렇게 두 개가 있다.
+  * (매개변수) -> {실행문;}
 
 
 
-
-
-
-### 📌 익명 내부 클래스
-
-* 이름이 없는 클래스 (위 지역 내부 클래스의 MyRunnable 클래스 이름은 실제로 호출되는 경우가 없음)
-* 클래스의 이름을 생략하고 주로 하나의 인터페이스나 하나의 추상 클래스를 구현하여 반환
-* 인터페이스나 추상 클래스 자료형의 변수에 직접 대입하여 클래스를 생성하거나 지역 내부 클래스의 메서드 내부에서 생성하여 반환 할 수 있음.
-* widget의 이벤트 핸들러에 활용됨
+### 📌 예제1
 
 ```java
-class Outer{
-    Runnable get Runnable(int i){
-        int num = 100;
-        
-        // class MyRunnable implements Runnable{
-        // 익명 내부 클래스 - 시작부터 리턴 때려버리기
-        return new Runnable(){
-            @Override
-            public void run(){
-                //num = 200 에러남
-                // i = 10; 에러남
-                System.out.println(i);
-				System.out.println(num);
-            }
-        }; // 세미콜론 필수
-    }
-    
-    // 아래처럼도 사용 가능...
-    Runnable runner = new Runnable() {
-		
-		@Override
-		public void run() {
-			System.out.println("Runnable 이 구현된 익명 클래스 변수");
-			
-		}
-	};
+// add 예시
+(int x, int y) -> {return x+y;}
+```
 
+<br/>
+
+* 사실 자료형을 그냥 생략할 수 있다.
+
+```java
+ (x, y) -> {return x+y}
+```
+
+<br/>
+
+* 매개변수가 하나라면 소괄호를 생략할 수도있다.
+
+```java
+str->{System.out.println(str);}
+```
+
+<br/>
+
+* 실행문이 한 문장인 경우 중괄호 생략 가능하다.
+
+```java
+str -> System.our.println(str);
+```
+
+<br/>
+
+* 실행문이 한 문장이더라도 return문은 중괄호를 생략할 수 없다.
+
+```java
+str -> {return str.length();}
+```
+
+<br/>
+
+* 실행문이 한 문장의 반환문인 경우엔 return과 중괄호를 모두 생략할 수 있다.
+
+```java
+(x,y) -> x+y;
+str -> str.length; // 이게 되네
+```
+
+
+
+### 📌 예제2 - 함수형 인터페이스
+
+```java
+@FunctionalInterface // 주석을 안넣어도 일단 돌아가지만 안넣으면 다른 오류가 생길수도 있다고한다.
+public interface AddInterFace {
+    public int addMethod(int x, int y);
 }
 ```
 
+```java
+public class AddTest{
+    public static void main(String[] args){
+        AddInterFace add = (x, y) -> {return x+y;};
+        // 자바는 객체없이 메서드가 호출될 수 없다.
+        // 그러므로 실질적으로 람다식내부에 익명 내부 클래스가 새성되고 익명 객체가 만들어진다.
+        // 익명 내부 클래스와 마찬가지로 람다식 내부에서도 외부에 있는 지역 변수의 값을 변경하면 오류가 발생한다.
+        add.addMethod(3,5) // 출력하면 8
+    }
+}
+```
 
+* 인터페이스를 생성하고 그 안에 미리 람다식으로 구현할 메서드를 선언해준 이유는 .java파일은 함수(람다식) 하나만 존재할 수 없다.
+  * 무조건 클래스나 인터페이스가 존재한다.
+* 여기서 인터페이스 AddInreFace는 abstract 메서드를 단 하나만 가지고 있어야한다. 이런 인터페이스를 함수형 인터페이스라고한다.
+
+
+
+## 객체 지향 프로그래밍 vs 람다식 구현
+
+문자열 두 개를 연결하여 출력하는 예제를 두 가지 방식으로 구현해보자.
 
 ```java
-// 사용
-Outter2 out = new Outter2();
-	
-Runnable runnerble = out.getRunnable(10);
-runnerble.run();
+// 객체 지향 프로그래밍
+public class StringConCatImpl implements StringConCat{
+    @Override
+    public void makeString(String s1, String s2){
+        System.out.println(s1+s2);
+    }
+}
+```
 
-out.runner.run();
+```java
+// 함수형 인터페이스 for 람다식
+public interface StringConCat {
+    public void makeString(String s1, String s2);
+}
+```
+
+```java
+// 실행 코드
+public class StringConcatTest {
+	public static void main(String[] args) {
+
+		String s1 = "Hello ";
+		String s2 = "World";
+        
+        // 객체 지향 프로그래밍
+		StringConCatImpl concat1 = new StringConCatImpl();
+		concat1.makeString(s1, s2);
+        
+        // 람다식
+        StringConCat concat2 = (s1, s2) -> System.out.println(s1+s2);
+        concat2.makeString(s1, s2);
+    }
+}
 
 ```
 
+> 가독성은 객체 지향 프로그래밍이 좋지만 확실히 인터페이스에서는 구현을 안해도 되니 람다식의 코드가 훨씬 적긴하다. 
+
+
+
+## 변수처럼 활용될 수 있는 람다식
+
+또한 람다식은 장점은 여기서 끝이 아닌데...(두근)<br/>
+
+함수를 변수처럼 사용될 수 있다는 장점이 있다.
+
+
+
+### 😀 변수의 특징
+
+* 특정 자료형으로 변수를 선언한 후 값을 대입할 수 있음 (int a = 1;)
+* 매개 변수로 전달하여 사용 가능함 (int add(int x, int y))
+* 메서드 반환값으로 내보낼 수 있음 (return num;)
+
+> 람다식을 활용하면 위 세가지 특징을 함수에 적용할 수 있다!
+
+
+
+### 📌 함수를 변수에 대입
+
+```java
+interface ShowString{
+    void showString(String str);
+}
+```
+
+대충 위에 같은 인터페이스가 있다고 하자.
+
+<br/>
+
+```java
+ShowString lambdaStr = str -> System.out.println(str);
+lambdaStr.showString("lambda!") // output : lambda!
+```
+
+> 위에서 나온 방식이지만 인터페이스형 변수에 람다식을 대입할 수 있다.
+
+
+
+### 📌 함수를 매개변수로 전달
+
+```java
+// 이런 함수가 있을 때
+public static void showMyString(PrintString p) {
+	p.showString("lambda!");
+}
+
+// 람다식을 매개 변수로 전달 가능
+ShowString lambdaStr = str -> System.out.println(str);
+showMyString(lambdaStr); // output : lambda!
+```
+
+
+
+### 📌 함수를 반환 값으로 사용
+
+```java
+public static ShowString returnString(){ // 반환값이 인터페이스 ShowString
+    return str->System.out.println(str);
+}
+
+ShowString returnStr = returnString();
+returnStr.showString("lambda!"); // output : lambda!
+```
+
+
+
+
+
+## 회고(라기엔 그냥 잡담)
+
+호... 코드를 짧게 쓸 수 있는 람다식을 배웠지만 아직 응애컴공이라 그럴까? 객체 지향 방식이 가독성있고 더 좋다 ㅋㅋㅋ ㅠ <br/>
+
+사용하다보면... 익숙해지겠지? 가끔 고수분들 코드보면 람다식 기깔나게 쓰시던데 나도 따라하고 싶다... ㅎ 고수 되는 그 날까지 ! 화이팅...~
+
+<br/>
