@@ -1,5 +1,5 @@
 ---
-title: "static과 singleton"
+title: "Java - static과 singleton"
 date: 2022-08-31
 tags:
   - OOP
