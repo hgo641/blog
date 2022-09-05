@@ -1,6 +1,6 @@
 ---
 title: "Java - 보조 스트림(필터 스트림)"
-date: 2022-09-04
+date: 2022-09-05
 tags:
   - java
 series: "java-programming"
@@ -168,4 +168,4 @@ new BufferedReader(new InputStreamReader(socket.getInputStream()));
 ## 참고
 
 - Do it! 자바 프로그래밍 입문
-- [](https://hudi.blog/java-filter-stream/)
+- [https://hudi.blog/java-filter-stream/](https://hudi.blog/java-filter-stream/)

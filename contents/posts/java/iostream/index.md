@@ -388,4 +388,4 @@ im string
 ## 참고
 
 - Do it! 자바 프로그래밍 입문
-- [](https://hudi.blog/java-inputstream-outputstream/)
+- [https://hudi.blog/java-inputstream-outputstream/](https://hudi.blog/java-inputstream-outputstream/)
