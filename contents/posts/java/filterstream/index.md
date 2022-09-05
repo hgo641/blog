@@ -1,5 +1,5 @@
 ---
-title: "Java - I/O스트림"
+title: "Java - 보조 스트림(필터 스트림)"
 date: 2022-09-04
 tags:
   - java
@@ -7,6 +7,8 @@ series: "java-programming"
 ---
 
 ## 보조 스트림 (필터 스트림)
+
+[Java - I/O스트림](https://blog.hongo.app/iostream/)에 이어 보조 스트림도 학습해보자!
 
 - 실제 읽고 쓰는 스트림이 아닌 보조 기능을 제공하는 스트림이다.
 

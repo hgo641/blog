@@ -383,5 +383,9 @@ im string
 65A
 ```
 
+이후 [Java - 보조 스트림(필터 스트림)](https://blog.hongo.app/filterstream/)으로 포스팅이 이어진다.
+
+## 참고
+
 - Do it! 자바 프로그래밍 입문
 - [](https://hudi.blog/java-inputstream-outputstream/)
