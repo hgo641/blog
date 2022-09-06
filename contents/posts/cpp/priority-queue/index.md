@@ -1,12 +1,10 @@
 ---
 title: "[c++] Priority Queue로 최소힙과 최대힙 구현하기"
-date: 2022-08-02
+date: 2022-09-06
 tags:
   - cote
-  - c++
+  - cpp
 ---
-
-## 사건의 발단 ...
 
 ## 최대 힙
 
