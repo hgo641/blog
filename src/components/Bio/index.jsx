@@ -32,7 +32,7 @@ const Profile = styled.div`
   margin-right: 16px;
   width: 128px;
   height: 128px;
-  border-radius: 999px;
+  border-radius: 0;
   background-image: url(${profileImageRoot}/profile.png);
   background-size: cover;
   background-position: center;
