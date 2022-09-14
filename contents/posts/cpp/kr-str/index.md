@@ -73,7 +73,7 @@ for (int i = 0; i < (int)str.size(); i += 3) {
 //char c[6] = "안녕하세요";
 
 //출력이 잘 됨
-char c[11] = "안녕하세요";
+char c[11] = "안녕하세요"; // 마지막 1byte는 "\0"
 
 
 for (int i = 0; i < (int)sizeof(c) / 2; i++) {
