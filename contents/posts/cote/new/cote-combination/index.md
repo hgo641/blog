@@ -1,6 +1,6 @@
 ---
 title: "프로그래머스 72411 메뉴 리뉴얼"
-date: 2022-08-02
+date: 2022-09-19
 tags:
   - cote
 ---
@@ -155,15 +155,11 @@ vector<string> solution(vector<string> orders, vector<int> course) {
 }
 ```
 
-
-
-
-
 ### 차이점 : combination 방법
 
 위 풀이에서 나는 `next_permutation`함수를 사용해 조합들을 생성했다. `orders`를 순회하면서 등장하는 모든 알파벳을 체크하고, 등장한 알파벳들로 만들 수 있는 모든 조합들을 생성했다. <br/>
 
-이 풀이에서는 재귀 함수가 사용되었다. 
+이 풀이에서는 재귀 함수가 사용되었다.
 
 ```cpp
 void combination(string src, string crs, int depth) {
@@ -195,6 +191,3 @@ for (int crs : course) {
 <br/>
 
 그래서... 결론은... 조합 함수를 더 야무지게 짜는 방법을... 배웠다...
-
-
-
