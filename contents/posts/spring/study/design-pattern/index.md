@@ -170,3 +170,123 @@ public class Main {
 
 어댑터를 이용해 위와 같이 클래스를 변환해서 호환성에 맞게 재사용할 수 있다.
 
+
+
+## 프록시(Proxy) 패턴
+
+Proxy는 대리인이라는 뜻으로써, 뭔가를 대신해서 처리하는 것을 의미한다. Proxy Class를 통해서 대신 전달하는 형태로 설계되며, 실제 Client는 Proxy로부터 결과를 받는다.<br/>
+
+Cache의 기능으로도 활용이 가능하다. SOLID중에서 개방 폐쇄 원칙(OCP)과 의존 역전 원칙(DIP)을 따른다.
+
+<br/>
+
+
+
+### 🌈 프록시 패턴 예시
+
+예시를 통해 프록시 패턴을 자세히 알아보자. 브라우저는 html파일을 가져와 화면에 띄워준다. 
+
+* 인터페이스 `IBrowser` 는 브라우저 인터페이스로 모든 브라우저들이 구현해야 한다.
+
+```java
+public interface IBrowser {
+    Html show();
+}
+```
+
+<br/>
+
+* Html은 url을 가지고 있는 Html파일을 나타내고 있다.
+
+```java
+public class Html {
+    String url;
+    Html(String url){
+        this.url = url;
+    }
+}
+```
+
+<br/>
+
+* 브라우저는 url을 받아 그에 해당하는 html파일을 반환한다.
+
+```java
+public class Browser implements IBrowser{
+    private String url;
+    Browser(String url){
+        this.url = url;
+    }
+
+    @Override
+    public Html show() {
+        System.out.println("browser loading html from "+url);
+        return new Html(url);
+    }
+}
+```
+
+<br/>
+
+* main 메서드에서 아래 코드를 실행시키면 다음과 같이 html이 show()를 호출한 만큼 렌더링된다.
+
+```java
+public static void main(String[] args){
+
+       Browser browser = new Browser("https://blog.hongo.app");
+       browser.show();
+       browser.show();
+       browser.show();
+    }
+```
+
+```
+// 실행 결과
+browser loading html from https://blog.hongo.app
+browser loading html from https://blog.hongo.app
+browser loading html from https://blog.hongo.app
+```
+
+
+
+### 🌈 브라우저 프록시 생성
+
+```java
+public class BrowserProxy implements IBrowser{
+    private String url;
+    private Html html; // html cache를 위해 생성
+
+    public BrowserProxy(String url){
+        this.url = url;
+    }
+    @Override
+    public Html show() {
+        if(html == null){
+            html = new Html(url);
+            System.out.println("browserProxy loading html from "+url);
+            return html;
+        }
+        System.out.println("browserProxy use cache "+url);
+        return html;
+    }
+}
+```
+
+```java
+    public static void main(String[] args){
+
+       BrowserProxy browser = new BrowserProxy("https://blog.hongo.app");
+       browser.show();
+       browser.show();
+       browser.show();
+    }
+```
+
+```
+// 실행 결과
+browserProxy loading html from https://blog.hongo.app
+browserProxy use cache https://blog.hongo.app
+browserProxy use cache https://blog.hongo.app
+```
+
+이처럼 프록시를 사용해서 캐시를 사용할 수 있다. (위 예시는 진짜 캐싱을 해오는게 아니지만ㅎㅎ... 예시를 위해 저렇게 표현함.)
