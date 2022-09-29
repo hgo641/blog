@@ -1,5 +1,5 @@
 ---
-title: "디자인 패턴 총정리 - 작성중"
+title: "디자인 패턴 총정리"
 date: 2022-09-26
 tags:
   - spring
@@ -14,7 +14,7 @@ tags:
 public class SocketClient{
     private static SocketClient socketClient = null;
     private SocketClient(){}
-    
+
     public static SocketClient getInstance(){
         if(socketClient == null){
             socketClient = new SocketClient();
@@ -32,13 +32,9 @@ public class SocketClient{
 
 [Java - static과 singleton](https://blog.hongo.app/singleton/)
 
-
-
 ## 어댑터 패턴
 
 실생활에서 110V를 220V로 변경해주거나 그 반대로 해주는 돼지코같은 변환기를 예로 들 수 있다. 호환성이 없는 기존 클래스의 인터페이스를 변환해서 재사용할 수 있게 한다. SOLID중에서 개방폐쇄원칙(OCP)를 따른다. 아래 예시를 봐보자.
-
-
 
 ### 🔌 인터페이스 - Electronic110V와 Electronic220V
 
@@ -55,8 +51,6 @@ public interface Electronic220V {
 ```
 
 110V와 220V을 사용하는 기기가 구현할 인터페이스이다. 220V는 110V보다 전류가 더 세기에 superPowerOn()이라고 이름을 붙여줬다...ㅎ
-
-
 
 ### 🔌 클래스 - HairDryer와 AirConditioner
 
@@ -80,9 +74,7 @@ public class AirConditioner implements Electronic220V{
 
 헤어드라이어는 110V를 사용하는 기기이고, 에어컨은 220V를 사용한다. 각각 알맞는 인터페이스를 구현한다.
 
-
-
-### 🔌  Connect
+### 🔌 Connect
 
 ```java
 public class Main {
@@ -99,7 +91,7 @@ public class Main {
 }
 ```
 
-클래스 Main에는 110V 콘센트만 존재한다. `connect` 메서드는 매개 변수로 `Electronic110V`인터페이스를 받고 해당 기기를 `powerOn`시킨다. `HairDryer`는 110V를 사용하는 기기로 `Electronic110V`를 구현했기에 `connect`함수의 인자로 넣을 수 있다. 
+클래스 Main에는 110V 콘센트만 존재한다. `connect` 메서드는 매개 변수로 `Electronic110V`인터페이스를 받고 해당 기기를 `powerOn`시킨다. `HairDryer`는 110V를 사용하는 기기로 `Electronic110V`를 구현했기에 `connect`함수의 인자로 넣을 수 있다.
 
 <br/>
 
@@ -120,9 +112,7 @@ public class Main {
 
 그러나 `AirConditioner`는 220V 인터페이스를 구현했으므로 동작하지 않는다. 이럴 때 어댑터를 사용하면 110V콘센트에도 220V를 연결할 수 있다. 어댑터의 역할을 하는 클래스 `SocketAdapter`를 생성해보자.
 
-
-
-### 🔌  SocketAdapter
+### 🔌 SocketAdapter
 
 ```java
 public class SocketAdapter implements Electronic110V {
@@ -139,12 +129,10 @@ public class SocketAdapter implements Electronic110V {
 }
 ```
 
-이 어댑터는 220V를 110V 콘센트에서 사용할 수 있게 변환해주는 어댑터이다. 
+이 어댑터는 220V를 110V 콘센트에서 사용할 수 있게 변환해주는 어댑터이다.
 
-* `Electronic110V`를 구현한다.
-* 내부에 `Electronic220V `객체를 가지고 있다. 이 객체는 어댑터의 생성자로 받아 생성한다.
-
-
+- `Electronic110V`를 구현한다.
+- 내부에 `Electronic220V `객체를 가지고 있다. 이 객체는 어댑터의 생성자로 받아 생성한다.
 
 ### 🔌 다시 Connect
 
@@ -170,8 +158,6 @@ public class Main {
 
 어댑터를 이용해 위와 같이 클래스를 변환해서 호환성에 맞게 재사용할 수 있다.
 
-
-
 ## 프록시(Proxy) 패턴
 
 Proxy는 대리인이라는 뜻으로써, 뭔가를 대신해서 처리하는 것을 의미한다. Proxy Class를 통해서 대신 전달하는 형태로 설계되며, 실제 Client는 Proxy로부터 결과를 받는다.<br/>
@@ -180,13 +166,11 @@ Cache의 기능으로도 활용이 가능하다. SOLID중에서 개방 폐쇄 �
 
 <br/>
 
-
-
 ### 🌈 프록시 패턴 예시
 
-예시를 통해 프록시 패턴을 자세히 알아보자. 브라우저는 html파일을 가져와 화면에 띄워준다. 
+예시를 통해 프록시 패턴을 자세히 알아보자. 브라우저는 html파일을 가져와 화면에 띄워준다.
 
-* 인터페이스 `IBrowser` 는 브라우저 인터페이스로 모든 브라우저들이 구현해야 한다.
+- 인터페이스 `IBrowser` 는 브라우저 인터페이스로 모든 브라우저들이 구현해야 한다.
 
 ```java
 public interface IBrowser {
@@ -196,7 +180,7 @@ public interface IBrowser {
 
 <br/>
 
-* Html은 url을 가지고 있는 Html파일을 나타내고 있다.
+- Html은 url을 가지고 있는 Html파일을 나타내고 있다.
 
 ```java
 public class Html {
@@ -209,7 +193,7 @@ public class Html {
 
 <br/>
 
-* 브라우저는 url을 받아 그에 해당하는 html파일을 반환한다.
+- 브라우저는 url을 받아 그에 해당하는 html파일을 반환한다.
 
 ```java
 public class Browser implements IBrowser{
@@ -228,7 +212,7 @@ public class Browser implements IBrowser{
 
 <br/>
 
-* main 메서드에서 아래 코드를 실행시키면 다음과 같이 html이 show()를 호출한 만큼 렌더링된다.
+- main 메서드에서 아래 코드를 실행시키면 다음과 같이 html이 show()를 호출한 만큼 렌더링된다.
 
 ```java
 public static void main(String[] args){
@@ -246,8 +230,6 @@ browser loading html from https://blog.hongo.app
 browser loading html from https://blog.hongo.app
 browser loading html from https://blog.hongo.app
 ```
-
-
 
 ### 🌈 브라우저 프록시 생성
 
@@ -291,8 +273,6 @@ browserProxy use cache https://blog.hongo.app
 
 이처럼 프록시를 사용해서 캐시를 사용할 수 있다. (위 예시는 진짜 캐싱을 해오는게 아니지만ㅎㅎ... 예시를 위해 저렇게 표현함.)
 
-
-
 ## 데코레이터(Decorator) 패턴
 
 - 데코레이터 패턴은 기존 뼈대는 유지하되, 이후 필요한 형태로 꾸밀 때 사용한다.
@@ -302,8 +282,6 @@ browserProxy use cache https://blog.hongo.app
 자세한 것은 아래 포스팅을 참고하자.<br/>
 
 [Java - 데코레이터 패턴](https://blog.hongo.app/decorator/)
-
-
 
 ## 옵저버(Observer) 패턴
 
@@ -345,7 +323,7 @@ public static void main(String[] args){
             System.out.println(event);
         }
     });
-    
+
     button.click("메시지 전달");
 }
 ```
@@ -355,15 +333,9 @@ public static void main(String[] args){
 메시지 전달
 ```
 
-
-
-
-
 ## 파사드(Facade) 패턴
 
 Facade는 건물의 앞쪽 정면이라는 뜻을 가진다. 여러 개의 객체와 실제 사용하는 서브 객체 사이에 복잡한 의존관계가 있을 때, 중간에 facade라는 객체를 두고, 여기서 제공하는 인터페이스만을 활용하여 기능을 사용하는 방식이다. Facade는 자신이 가지고 있는 각 클래스의 기능을 명확히 알아야 한다.
-
-
 
 ### 📌 파사드 예시
 
@@ -446,15 +418,15 @@ public class Writer {
         Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
         ftpClient.connect();
         ftpClient.moveDirectory();
-        
+
         Writer writer = new Writer("text.tmp");
         writer.fileConnect();
         writer.write();
-        
+
         Reader reader = new Reader("text.tmp");
         reader.fileConnect();
         reader.fileRead();
-        
+
         reader.fileDisconnect();
         writer.fileDisconnect();
         ftpClient.disConnect();
@@ -462,8 +434,6 @@ public class Writer {
 ```
 
 만약 중간에 Facade가 없다면 ftp를 사용해서 파일에 write, read하기 위해 세 클래스를 모두 생성해서 사용해야한다. main메서드에서 FtpClient와 Writer, Reader 객체를 생성해 connect, write, read, disconnect를 각각 호출하는 것을 볼 수 있다.
-
-
 
 ### 📌 파사드 추가
 
@@ -518,8 +488,6 @@ public static void main(String[] args) {
 
 Facade역할을 하는 SftpClient클래스를 생성했다. SftpClient 객체 하나로 Ftp, Reader, Writer를 모두 사용할 수 있게 한다.
 
-
-
 ## 전략(Strategy) 패턴
 
 유사한 행위들을 캡슐화하여 객체의 행위를 바꾸고 싶은 경우 직접 변경하지 않고, 전략만 변경하여 유연하게 확장하는 패턴이다. SOLID 중에서 개방 폐쇄 원칙(OCP) 과 의존 역전 원칙(DIP) 를 따른다.
@@ -527,8 +495,6 @@ Facade역할을 하는 SftpClient클래스를 생성했다. SftpClient 객체 �
 - 전략 메서드를 가진 전략 객체(Normal Strategy, Base64 Strategy)
 - 전략 객체를 사용하는 컨텍스트 (Encoder)
 - 전략 객체를 생성해 컨텍스트에 주입하는 클라이언트
-
-
 
 ### 📗 전략 메서드를 가진 전략 객체(Normal Strategy, Base64 Strategy)
 
@@ -558,8 +524,6 @@ public class Base64Strategy implements EncodingStrategy{
 
 인터페이스 `EncodingStrategy`를 사용해서 전략 객체 `NormalStrategy`와 `Base64Strategy`를 생성한다. `NormalStrategy`는 메시지를 그대로 리턴하고 `Base64Straregy`는 base64로 인코딩해서 리턴한다.
 
-
-
 ### 📗 전략 객체를 사용하는 컨텍스트 (Encoder)
 
 ```java
@@ -575,8 +539,6 @@ public class Encoder {
     }
 }
 ```
-
-
 
 ### 📗 전략 객체를 생성해 컨텍스트에 주입하는 클라이언트
 
