@@ -290,3 +290,314 @@ browserProxy use cache https://blog.hongo.app
 ```
 
 이처럼 프록시를 사용해서 캐시를 사용할 수 있다. (위 예시는 진짜 캐싱을 해오는게 아니지만ㅎㅎ... 예시를 위해 저렇게 표현함.)
+
+
+
+## 데코레이터(Decorator) 패턴
+
+- 데코레이터 패턴은 기존 뼈대는 유지하되, 이후 필요한 형태로 꾸밀 때 사용한다.
+- 상속보다 유연한 구현 방식으로, 확장이 필요한 경우 상속의 대안으로도 활용된다.
+- SOLID 중에서 개발 폐쇄 원칙(OCP) 과 의존 역전 원칙(DIP) 를 따른다.
+
+자세한 것은 아래 포스팅을 참고하자.<br/>
+
+[Java - 데코레이터 패턴](https://blog.hongo.app/decorator/)
+
+
+
+## 옵저버(Observer) 패턴
+
+리스너를 사용해서 이벤트를 전달한다.
+
+- 관찰자 패턴은 변화가 일어났을 때, 미리 등록된 다른 클래스에 통보해주는 패턴을 구현한 것이다.
+- 특정 이벤트에 대해 리스너를 통해 전달하는 event listener에서 해당 패턴을 사용하고 있다.
+
+```java
+public interface IButtonListener {
+    void clickEvent(String event);
+}
+```
+
+```java
+public class Button {
+    private String name;
+    private IButtonListener buttonListener;
+
+    public Button(String name){
+        this.name = name;
+    }
+    public void addListener(IButtonListener iButtonListener){
+        this.buttonListener = iButtonListener;
+    }
+
+    public void click(String message){
+        buttonListener.clickEvent(message);
+    }
+}
+```
+
+```java
+public static void main(String[] args){
+    Button button = new Button("버튼");
+    button.addListener(new IButtonListener(){
+        @Override
+        public void clickEvent(String event){
+            System.out.println(event);
+        }
+    });
+    
+    button.click("메시지 전달");
+}
+```
+
+```
+// 실행 결과
+메시지 전달
+```
+
+
+
+
+
+## 파사드(Facade) 패턴
+
+Facade는 건물의 앞쪽 정면이라는 뜻을 가진다. 여러 개의 객체와 실제 사용하는 서브 객체 사이에 복잡한 의존관계가 있을 때, 중간에 facade라는 객체를 두고, 여기서 제공하는 인터페이스만을 활용하여 기능을 사용하는 방식이다. Facade는 자신이 가지고 있는 각 클래스의 기능을 명확히 알아야 한다.
+
+
+
+### 📌 파사드 예시
+
+![](facade.png)
+
+위와 같이 Client가 FTP를 사용해서 file에 write하고 read할 때 Ftp와 Writer과 Reader라는 세 클래스를 사용한다고 하자. 이 방식을 Facade를 사용해 구현해보자.
+
+<br/>
+
+```java
+public class Ftp {
+    private String host;
+    private int port;
+    private String path;
+
+    public Ftp(String host, int port, String path){
+        this.host = host;
+        this.port = port;
+        this.path = path;
+    }
+
+    public void connect(){
+        System.out.println("FTP Host : " + host + " Port : "+port + " 로 연결합니다.");
+    }
+    public void moveDirectory(){
+        System.out.println("FTP path : " + path + " 로 이동합니다.");
+    }
+    public void disConnect(){
+        System.out.println("FTP 연결을 종료합니다.");
+    }
+}
+```
+
+```java
+public class Reader {
+    private String fileName;
+    public Reader(String fileName){
+        this.fileName = fileName;
+    }
+    public void fileConnect(){
+        String msg = String.format("Reader %s 로 연결합니다.", fileName);
+        System.out.println(msg);
+    }
+    public void fileRead(){
+        String msg = String.format("Reader %s 의 내용을 읽어옵니다.", fileName);
+        System.out.println(msg);
+    }
+    public void fileDisconnect(){
+        String msg = String.format("Reader %s 연결 종료합니다.", fileName);
+        System.out.println(msg);
+    }
+}
+```
+
+```java
+public class Writer {
+    private String fileName;
+    public Writer(String fileName){
+        this.fileName = fileName;
+    }
+    public void fileConnect(){
+        String msg = String.format("Writer %s 로 연결합니다.", fileName);
+        System.out.println(msg);
+    }
+
+    public void fileDisconnect (){
+        String msg = String.format("Writer %s 연결 종료합니다.", fileName);
+        System.out.println(msg);
+    }
+
+    public void write(){
+        String msg = String.format("Writer %s 로 파일쓰기를 합니다.", fileName);
+        System.out.println(msg);
+    }
+}
+```
+
+```java
+ public static void main(String[] args){
+        Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
+        ftpClient.connect();
+        ftpClient.moveDirectory();
+        
+        Writer writer = new Writer("text.tmp");
+        writer.fileConnect();
+        writer.write();
+        
+        Reader reader = new Reader("text.tmp");
+        reader.fileConnect();
+        reader.fileRead();
+        
+        reader.fileDisconnect();
+        writer.fileDisconnect();
+        ftpClient.disConnect();
+    }
+```
+
+만약 중간에 Facade가 없다면 ftp를 사용해서 파일에 write, read하기 위해 세 클래스를 모두 생성해서 사용해야한다. main메서드에서 FtpClient와 Writer, Reader 객체를 생성해 connect, write, read, disconnect를 각각 호출하는 것을 볼 수 있다.
+
+
+
+### 📌 파사드 추가
+
+```java
+public class SftpClient {
+    private Ftp ftp;
+    private Reader reader;
+    private Writer writer;
+
+    public SftpClient(Ftp ftp, Reader reader, Writer writer){
+        this.ftp = ftp;
+        this.reader = reader;
+        this.writer = writer;
+    }
+
+    public SftpClient(String host, int port, String path, String fileName){
+        this.ftp = new Ftp(host,port, path);
+        this.reader = new Reader(fileName);
+        this.writer = new Writer(fileName);
+    }
+
+    public void connect(){
+        ftp.connect();
+        ftp.moveDirectory();
+        writer.fileConnect();
+        reader.fileConnect();
+    }
+
+    public void disConnect(){
+        writer.fileDisconnect();
+        reader.fileDisconnect();
+        ftp.disConnect();
+    }
+    public void read(){
+        reader.fileRead();
+    }
+    public void write(){
+        writer.write();
+    }
+}
+```
+
+```java
+public static void main(String[] args) {
+        SftpClient sftpClient = new SftpClient("www.foo.co.kr", 22, "/home/etc", "text.tmp");
+        sftpClient.connect();
+        sftpClient.write();
+        sftpClient.read();
+        sftpClient.disConnect();
+    }
+```
+
+Facade역할을 하는 SftpClient클래스를 생성했다. SftpClient 객체 하나로 Ftp, Reader, Writer를 모두 사용할 수 있게 한다.
+
+
+
+## 전략(Strategy) 패턴
+
+유사한 행위들을 캡슐화하여 객체의 행위를 바꾸고 싶은 경우 직접 변경하지 않고, 전략만 변경하여 유연하게 확장하는 패턴이다. SOLID 중에서 개방 폐쇄 원칙(OCP) 과 의존 역전 원칙(DIP) 를 따른다.
+
+- 전략 메서드를 가진 전략 객체(Normal Strategy, Base64 Strategy)
+- 전략 객체를 사용하는 컨텍스트 (Encoder)
+- 전략 객체를 생성해 컨텍스트에 주입하는 클라이언트
+
+
+
+### 📗 전략 메서드를 가진 전략 객체(Normal Strategy, Base64 Strategy)
+
+```java
+public interface EncodingStrategy {
+    String encode(String text);
+}
+```
+
+```java
+public class NormalStrategy implements  EncodingStrategy{
+    @Override
+    public String encode(String text) {
+        return text;
+    }
+}
+```
+
+```java
+public class Base64Strategy implements EncodingStrategy{
+    @Override
+    public String encode(String text) {
+        return Base64.getEncoder().encodeToString(text.getBytes());
+    }
+}
+```
+
+인터페이스 `EncodingStrategy`를 사용해서 전략 객체 `NormalStrategy`와 `Base64Strategy`를 생성한다. `NormalStrategy`는 메시지를 그대로 리턴하고 `Base64Straregy`는 base64로 인코딩해서 리턴한다.
+
+
+
+### 📗 전략 객체를 사용하는 컨텍스트 (Encoder)
+
+```java
+public class Encoder {
+
+    private EncodingStrategy encodingStrategy;
+
+    public String getMessage(String message){
+        return this.encodingStrategy.encode(message);
+    }
+    public void setEncodingStrategy(EncodingStrategy encodingStrategy) {
+        this.encodingStrategy = encodingStrategy;
+    }
+}
+```
+
+
+
+### 📗 전략 객체를 생성해 컨텍스트에 주입하는 클라이언트
+
+```java
+public static void main(String[] args) {
+        Encoder encoder = new Encoder();
+
+        EncodingStrategy base64 = new Base64Strategy();
+        EncodingStrategy normal = new NormalStrategy();
+
+        String message = "hello java";
+
+        encoder.setEncodingStrategy(base64);
+        String base64Result = encoder.getMessage(message);
+        System.out.println(base64Result);
+
+        encoder.setEncodingStrategy(normal);
+        String normalResult = encoder.getMessage(message);
+        System.out.println(normalResult);
+
+    }
+```
+
+`Encoder`는 전략 패턴에 따라 그에 맞는 인코딩 방식을 제공한다.
