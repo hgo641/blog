@@ -1,5 +1,5 @@
 ---
-title: "작성중 : 자린이의 귀여운 스프링 crud"
+title: "작성중 - 자린이의 귀여운 스프링 crud"
 date: 2022-10-05
 tags:
   - spring
@@ -22,8 +22,6 @@ tags:
 
 더 자세한 설명은 아래 각각의 API를 설명하면서 진행하겠다!
 
-
-
 ## Get API
 
 `controller`라는 패키지 하위에 `GetApiController`를 생성했다. Get Api의 구동방식을 간단하게 실습해보기 위한 목적이므로 특정 url에 접속하면 String을 던져주는 get함수를 생성해보자.
@@ -40,17 +38,15 @@ public class GetApiController {
 }
 ```
 
-* 현재 도메인은 `http://localhost`이므로 GetApiController 내부의 로직들은 `http://localhost/api`와 매핑된다.
-* `@GetMapping`은 해당 메서드가 get method라는 의미로, 안에 들어간 인자는 path를 나타낸다. 물론 `@GetMapping(path = "/get")`과 같이 매개변수명과 매핑이 가능.
-* url ~/api/get으로 접속하면 "get hello" String이 반환된다. 아주 간단!
-
-
+- 현재 도메인은 `http://localhost`이므로 GetApiController 내부의 로직들은 `http://localhost/api`와 매핑된다.
+- `@GetMapping`은 해당 메서드가 get method라는 의미로, 안에 들어간 인자는 path를 나타낸다. 물론 `@GetMapping(path = "/get")`과 같이 매개변수명과 매핑이 가능.
+- url ~/api/get으로 접속하면 "get hello" String이 반환된다. 아주 간단!
 
 ### 📌 Get - path variable
 
 url에 뒤에 특정 변수가 붙어 변수에 해당하는 response를 던져줄 때가 있다.
 
-* ex) ~/user/1이면 id가 1인 유저를 반환, ~/user/2이면 id가 2인 유저를 반환
+- ex) ~/user/1이면 id가 1인 유저를 반환, ~/user/2이면 id가 2인 유저를 반환
 
 <br/>
 
@@ -67,8 +63,8 @@ public class GetApiController {
 }
 ```
 
-* django와 동일하게 url의 변수명과 함수에서 받는 매개변수명이 같아야한다.
-* 매개변수는 `@PathVariable` 을 사용해서 path variable임을 명시해줘야한다.
+- django와 동일하게 url의 변수명과 함수에서 받는 매개변수명이 같아야한다.
+- 매개변수는 `@PathVariable` 을 사용해서 path variable임을 명시해줘야한다.
 
 <br/>
 
@@ -83,15 +79,11 @@ public class GetApiController {
     }
 ```
 
-* `@PathVariable(name = "id")`처럼 어노테이션안에 해당 매개변수와 매핑되는 url변수의 이름이 "id"임을 명시해주면 paramId라는 매개변수와 url변수 id가 잘 매핑된다.
-
-
+- `@PathVariable(name = "id")`처럼 어노테이션안에 해당 매개변수와 매핑되는 url변수의 이름이 "id"임을 명시해주면 paramId라는 매개변수와 url변수 id가 잘 매핑된다.
 
 ### 📌 Get - Query Parameter
 
 검색 기능의 경우 대부분 쿼리 파라미터를 사용한다. 쿼리 파라미터는 `search?name=hongo&age=10`과 같이 key와 value의 쌍으로 구성되어 있다. 이를 자바로 어떻게 받을 수 있을까?
-
-
 
 #### 1. Map
 
@@ -120,8 +112,6 @@ key와 value의 쌍이므로, 물론 Map을 가지고도 받을 수 있다.
 
 key의 형태를 미리 알고있다면, 다음과 같이 명시적으로 선언이 가능하다.
 
-
-
 #### 2. 미리 선언한 변수에 값 할당
 
 ```java
@@ -138,7 +128,7 @@ key의 형태를 미리 알고있다면, 다음과 같이 명시적으로 선언
 
 생성한 변수에 값이 잘 할당되는 것을 볼 수 있다. 선언되지 않은 파라미터는 무시된다.
 
-* 그런데 만약 파라미터 변수가 많아진다면?
+- 그런데 만약 파라미터 변수가 많아진다면?
 
 ```java
  @GetMapping("/query-param2") // 구린 url명을 용서하세요...~
@@ -157,8 +147,6 @@ key의 형태를 미리 알고있다면, 다음과 같이 명시적으로 선언
 
 다행히도 스프링은 파라미터를 바로 dto 형태로 매핑하는 기능을 제공한다.
 
-
-
 #### 3. dto 매핑
 
 ```java
@@ -168,7 +156,7 @@ public class UserRequest {
     private String email;
 
     private int age;
-    
+
     @Override
     public String toString() {
         return "UserRequest{" +
@@ -180,8 +168,6 @@ public class UserRequest {
 }
 ```
 
-
-
 ```java
 @GetMapping("/query-param3")
     public String queryParam3(UserRequest userRequest){
@@ -190,10 +176,6 @@ public class UserRequest {
 ```
 
 > dto와 파라미터를 매핑할 때는 `@RequestParam` 어노테이션을 사용하지않는다. 스프링이 자동으로 dto 내부 변수명과 파라미터명이 일치하면 dto의 변수에 값을 할당해준다.
-
-
-
-
 
 #### + 추가
 
@@ -204,25 +186,23 @@ public class UserRequest {
     private String email;
 
     private int age;
-    
+
     private int studentNumber;
-   
+
 }
 ```
 
 ```json
 // json
 {
-    "name" : "hongo",
-    "email" : "hongo@gmail.com",
-    "age" : 10,
-    "student_number" : 1234
+  "name": "hongo",
+  "email": "hongo@gmail.com",
+  "age": 10,
+  "student_number": 1234
 }
 ```
 
-dto의 변수 `studentNumber`는 카멜케이스지만, request로 받은 json의 ``"student_number"`` 스네이크 케이스이다. json에서의 key와 자바 객체의 변수명이 일치하지않아도 값을 할당할 수 있을까?
-
-
+dto의 변수 `studentNumber`는 카멜케이스지만, request로 받은 json의 `"student_number"` 스네이크 케이스이다. json에서의 key와 자바 객체의 변수명이 일치하지않아도 값을 할당할 수 있을까?
 
 #### 1. @JsonProperty
 
@@ -233,18 +213,14 @@ public class UserRequest {
     private String email;
 
     private int age;
-    
+
     @JsonProperty("student_number")
     private int studentNumber;
-   
+
 }
 ```
 
 위와 같이 `@JsonProperty`어노테이션을 사용해서 매핑되는 json key명을 명시해줄 수 있다. 이 밖에 다른 방법이 더 있는 것 같지만 추후 작성하도록 하겠다... ㅎㅎ
-
-
-
-
 
 ## Post API
 
@@ -270,13 +246,12 @@ public class PostApiController {
 // get때와 마찬가지로 map으로받으면 어떤 data가 들어올지 알 수 없음
 ```
 
-request로 받은 xml이나 json도 key와 value형식으로 되어있다. 때문에 Map을 사용해서 request를 받을 수 있다. 
+request로 받은 xml이나 json도 key와 value형식으로 되어있다. 때문에 Map을 사용해서 request를 받을 수 있다.
 
-* 이 때 `@RequestBody` 어노테이션을 사용해야함을 명심한다.
-* 그러나 get때와 마찬가지로 map으로 받으면 어떤 data가 들어올지 알 수 없다.
-* post또한 객체를 사용해서 값을 할당받을 수 있다.
+- 이 때 `@RequestBody` 어노테이션을 사용해야함을 명심한다.
+- 그러나 get때와 마찬가지로 map으로 받으면 어떤 data가 들어올지 알 수 없다.
+- post또한 객체를 사용해서 값을 할당받을 수 있다.
 
 ![](post.png)
 
-* 입력받지 못한 값은 default로 초기화된다.
-
+- 입력받지 못한 값은 default로 초기화된다.
