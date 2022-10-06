@@ -42,6 +42,12 @@ public class GetApiController {
 - `@GetMapping`은 해당 메서드가 get method라는 의미로, 안에 들어간 인자는 path를 나타낸다. 물론 `@GetMapping(path = "/get")`과 같이 매개변수명과 매핑이 가능.
 - url ~/api/get으로 접속하면 "get hello" String이 반환된다. 아주 간단!
 
+> Rest API와 같이 json으로 response를 하려면 @RestController를 사용한다.<br/>
+>
+> json이 아니라 html파일을 넘겨주려면 @Controller 를 사용하면 된다.
+
+
+
 ### 📌 Get - path variable
 
 url에 뒤에 특정 변수가 붙어 변수에 해당하는 response를 던져줄 때가 있다.
@@ -220,7 +226,29 @@ public class UserRequest {
 }
 ```
 
-위와 같이 `@JsonProperty`어노테이션을 사용해서 매핑되는 json key명을 명시해줄 수 있다. 이 밖에 다른 방법이 더 있는 것 같지만 추후 작성하도록 하겠다... ㅎㅎ
+위와 같이 `@JsonProperty`어노테이션을 사용해서 변수와 매핑되는 json key명을 명시해줄 수 있다. 
+
+
+
+#### 2. @JsonNaming
+
+```java
+@JsonNaming(value = PropertyNamingStrategy.SnakeCaseStrategy.class)
+public class UserRequest {
+    private String name;
+
+    private String email;
+
+    private int age;
+
+    private int studentNumber;
+
+}
+```
+
+`@JsonNaming` 어노테이션을 사용해서 클래스 자체에 json 네이밍 전략을 정해줄 수도 있다.
+
+
 
 ## Post API
 
@@ -255,3 +283,105 @@ request로 받은 xml이나 json도 key와 value형식으로 되어있다. 때�
 ![](post.png)
 
 - 입력받지 못한 값은 default로 초기화된다.
+
+
+
+## Put API
+
+put도 post와 유사하게 구현할 수 있다. `@PutMapping`을 사용해 put 메서드를 설정하고, `@RequestBody`를 사용해서 request body를 객체에 파싱한다. 
+
+```java
+@PutMapping("/put")
+    public UserRequest put(@RequestBody UserRequest userRequest){
+        System.out.println(userRequest.toString());
+        return userRequest;
+    }
+```
+
+* RestController인 경우에는 오브젝트 자체를 리턴하면 스프링부트 자체에서 오브젝트 매퍼를 통해 json으로 반환한다.
+
+<br/>
+
+```java
+@PutMapping("/put/{userId}")
+    public UserRequest put(@RequestBody UserRequest userRequest, @PathVariable Long userId){
+        System.out.println(userRequest.toString());
+        return userRequest;
+    }
+```
+
+
+
+
+
+## Delete API
+
+```java
+@DeleteMapping("/delete/{userId}")
+    public void delete( @PathVariable Long userId, @RequestParam String account){
+        // instance delete
+    }
+```
+
+* 위 API들과 마찬가지로 `@DeleteMapping`을 통해 리소스 설정을 해준다.
+* PathVariable과 RequestParam을 받을 수 있다.
+
+
+
+## Response 내려주기
+
+```java
+public ResponseEntity<UserRequest> put (@RequestBody UserRequest userRequest){
+        //return ResponseEntity.ok(userRequest);
+        return ResponseEntity.status(201).body(userRequest);
+    }
+```
+
+위와 같이 `ResponseEntity`를 사용해 다양한 response를 내려줄 수 있다. http status와 header의 내용등을 설정해줄 수 있다.
+
+
+
+### @Controller - html 파일 내려주기
+
+```java
+@Controller
+@RequestMapping("/main")
+public class PageController {
+
+    @GetMapping("")
+    public String home(){
+        return "main.html";
+    }
+}
+```
+
+* 리턴 형식이 String이면 `resources` -> `static`에서 return되는 문자열인 main.html 리소스를 찾아 반환한다.
+
+<br/>
+
+`@RestController`가 아니라 `@Controller`어노테이션을 사용하는 클래스 내부에서도 Json Response를 보낼 수 있다.
+
+```java
+@Controller
+@RequestMapping("/main")
+public class PageController {
+
+    @GetMapping("")
+    public String home(){
+        return "main.html";
+    }
+
+    @ResponseBody
+    @GetMapping("/user")
+    public User getUser(){
+        var user = new User(); // 편의상 타입 추정이 가능한 var 사용
+        user.setName("hongo");
+        user.setEmail("hongo@gmail.com");
+        user.setId(1L);
+        return user;
+    }
+
+}
+```
+
+* `@ResponseBody`어노테이션을 사용하면 오브젝트를 리턴해서 json과 매핑이 가능하다.
