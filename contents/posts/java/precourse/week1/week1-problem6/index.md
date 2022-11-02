@@ -1,5 +1,5 @@
 ---
-title: "우테코5기 프리코스 1주차 Problem2"
+title: "우테코5기 프리코스 1주차 Problem6"
 date: 2022-11-02
 tags:
   - java
@@ -9,8 +9,6 @@ series: "wooteco-precourse"
 ## Problem6 : 닉네임 중복 체크
 
 ![](prob6.png)
-
-
 
 ## 📗 기능 목록
 
@@ -24,8 +22,6 @@ nickname들이 중복인지를 체크
 📌 getOverlapNicknames
 중복되는 nickname들의 리스트를 반환
 ```
-
-
 
 ## 📌 코드
 
@@ -65,10 +61,8 @@ nickname들이 중복인지를 체크
     }
 ```
 
-* 닉네임을 두 글자씩 나눈 word가 중복되지 않는다면 `wordOfNickname`해시맵에 key로 저장한다.
-* 이후 다른 사람의 닉네임을 이루는 word와 같은 word가 `wordOfNickname`에 key로 존재한다면, 해당 word는 중복이라는 의미이므로, 두 닉네임이 중복임을 체크한다.
-
-
+- 닉네임을 두 글자씩 나눈 word가 중복되지 않는다면 `wordOfNickname`해시맵에 key로 저장한다.
+- 이후 다른 사람의 닉네임을 이루는 word와 같은 word가 `wordOfNickname`에 key로 존재한다면, 해당 word는 중복이라는 의미이므로, 두 닉네임이 중복임을 체크한다.
 
 ### ✏ 다른 분의 풀이
 
@@ -82,7 +76,7 @@ private static List<String> tokenizer(String str) {
     }
 ```
 
-* Stream API을 사용해 닉네임을 두 글자씩 나누는 메소드이다.
+- Stream API을 사용해 닉네임을 두 글자씩 나누는 메소드이다.
 
 해당 문제와 같이 트래픽이 적은 경우는 Stream을 사용하면 가독성있게 처리할 수 있다. (트래픽이 많을 경우에는 traditional for-loop를 사용하는 것이 효율성면에서 좋다고 한다. 참고 : [java-stream-api는-왜-for-loop보다-느릴까](https://jypthemiracle.medium.com/java-stream-api%EB%8A%94-%EC%99%9C-for-loop%EB%B3%B4%EB%8B%A4-%EB%8A%90%EB%A6%B4%EA%B9%8C-50dec4b9974b)) <br/>
 
@@ -113,9 +107,4 @@ public static List<String> solution(List<List<String>> forms) {
 }
 ```
 
-* 이후 userMap [nicknameToken] ={email1, email2, ...} 에서도 Stream을 사용해 중복 닉네임을 가진 이메일만 필터하는 것을 볼 수 있다.
-
-
-
-
-
+- 이후 userMap [nicknameToken] ={email1, email2, ...} 에서도 Stream을 사용해 중복 닉네임을 가진 이메일만 필터하는 것을 볼 수 있다.
