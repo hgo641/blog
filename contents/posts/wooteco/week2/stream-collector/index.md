@@ -11,13 +11,12 @@ series: "wooteco"
 
 ## Stream으로 야무지게 collect해야지~
 
+사다리 게임을 함께 했던 페어 에밀이 stream으로 collect를 참 잘해서 많이 배웠다...! 배운걸 정리할겸 블로그에도 올려보려고 한다.ㅎㅎ
 `Stream`의 `collect()`메소드를 사용하면 연산 결과를 List나 Set등 Collection으로 묶어 반환할 수 있다. `Stream`을 사용해서 객체를 야무지게 모아보자!
-
-
 
 ## 📌 toList() & toSet()
 
-`collect` 메소드로 가장 많이 사용하는 기능이다ㅎㅎ. Stream의 요소들을 `List`, `Set`로 묶어 반환한다. 
+`collect` 메소드로 가장 많이 사용하는 기능이다ㅎㅎ. Stream의 요소들을 `List`, `Set`로 묶어 반환한다.
 
 ```java
 List<String> example = Arrays.asList("aa", "bb", "bb", "cc");
@@ -26,17 +25,13 @@ List<String> setResult = example.stream().collect(Collectors.toSet()) // aa, bb,
 
 ```
 
-
-
-
-
-* ### 방어적 복사
+- ### 방어적 복사
 
 `Collectors`의 `toList()`, `toSet()`은 `addAll()`메소드를 사용해 방어적 복사를 수행한다. 방어적 복사를 수행한 복사본은 원본과 다른 컬렉션 객체를 참조하게 되지만, 객체 내부에 있는 원소들은 원본과 동일한 주소를 참조한다. 예시를 보며 이해를 해보자!
 
 <br/>
 
-* 이름을 저장하는 `Name`이라는 객체가 존재한다. 세 개의 `Name`을 만들어서 리스트를 생성해보자. 
+- 이름을 저장하는 `Name`이라는 객체가 존재한다. 세 개의 `Name`을 만들어서 리스트를 생성해보자.
 
 ```java
 Name n1 = new Name("aa");
@@ -84,10 +79,6 @@ n1.setName("dd");
 ```java
 List<Name> newNames = names.stream().map(iter -> new Name(iter.getName())).collect(Collectors.toUnmodifiableList());
 ```
-
-
-
-
 
 ## 📌 toMap()
 
@@ -139,8 +130,6 @@ Map<Name, Integer> nameTable = names.stream().collect(Collectors.toMap(name -> n
 
 > `mapSupplier` 에 반환하고 싶은 타입의 `Map`을 지정할 수 있다.
 
-
-
 ## 📌 Unmodifiable Collection
 
 `toUnmodifiableList()`, `toUnmodifiableSet() `, `toUnmodifiableMap`을 사용하면 수정이 불가능한 컬렉션 객체를 반환한다. `Unmodifiable Collection`에 `set()`, `add()`, `addAll()`등의 메소드를 호출하면 `UnsupportedOperationException`이 발생한다.
@@ -189,8 +178,6 @@ System.out.println(result);
 
 <br/>
 
-
-
 ## 📌 joining()
 
 Stream 요소가 char이나 String일 경우, 결합할 수 있다.
@@ -202,13 +189,9 @@ String result = givenList.stream()
 
 <br/>
 
-* 구분자, prefix, suffix 설정도 가능
+- 구분자, prefix, suffix 설정도 가능
 
 ```java
 String result = givenList.stream() //"aa", "vv"
   .collect(joining(" ", "pre", "suf"));
 ```
-
-
-
-
