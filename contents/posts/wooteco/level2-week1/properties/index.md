@@ -26,7 +26,7 @@ series: "wooteco"
 
 ## @ActiveProfiles
 
-`src/main/resources` 패키지 아래에 프로덕션용으로 사용할 `application.properties`파일과 테스트용으로 사용할 `application-test.properties` 파일을 생성한다.
+* `src/main/resources` 패키지 아래에 프로덕션용으로 사용할 `application.properties`파일과 테스트용으로 사용할 `application-test.properties` 파일을 생성한다.
 
 <br/>
 
@@ -37,8 +37,6 @@ series: "wooteco"
 
 value="mainValue"
 ```
-
-<br/>
 
 
 
@@ -82,7 +80,7 @@ public class MainTest {
 
 ## 패키지 분리
 
-`src/test/resources` 패키지의 아래에 프로퍼티 파일을 생성하면, 테스트 코드가 `src/test/resources`에 있는 파일을 우선적으로 적용한다.
+* `src/test/resources` 패키지의 아래에 프로퍼티 파일을 생성하면, 테스트 코드가 `src/test/resources`에 있는 파일을 우선적으로 적용한다.
 
 <br/>
 
@@ -93,8 +91,6 @@ public class MainTest {
 
 value="mainValue"
 ```
-
-<br/>
 
 
 
