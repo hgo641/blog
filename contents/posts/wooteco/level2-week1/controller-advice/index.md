@@ -1,12 +1,19 @@
-
+---
+title: "@ControllerAdvice 정복하기"
+date: 2023-04-20
+update: 2023-04-20
+tags:
+  - 우테코
+  - wooteco
+  - 우아한테크코스
+series: "wooteco"
+---
 
 # @ControllerAdvice 정복하기
 
-
-
 ## @ExceptionHandler를 사용한 예외 처리
 
-* `MyController`에서 발생한 예외를 `@ExceptionHandler`를 사용해 처리
+- `MyController`에서 발생한 예외를 `@ExceptionHandler`를 사용해 처리
 
 ```java
 @RestController
@@ -17,7 +24,7 @@ public class MyController {
     public void plays(){
         throw new IllegalArgumentException();
     }
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle() {
         return ResponseEntity.badRequest().body("IllegalArgumentException 발생!");
@@ -31,7 +38,7 @@ public class MyController {
 
 <br/>
 
-* 컨트롤러에서 발생한 예외를 전역 처리하고 싶다면?
+- 컨트롤러에서 발생한 예외를 전역 처리하고 싶다면?
 
 ```java
 @RestController
@@ -42,7 +49,7 @@ public class NewController {
     public void plays(){
         throw new IllegalArgumentException();
     }
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle() {
         return ResponseEntity.badRequest().body("IllegalArgumentException 발생!");
@@ -56,8 +63,6 @@ public class NewController {
 
 지금은 두 개의 컨트롤러에 로직이 반복되지만, 만약 더 많은 컨트롤러에서 `IllegalArgumentException`에 대한 동일한 예외 처리가 필요해진다면? 전역적으로 예외를 처리하면 더 깔끔하고 중복이 없는 코드를 작성할 수 있다.
 
-
-
 ## @ControllerAdvice 사용 방법
 
 `@ControllerAdvice`를 사용하면 컨트롤러에서 발생한 예외를 전역적으로 처리할 수 있다.
@@ -65,7 +70,7 @@ public class NewController {
 ```java
 @ControllerAdvice
 public class MyControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("IllegalArgumentException 발생!");
@@ -74,14 +79,12 @@ public class MyControllerAdvice {
 
 ```
 
-* `@ControllerAdvice` 어노테이션이 있는 클래스를 생성한 뒤,
-* 클래스 내부에 `@ExceptionHandler` 어노테이션이 붙여진 메소드를 생성한다.
+- `@ControllerAdvice` 어노테이션이 있는 클래스를 생성한 뒤,
+- 클래스 내부에 `@ExceptionHandler` 어노테이션이 붙여진 메소드를 생성한다.
 
 위 과정을 통해 `MyControllerAdvice`는 `MyController`와 `NewController`에서 발생하는 `IllegalArgumentException`을 전부 처리할 수 있다.
 
 <br/>
-
-
 
 ## 여러 개의 @ControllerAdvice를 생성할 수 있을까?
 
@@ -92,7 +95,7 @@ public class MyControllerAdvice {
 ```java
 @ControllerAdvice
 public class MyControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("MyControllerAdvice에서 IllegalArgumentException 처리!");
@@ -103,7 +106,7 @@ public class MyControllerAdvice {
 ```java
 @ControllerAdvice
 public class NewControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("NewControllerAdvice에서 IllegalArgumentException 처리!");
@@ -111,11 +114,9 @@ public class NewControllerAdvice {
 }
 ```
 
-
-
 ### 컨트롤러에서 IllegalArgumentException이 발생하면, 두@ControllerAdvice 중 어떤 것을 선택할까?
 
-`MyControllerAdvice`와 `NewControllerAdvice`는 둘 다 `IllegalArgumentException`에 대한 예외를 처리하고 있다. 
+`MyControllerAdvice`와 `NewControllerAdvice`는 둘 다 `IllegalArgumentException`에 대한 예외를 처리하고 있다.
 
 두 클래스 모두 전역적으로 예외를 처리하고 있다. 컨트롤러에서 `IllegalArgumentException`이 발생할 경우, 어떤 `@ControllerAdvice`에서 예외를 처리하게 될까?
 
@@ -123,11 +124,9 @@ public class NewControllerAdvice {
 
 > `AnnotationAwareOrderComparator`이란?
 >
-> * Comparator를 구현한 클래스이다.
-> * `@Order`, `@Priority`, `Ordered` 인터페이스를 사용해 원하는 정렬 기준을 설정할 수 있다.
-> * 정렬이 적용되는 우선 순위는 `@Order`, `@Priority`, `Ordered` 순이다.
-
-
+> - Comparator를 구현한 클래스이다.
+> - `@Order`, `@Priority`, `Ordered` 인터페이스를 사용해 원하는 정렬 기준을 설정할 수 있다.
+> - 정렬이 적용되는 우선 순위는 `@Order`, `@Priority`, `Ordered` 순이다.
 
 <br/>
 
@@ -151,40 +150,32 @@ public class NewControllerAdvice {
 
 `MyControllerAdvice`가 가장 앞에 있기 때문에, 어느 컨트롤러에서 `IllegalArgumentException`예외가 발생하든 `MyControllerAdvice`에서 예외 처리가 수행된다.
 
-
-
-* `MyController`에서 예외 발생
+- `MyController`에서 예외 발생
 
 ![](default-my.png)
 
 <br/>
 
-* `NewController`에서 예외 발생
+- `NewController`에서 예외 발생
 
 ![](default-new.png)
 
 `@ControllerAdivice`에 특별한 정렬 기준을 등록하고 싶다면, `AnnotationAwareOrderComparator`를 활용한다.
 
-
-
 ## @ControllerAdvice가 적용될 클래스를 제한할 수 없을까?
 
-가능하다! `@ControllerAdvice`에는 예외 처리를 적용할 클래스를 제한할 수 있는 여러 속성들이 존재한다. 
-
-
+가능하다! `@ControllerAdvice`에는 예외 처리를 적용할 클래스를 제한할 수 있는 여러 속성들이 존재한다.
 
 ### 📌 basePackages
 
 `@ControllerAdvice`를 적용할 패키지를 지정한다. 지정한 패키지의 하위 패키지까지 예외 처리가 적용된다.
 
-
-
-* 코드 예시
+- 코드 예시
 
 ```java
 @ControllerAdvice(basePackages = "racingcar.controller.myPackage")
 public class MyControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("MyControllerAdvice에서 IllegalArgumentException 처리!");
@@ -195,7 +186,7 @@ public class MyControllerAdvice {
 ```java
 @ControllerAdvice(basePackages = "racingcar.controller.newPackage")
 public class NewControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("NewControllerAdvice에서 IllegalArgumentException 처리!");
@@ -207,15 +198,13 @@ public class NewControllerAdvice {
 
 `racingcar.controller.newPackage`패키지 아래에는 `NewController`가 존재한다.
 
-
-
-* `MyController` 예외 처리 결과
+- `MyController` 예외 처리 결과
 
 ![](package-my.png)
 
 <br/>
 
-* `NewController` 예외 처리 결과
+- `NewController` 예외 처리 결과
 
 ![](package-new.png)
 
@@ -229,22 +218,18 @@ public class NewControllerAdvice {
 
 ![](controller-advice.png)
 
-
-
 <br/>
 
 ### 📌 basePackageClasses
 
 지정한 클래스가 속한 패키지를 `basePackage`로 등록한다. 즉, 지정한 클래스가 속한 패키지 하위에 존재하는 모든 컨트롤러를 예외 처리한다.
 
-
-
-* 코드 예시
+- 코드 예시
 
 ```java
 @ControllerAdvice(basePackageClasses = NewController.class)
 public class NewControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("NewControllerAdvice에서 IllegalArgumentException 처리!");
@@ -252,26 +237,22 @@ public class NewControllerAdvice {
 }
 ```
 
-`basePackageClasses`에 등록된 클래스의 패키지 이름을 추출해 `basePackages`에  등록한다. 동작 과정은 `basePackages`와 같다.
+`basePackageClasses`에 등록된 클래스의 패키지 이름을 추출해 `basePackages`에 등록한다. 동작 과정은 `basePackages`와 같다.
 
 위 코드의 경우 `NewController`가 속한 패키지인 `racingcar.controller.newPackage`를 기준으로 예외 처리가 적용될 클래스를 제한한다.
 
 `basePackages`와 하는 일이 같지만, `basePackageClasses`가 존재하는 이유는 패키지 이름이 노출되지 않기 때문에 안전하게 사용할 수 있다는 장점 때문인 것 같다.
 
-
-
 ### 📌 assignableTypes
 
 특정 타입 또는 그 하위 타입인 컨트롤러 클래스를 대상으로 예외를 처리한다.
 
-
-
-* 코드 예시
+- 코드 예시
 
 ```java
 @ControllerAdvice(assignableTypes = NewController.class)
 public class NewControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("NewControllerAdvice에서 IllegalArgumentException 처리!");
@@ -281,20 +262,16 @@ public class NewControllerAdvice {
 
 `NewController` 클래스와 그 하위 타입인 클래스를 예외 처리가 적용될 클래스로 제한한다.
 
-
-
-
-
 ### 📌 annotations
 
 특정 어노테이션과 그 하위 타입 어노테이션이 적용된 컨트롤러를 대상으로 예외를 처리한다.
 
-* 코드 예시
+- 코드 예시
 
 ```java
 @ControllerAdvice(annotations = RestController.class)
 public class NewControllerAdvice {
-    
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handle(Exception exception) {
         return ResponseEntity.badRequest().body("NewControllerAdvice에서 IllegalArgumentException 처리!");
@@ -308,9 +285,7 @@ public class NewControllerAdvice {
 
 두 컨트롤러의 예외 처리는 어떻게 될까?
 
-
-
-* `NewController`의 예외 처리
+- `NewController`의 예외 처리
 
 ![](annotations-new.png)
 
@@ -318,7 +293,7 @@ public class NewControllerAdvice {
 
 <br/>
 
-* `MyController`의 예외 처리
+- `MyController`의 예외 처리
 
 ![](annotations-my.png)
 
@@ -327,10 +302,6 @@ public class NewControllerAdvice {
 <br/>
 
 `@RestController`가 등록된 `NewController`는 `annotations`으로 `RestController.class`가 지정된 두 `Advice`중 가장 앞에 있는 `Advice`에서 예외가 처리되었다. 하지만 `@RestController`가 붙여있지 않은 `MyController`는 `Advice`의 어노테이션 제한에 걸려 예외가 처리되지 않은 걸 알 수 있다.
-
-
-
-
 
 ## @ControllerAdvice vs @RestControllerAdvice
 
@@ -369,15 +340,13 @@ public @interface RestControllerAdvice {
 
 ```
 
-앞서 학습한 Advice의 속성외에는 별다른 필드와 메소드가 없는 것을 볼 수 있다. 
+앞서 학습한 Advice의 속성외에는 별다른 필드와 메소드가 없는 것을 볼 수 있다.
 
 `RestControllerAdvice`와 `ControllerAdvice`와 다른 점은 `@ResponseBody`가 있냐, 없냐의 차이뿐이다.
 
-즉,`@RestControllerAdvice`는 `@ControllerAdvice`와 똑같이 작동하나, `@ResponseBody`가 붙여져 있어 자바 객체를 http  요청의 body 내용으로 매핑할 수 있게 해준다.
+즉,`@RestControllerAdvice`는 `@ControllerAdvice`와 똑같이 작동하나, `@ResponseBody`가 붙여져 있어 자바 객체를 http 요청의 body 내용으로 매핑할 수 있게 해준다.
 
- `@ControllerAdvice`는 `@Controller`가 붙여진 클래스의 예외 처리를 담당하고, `@RestControllerAdvice`는 `@RestController`가 붙여진 클래스의 예외 처리를 담당한다고 오해하면 안된다!
-
-
+`@ControllerAdvice`는 `@Controller`가 붙여진 클래스의 예외 처리를 담당하고, `@RestControllerAdvice`는 `@RestController`가 붙여진 클래스의 예외 처리를 담당한다고 오해하면 안된다!
 
 ## @ControllerAdvice를 여러 개 만들면 좋을까?
 
@@ -389,19 +358,15 @@ public @interface RestControllerAdvice {
 
 또한, 적용 클래스를 제한하더라도 의도치 않은 `Advice`에서 해당 클래스에 대한 예외 처리를 수행할 수도 있다. `Advice`간 정렬 기준을 잘 정의해놓지 않는다면, 어떤 `Advice`에서 예외를 처리할 지 예측하기가 어렵기 때문이다. 정렬 기준을 정의해놓는다고 해도, `@Order`나 `Ordered` 인터페이스를 사용한 클래스를 파악하는게 쉬울 것 같진 않다.
 
-여러 개의 `@ControllerAdvice`를 생성하기 보단 하나의 `@ControllerAdvice` 생성해서 모든 예외에 대한 전역 처리를 수행하는 것이 프로그램의 예외 처리 로직을 이해하기 쉬울 것 같다. 
-
-
+여러 개의 `@ControllerAdvice`를 생성하기 보단 하나의 `@ControllerAdvice` 생성해서 모든 예외에 대한 전역 처리를 수행하는 것이 프로그램의 예외 처리 로직을 이해하기 쉬울 것 같다.
 
 ---
-
-
 
 # 🍊 홍고
 
 ### ✔️ 스스로에게 좋았던 점
 
-------
+---
 
 - 주노의 설명을 주의 깊게 들었다.
 - 주노에게 젤리를 나눠줬다. 주노가 준거긴 하다.
@@ -410,7 +375,7 @@ public @interface RestControllerAdvice {
 
 ### ✔️ 페어(주노)에게 좋았던 점
 
-------
+---
 
 - 유치원 어린이에게 말해주듯 차근차근 설명해줘서 좋았다. 설명을 굉장히 잘 하는 페어였다.
 - 개떡같이 물어봐도 찰떡같이 대답했다 아마
@@ -420,7 +385,7 @@ public @interface RestControllerAdvice {
 
 ### ✔️ 페어(주노)에게 아쉬웠던 점
 
-------
+---
 
 - 주노가 너무 유치원 어린이한테 설명해주듯이 해서 조금 킹받았다. 양날의 검인 것 같다.
 - 초반에 갑자기 개발하다가 냅다 기술 부채 기록시작해서 뭐지? 싶었다. 근데 좋긴 좋았다. 미리 예고좀
@@ -428,13 +393,13 @@ public @interface RestControllerAdvice {
 
 ### ✔️ 스스로에게 아쉬웠던 점
 
-------
+---
 
 - 페어를 챗지피티마냥 활용한 것 같다.
 
-### ✔️ 소감 &  앞으로의 다짐
+### ✔️ 소감 & 앞으로의 다짐
 
-------
+---
 
 - 페어에게 묻기 전에 스스로 알아보자 ~
 
@@ -442,14 +407,14 @@ public @interface RestControllerAdvice {
 
 ### ✔️ 스스로에게 좋았던 점
 
-------
+---
 
 - 스프링 사용 경험이 있어 원활한 미션 진행을 할 수 있었다.
 - 천천히 생각을 말하면서 미션을 진행하는 부분이 좋았다.
 
 ### ✔️ 페어(홍고)에게 좋았던 점
 
-------
+---
 
 - 스프링 사용 경험이 있어 원활한 미션 진행을 할 수 있었다.
 - 페어프로그래밍에 대한 경계를 해줘서 중간부터 페어프로그래밍에 대한 생각을 다시 할 수 있었다.
@@ -458,21 +423,21 @@ public @interface RestControllerAdvice {
 
 ### ✔️ 페어(홍고)에게 아쉬웠던 점
 
-------
+---
 
 - 첫날 저녁먹고 난 뒤 무한 긍정 시간이 있었는데 살짝 아쉬웠다.
 - **검색을 할 때 공식문서를 먼저 찾아보는 연습을 해봅시다.**
 
 ### ✔️ 스스로에게 아쉬웠던 점
 
-------
+---
 
 - 기존에 정해놨던 페어 프로그래밍 규칙을 적용하지 못 했던 부분이 아쉽다.
 - 사용해봤다고 기초에 소홀했던 부분이 있었던 부분이 아쉽다.
 
-### ✔️ 소감 &  앞으로의 다짐
+### ✔️ 소감 & 앞으로의 다짐
 
-------
+---
 
 - 레벨 1 때 다짐했던 페어프로그래밍에 대한 규칙을 다시 한번 상기시켜야 할 필요성을 느꼈다.
   - 페어프로그래밍으로부터 얻어갈 수 있는 측면을 다시 한 번 생각해볼 필요가 있다.
