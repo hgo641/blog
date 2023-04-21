@@ -120,17 +120,19 @@ public class NewControllerAdvice {
 
 두 클래스 모두 전역적으로 예외를 처리하고 있다. 컨트롤러에서 `IllegalArgumentException`이 발생할 경우, 어떤 `@ControllerAdvice`에서 예외를 처리하게 될까?
 
-정답은 `AnnotationAwareOrderComparator`를 기준으로 `@ControllerAdvice`를 정렬한 순으로 선택한다.
+정답은 `AnnotationAwareOrderComparator`에서  `@ControllerAdvice`가 붙은 클래스의 우선 순위를 정의한 순으로 선택한다.
 
 > `AnnotationAwareOrderComparator`이란?
 >
 > - Comparator를 구현한 클래스이다.
-> - `@Order`, `@Priority`, `Ordered` 인터페이스를 사용해 원하는 정렬 기준을 설정할 수 있다.
-> - 정렬이 적용되는 우선 순위는 `@Order`, `@Priority`, `Ordered` 순이다.
+> - `Ordered` 인터페이스, `@Order`, `@Priority`를 사용해 객체의 우선 순위를 설정할 수 있다.
+> - 정렬이 적용되는 우선 순위는 `Ordered` ,  `@Order`, `@Priority` 순이다.
 
 <br/>
 
-`MyControllerAdvice`와 `NewControllerAdvice`가 어떻게 정렬될 지 확인해보자.
+`MyControllerAdvice`와 `NewControllerAdvice` 는 어떤 우선 순위도 설정되어 있지 않다. 
+
+우선 순위가 설정되지 않은 경우는 어떻게 정렬되는지 확인해보자.
 
 ![](exception-resolver.png)
 
@@ -160,7 +162,7 @@ public class NewControllerAdvice {
 
 ![](default-new.png)
 
-`@ControllerAdivice`에 특별한 정렬 기준을 등록하고 싶다면, `AnnotationAwareOrderComparator`를 활용한다.
+
 
 ## @ControllerAdvice가 적용될 클래스를 제한할 수 없을까?
 
@@ -359,3 +361,4 @@ public @interface RestControllerAdvice {
 또한, 적용 클래스를 제한하더라도 의도치 않은 `Advice`에서 해당 클래스에 대한 예외 처리를 수행할 수도 있다. `Advice`간 정렬 기준을 잘 정의해놓지 않는다면, 어떤 `Advice`에서 예외를 처리할 지 예측하기가 어렵기 때문이다. 정렬 기준을 정의해놓는다고 해도, `@Order`나 `Ordered` 인터페이스를 사용한 클래스를 파악하는게 쉬울 것 같진 않다.
 
 여러 개의 `@ControllerAdvice`를 생성하기 보단 하나의 `@ControllerAdvice` 생성해서 모든 예외에 대한 전역 처리를 수행하는 것이 프로그램의 예외 처리 로직을 이해하기 쉬울 것 같다.
+
