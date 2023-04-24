@@ -122,21 +122,29 @@ public class NewControllerAdvice {
 
 <br/>
 
-[Spring 공식문서 - ControllerAdvice](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring%20Framework%204.3.23.RELEASE/org/springframework/web/bind/annotation/ControllerAdvice.html)
-
-> Classes with `@ControllerAdvice` can be declared explicitly as Spring beans or auto-detected via classpath scanning. All such beans are sorted via [`AnnotationAwareOrderComparator`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/annotation/AnnotationAwareOrderComparator.html), i.e. based on [`@Order`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/annotation/Order.html) and [`Ordered`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/Ordered.html), and applied in that order at runtime. 
-
-공식 문서를 보면 `AnnotationAwareOrderComparator`에서 `@Order`, `Ordered`를 기준으로  `@ControllerAdvice`가 붙은 클래스를 정렬한다고 한다!
 
 
+[Spring 공식문서 - ControllerAdvice](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)
+
+> All such beans are sorted based on [`Ordered`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/Ordered.html) semantics or [`@Order`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/annotation/Order.html) / [`@Priority`](https://jakarta.ee/specifications/platform/9/apidocs/jakarta/annotation/Priority.html) declarations, with `Ordered` semantics taking precedence over `@Order` / `@Priority` declarations. `@ControllerAdvice` beans are then applied in that order at runtime.
+
+공식 문서를 보면 `Ordered`, `@Order`, `@Priority`를 기준으로  `@ControllerAdvice`가 붙은 클래스를 정렬한다고 한다!
+
+스프링은 `ControllerAdviceBean`이라는 클래스에서 `@(Rest)ControllerAdvice`가 붙여진 클래스들을 찾으며 빈으로 등록한다. 맨 마지막에 `OrderComparator`를 사용해 `Advice`들을 정렬하는 것을 볼 수 있다.
+
+![](order.png)
 
 
 
-### AnnotationAwareOrderComparator
+
+
+### OrderComparator
 
 * 이름에서 알 수 있듯이 Comparator를 구현한 클래스이다.
 * 객체에 적용된 `Ordered` 인터페이스, `@Order`, `@Priority`를 사용해 객체들의 우선 순위를 설정한다.
 * 정렬이 적용되는 우선 순위는 `Ordered` ,  `@Order`, `@Priority` 순이다.
+
+
 
 <br/>
 
