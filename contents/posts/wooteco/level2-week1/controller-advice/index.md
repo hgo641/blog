@@ -120,17 +120,86 @@ public class NewControllerAdvice {
 
 두 클래스 모두 전역적으로 예외를 처리하고 있다. 컨트롤러에서 `IllegalArgumentException`이 발생할 경우, 어떤 `@ControllerAdvice`에서 예외를 처리하게 될까?
 
-정답은 `AnnotationAwareOrderComparator`에서  `@ControllerAdvice`가 붙은 클래스의 우선 순위를 정의한 순으로 선택한다.
+<br/>
 
-> `AnnotationAwareOrderComparator`이란?
->
-> - Comparator를 구현한 클래스이다.
-> - `Ordered` 인터페이스, `@Order`, `@Priority`를 사용해 객체의 우선 순위를 설정할 수 있다.
-> - 정렬이 적용되는 우선 순위는 `Ordered` ,  `@Order`, `@Priority` 순이다.
+[Spring 공식문서 - ControllerAdvice](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring%20Framework%204.3.23.RELEASE/org/springframework/web/bind/annotation/ControllerAdvice.html)
+
+> Classes with `@ControllerAdvice` can be declared explicitly as Spring beans or auto-detected via classpath scanning. All such beans are sorted via [`AnnotationAwareOrderComparator`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/annotation/AnnotationAwareOrderComparator.html), i.e. based on [`@Order`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/annotation/Order.html) and [`Ordered`](https://docs.spring.io/spring-framework/docs/4.3.22.RELEASE_to_4.3.23.RELEASE/Spring Framework 4.3.23.RELEASE/org/springframework/core/Ordered.html), and applied in that order at runtime. 
+
+공식 문서를 보면 `AnnotationAwareOrderComparator`에서 `@Order`, `Ordered`를 기준으로  `@ControllerAdvice`가 붙은 클래스를 정렬한다고 한다!
+
+
+
+
+
+### AnnotationAwareOrderComparator
+
+* 이름에서 알 수 있듯이 Comparator를 구현한 클래스이다.
+* 객체에 적용된 `Ordered` 인터페이스, `@Order`, `@Priority`를 사용해 객체들의 우선 순위를 설정한다.
+* 정렬이 적용되는 우선 순위는 `Ordered` ,  `@Order`, `@Priority` 순이다.
 
 <br/>
 
-`MyControllerAdvice`와 `NewControllerAdvice` 는 어떤 우선 순위도 설정되어 있지 않다. 
+`Ordered` ,  `@Order`, `@Priority` 는 객체의 우선 순위를 정의할 수 있다. 정의한 숫자가 낮을 수록 높은 우선 순위를 가진다.
+
+#### Ordered 
+
+```java
+public interface Ordered {
+
+	int HIGHEST_PRECEDENCE = Integer.MIN_VALUE;
+
+	int LOWEST_PRECEDENCE = Integer.MAX_VALUE;
+
+	int getOrder();
+}
+```
+
+* `getOrder()` 를 구현해 우선 순위 정의
+
+
+
+#### Order & Priority
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.FIELD})
+@Documented
+public @interface Order {
+
+	int value() default Ordered.LOWEST_PRECEDENCE;
+}
+```
+
+```java
+@Target({TYPE,PARAMETER})
+@Retention(RUNTIME)
+@Documented
+public @interface Priority {
+
+    int value();
+}
+```
+
+* `value` 값을 통해 우선 순위를 정의
+
+<br/>
+
+`Ordered`와 `Order`는 `Integer`의 최솟값, 최댓값까지 우선순위 값으로 설정이 가능하나, `Priority`는 음수가 아닌 수를 우선 순위값으로 지정하는 게 일반적이다. 음수값은 우선 순위 값이 지정되지 않았음을 의미한다.
+
+[Spring 공식문서 - Priority](https://jakarta.ee/specifications/platform/9/apidocs/jakarta/annotation/priority) 
+
+> Priority values should generally be non-negative, with negative values reserved for special meanings such as "undefined" or "not specified".
+
+
+
+
+
+
+
+### 우선 순위가 정해져 있지 않다면?
+
+`MyControllerAdvice`와 `NewControllerAdvice` 는 어떤 우선 순위도 설정되어 있지 않다. (`Ordered`, `@Order`, `@Priority` 그 어떤 것도 사용되지 않았다.)
 
 우선 순위가 설정되지 않은 경우는 어떻게 정렬되는지 확인해보자.
 
@@ -361,4 +430,3 @@ public @interface RestControllerAdvice {
 또한, 적용 클래스를 제한하더라도 의도치 않은 `Advice`에서 해당 클래스에 대한 예외 처리를 수행할 수도 있다. `Advice`간 정렬 기준을 잘 정의해놓지 않는다면, 어떤 `Advice`에서 예외를 처리할 지 예측하기가 어렵기 때문이다. 정렬 기준을 정의해놓는다고 해도, `@Order`나 `Ordered` 인터페이스를 사용한 클래스를 파악하는게 쉬울 것 같진 않다.
 
 여러 개의 `@ControllerAdvice`를 생성하기 보단 하나의 `@ControllerAdvice` 생성해서 모든 예외에 대한 전역 처리를 수행하는 것이 프로그램의 예외 처리 로직을 이해하기 쉬울 것 같다.
-
