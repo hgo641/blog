@@ -10,6 +10,17 @@ series: "wooteco"
 ---
 
 
+<<<<<<< HEAD
+=======
+어노테이션을 사용해서 빈을 생성하는 방법은 크게 두 가지가 있다.
+
+- `@Configuration`과 `@Bean`을 사용해 빈 설정 정보 클래스 생성 (하나 이상의 빈을 한 클래스에서 설정할 수 있다)
+- `@Component`와 이를 상속한 `@Repository`, `@Controller` 어노테이션등을 사용해 자바 컴포넌트 생성 (하나의 클래스를 빈으로 등록한다)
+
+오늘은 첫 번째 방법인 `@Configuration`을 알아보자.
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
+
+
 
 ## @Configuration이란?
 
@@ -22,7 +33,17 @@ series: "wooteco"
 - `@Configuration` 어노테이션을 사용하면, 하나 이상의 `@Bean`메서드가 포함된 빈 설정용 클래스를 만들 수 있다.
 - 스프링 컨테이너는 `@Bean` 메서드를 통해 빈을 생성한다.
 
+<<<<<<< HEAD
 
+=======
+
+
+```
++ 참고
+
+여기서 스프링 컨테이너란, 빈에 대한 정보를 읽어 빈을 생성, 관리하며 빈들간의 의존성 주입을 수행하는 ApplicationContext를 의미한다.
+스프링 컨테이너 = IoC 컨테이너 = ApplicationContext = BeanFactory 모두 넓게 같은 의미로 사용된다. (by 토비의 스프링)
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 > `참고`
 >
@@ -39,12 +60,20 @@ series: "wooteco"
 
 
 
+
+
 ### @Configuration 사용 예시
 
 ```java
 // 빈으로 등록할 클래스
+<<<<<<< HEAD
 public class MyBean {
     
+=======
+
+public class MyBean {
+
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
     public void sayHello() {
         System.out.println("안녕하세요, MyBean입니다.");
     }
@@ -69,8 +98,11 @@ public class Config {
 - 빈의 이름은 `@Bean`이 붙은 메서드 이름이 된다. (이 코드의 경우 메서드명과 같은 `MyBean` 빈이 생성된다.)
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 ## 등록한 빈 가져오기 - getBean()
 
@@ -193,7 +225,11 @@ public @interface Configuration {
 
 
 
+<<<<<<< HEAD
 ### 📌 value
+=======
+### value
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 `@Configuration`이 붙은 클래스의 빈 이름 설정
 
@@ -242,7 +278,11 @@ value를 설정하지 않으면 자동으로 클래스 이름이 빈의 이름�
 
 바이트 코드를 가지고 프록시 객체를 만들어주는 라이브러리이다. 런타임에 **자바 클래스를 extend**하고 인터페이스를 구현하는데 사용한다.
 
+<<<<<<< HEAD
 동적 프록시 객체를 만든다. 바이트 코드를 가지고 프록시 객체를 만들어주는 라이브러리라고 알고 넘어가자! 
+=======
+동적 프록시 객체를 만든다. 바이트 코드를 가지고 프록시 객체를 만들어주는 라이브러리라고 알고 넘어가자! (자세히는 알아보고 싶지 않다! ㅎ)
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 
 
@@ -268,7 +308,11 @@ value를 설정하지 않으면 자동으로 클래스 이름이 빈의 이름�
 
 프록시 객체로 어떻게 싱글톤타입의 빈을 만드는 걸까?
 
+<<<<<<< HEAD
 스프링은 `CGLIB`라이브러리를 사용해 `Configuration` 클래스를 그대로 사용하지 않고, `Configuration`을 상속한 프록시 객체를 새로 만들어서 사용한다. 기존 클래스를 상속해야하므로, `Configuration`은 final 클래스로 생성할 수 없다고 한다.
+=======
+스프링은 `CGLIB`라이브러리를 사용해 `Configuration` 클래스를 그대로 사용하지 않고, `Configuration`을 상속한 클래스를 새로 만들어서 사용한다. (프록시 객체) 기존 클래스를 상속해야하므로, `Configuration`은 final 클래스로 생성할 수 없다.
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 ```java
 @Configuration
@@ -296,7 +340,13 @@ public class ConfigExt extends Config { // 실제로 빈을 반환하는데 사�
 }
 ```
 
+<<<<<<< HEAD
 물론 실제 코드는 이보다 더욱 복잡하다고 한다. 예시용으로 참고만 하자.
+=======
+물론 실제 코드는 이보다 더욱 복잡하다고 한다. 예시용으로 참고만 하자 (스프링5 프로그래밍 입문 - 최범균)
+
+
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 
 
@@ -382,6 +432,14 @@ public class Config {
 
 - 동일한 `@Configuration` 클래스내에서는 `proxyBeanMethod`가 false이면 아예 할당이 안되는 것을 볼 수 있다.
 
+<<<<<<< HEAD
+=======
+ `proxyBeanMethods`가 `false`일때 같은 `@Configuration` 안에서는 빈들간의 의존성 주입이 잘 되지 않나보다.
+
+프록시 객체로 생성했을 때는 실제 객체의 메소드를 호출하기 전에 무언가 작업을 해주기 때문에 같은 `Configuration`에서도 빈들간에 주입을 해줄 수 있었지만, 프록시 객체가 아닐 때는 `babyBean`을 빈으로 등록하기 전에 `babyBean()`메서드를 호출하는걸까? 이유는 잘 모르겠다.
+
+
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 
  `@Cofiguration` 클래스를 두 개로 분리해서 의존성을 주입해주면 작동하지 않을까?
@@ -449,6 +507,11 @@ public class ConfigTest {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
 
 ### ApplicationContext에 Configuration 등록
 
@@ -476,6 +539,30 @@ public class ConfigTest {
 ```java
 AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config1.class, Config2.class);
 ```
+
+<<<<<<< HEAD
+=======
+
+
+
+
+\+ 참고용
+
+여러 `ApplicationContext`중 `AnnotationConfigApplicationContext`를 사용한 이유
+
+[Spring 공식문서 - Configuration](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html)
+
+> `@Configuration` classes are typically bootstrapped using either [`AnnotationConfigApplicationContext`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html) or its web-capable variant, [`AnnotationConfigWebApplicationContext`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/support/AnnotationConfigWebApplicationContext.html).
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
+
+
+<<<<<<< HEAD
+=======
+
+
+**AnnotationConfigApplicationContext이 뭐길래 사용하는데?**
+>>>>>>> 07895a0a94a4bb85f53d3ccc48a9e5d36eeb1ac4
+
 
 
 
